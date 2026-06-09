@@ -1,3 +1,5 @@
+![Pairwise banner](public/readme-banner.png)
+
 # ⚖️ Pairwise
 
 A simple, modern, **self-hostable** pairwise voting tool — inspired by
