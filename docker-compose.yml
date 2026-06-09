@@ -1,0 +1,16 @@
+services:
+  pairwise:
+    build: .
+    # Or use a prebuilt image instead of building:
+    # image: ghcr.io/youruser/pairwise-ideas:latest
+    ports:
+      - "3000:3000"
+    environment:
+      PORT: 3000
+      DATABASE_PATH: /app/data/pairwise.db
+    volumes:
+      - pairwise-data:/app/data
+    restart: unless-stopped
+
+volumes:
+  pairwise-data:

@@ -1,0 +1,24 @@
+{
+  "name": "pairwise-ideas",
+  "version": "0.1.0",
+  "description": "A simple, modern, self-hostable pairwise voting tool inspired by All Our Ideas. Bun + SQLite.",
+  "type": "module",
+  "scripts": {
+    "dev": "bun --watch src/index.ts",
+    "start": "bun src/index.ts",
+    "test": "bun test",
+    "typecheck": "tsc --noEmit",
+    "lint": "eslint .",
+    "check": "bun run typecheck && bun run lint && bun test"
+  },
+  "dependencies": {
+    "hono": "^4.6.14"
+  },
+  "devDependencies": {
+    "@eslint/js": "^10.0.1",
+    "bun-types": "^1.3.14",
+    "eslint": "^10.4.1",
+    "typescript": "^6.0.3",
+    "typescript-eslint": "^8.61.0"
+  }
+}

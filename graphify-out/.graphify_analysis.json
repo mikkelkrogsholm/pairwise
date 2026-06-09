@@ -1,0 +1,235 @@
+{
+  "communities": {
+    "0": [
+      "db",
+      "db_appearance",
+      "db_createappearance",
+      "db_createsurvey",
+      "db_db",
+      "db_ensurecolumn",
+      "db_getappearancebylookup",
+      "db_getsurveybyslug",
+      "db_hextoken",
+      "db_listallideas",
+      "db_mediakind",
+      "db_randomslug",
+      "db_recordskip",
+      "db_recordvote",
+      "db_resultsfor",
+      "db_setideaactive",
+      "db_survey",
+      "db_surveymode",
+      "db_surveystats",
+      "db_updatesurvey",
+      "db_voteresult"
+    ],
+    "1": [
+      "i18n_rich",
+      "views",
+      "views_addideainput",
+      "views_adminaddform",
+      "views_adminpage",
+      "views_createdpage",
+      "views_esc",
+      "views_homepage",
+      "views_idealabel",
+      "views_jsonscript",
+      "views_langswitcher",
+      "views_layout",
+      "views_mediapreview",
+      "views_modes",
+      "views_notfoundpage",
+      "views_resultspage",
+      "views_votepage"
+    ],
+    "2": [
+      "db_getsurveybytoken",
+      "index",
+      "index_adminredirect",
+      "index_app",
+      "index_field",
+      "index_html",
+      "index_origin",
+      "index_port",
+      "index_requireadmin",
+      "index_server",
+      "index_str",
+      "index_voterid"
+    ],
+    "3": [
+      "index_addaudioidea",
+      "media",
+      "media_deletemediafile",
+      "media_isaudio",
+      "media_isimage",
+      "media_safeext",
+      "media_saveaudio",
+      "media_saveimage",
+      "media_savewebm",
+      "media_surveydir",
+      "media_upload_limits"
+    ],
+    "4": [
+      "i18n",
+      "i18n_catalog",
+      "i18n_catalogs",
+      "i18n_da",
+      "i18n_en",
+      "i18n_islocale",
+      "i18n_locales",
+      "i18n_picklocale",
+      "i18n_translator",
+      "index_i18n"
+    ],
+    "5": [
+      "algorithm",
+      "algorithm_choosepair",
+      "algorithm_chosenpair",
+      "algorithm_scoreof",
+      "db_getpairvotes",
+      "db_idea",
+      "db_listactiveideas",
+      "index_ideapayload",
+      "index_nextpairpayload"
+    ],
+    "6": [
+      "db_addidea",
+      "db_deleteidea",
+      "db_getidea",
+      "db_updateideamedia",
+      "index_addimageidea",
+      "index_addwebmidea"
+    ],
+    "7": [
+      "index_asfiles",
+      "index_ingestmedia",
+      "index_lines",
+      "index_within",
+      "media_iswebm",
+      "media_parseyoutube"
+    ]
+  },
+  "cohesion": {
+    "0": 0.12380952380952381,
+    "1": 0.2867647058823529,
+    "2": 0.18181818181818182,
+    "3": 0.2545454545454545,
+    "4": 0.24444444444444444,
+    "5": 0.3055555555555556,
+    "6": 0.4,
+    "7": 0.3333333333333333
+  },
+  "gods": [
+    {
+      "id": "views_esc",
+      "label": "esc()",
+      "degree": 13
+    },
+    {
+      "id": "index_ingestmedia",
+      "label": "ingestMedia()",
+      "degree": 12
+    },
+    {
+      "id": "views_layout",
+      "label": "layout()",
+      "degree": 9
+    },
+    {
+      "id": "db_addidea",
+      "label": "addIdea()",
+      "degree": 7
+    },
+    {
+      "id": "index_addimageidea",
+      "label": "addImageIdea()",
+      "degree": 6
+    },
+    {
+      "id": "views_votepage",
+      "label": "votePage()",
+      "degree": 6
+    },
+    {
+      "id": "algorithm_choosepair",
+      "label": "choosePair()",
+      "degree": 5
+    },
+    {
+      "id": "db_idea",
+      "label": "Idea",
+      "degree": 5
+    },
+    {
+      "id": "db_createsurvey",
+      "label": "createSurvey()",
+      "degree": 5
+    },
+    {
+      "id": "db_updateideamedia",
+      "label": "updateIdeaMedia()",
+      "degree": 5
+    }
+  ],
+  "surprises": [
+    {
+      "source": "ChosenPair",
+      "target": "Idea",
+      "source_files": [
+        "algorithm.ts",
+        "db.ts"
+      ],
+      "confidence": "EXTRACTED",
+      "relation": "references",
+      "why": "connects across different repos/directories; peripheral node `ChosenPair` unexpectedly reaches hub `Idea`"
+    },
+    {
+      "source": "addAudioIdea()",
+      "target": "addIdea()",
+      "source_files": [
+        "index.ts",
+        "db.ts"
+      ],
+      "confidence": "EXTRACTED",
+      "relation": "calls",
+      "why": "connects across different repos/directories; bridges separate communities"
+    },
+    {
+      "source": "ingestMedia()",
+      "target": "addIdea()",
+      "source_files": [
+        "index.ts",
+        "db.ts"
+      ],
+      "confidence": "EXTRACTED",
+      "relation": "calls",
+      "why": "connects across different repos/directories; bridges separate communities"
+    },
+    {
+      "source": "addAudioIdea()",
+      "target": "updateIdeaMedia()",
+      "source_files": [
+        "index.ts",
+        "db.ts"
+      ],
+      "confidence": "EXTRACTED",
+      "relation": "calls",
+      "why": "connects across different repos/directories; bridges separate communities"
+    },
+    {
+      "source": "nextPairPayload()",
+      "target": "createAppearance()",
+      "source_files": [
+        "index.ts",
+        "db.ts"
+      ],
+      "confidence": "EXTRACTED",
+      "relation": "calls",
+      "why": "connects across different repos/directories; bridges separate communities"
+    }
+  ],
+  "tokens": {
+    "input": 0,
+    "output": 0
+  }
+}
