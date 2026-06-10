@@ -47,6 +47,19 @@ bun run dev      # http://localhost:3000, hot reload
 
 ---
 
+## Documentation
+
+README is the quick orientation. The full operational docs live in `docs/`:
+
+- [Admin guide](docs/admin.md) — admin links, collaborators, revoke/rotate, lifecycle, deletion.
+- [Privacy and GDPR notes](docs/privacy-gdpr.md) — data inventory, cookies, legal-basis considerations, retention, data-subject requests.
+- [Security notes](docs/security.md) — bearer-link model, CSRF, media access, cookie scope, upload limits, deployment checklist.
+- [Deployment guide](docs/deployment.md) — Docker, env vars, reverse proxy, HTTPS, backups, upgrades, scaling limits.
+- [Methods and scoring](docs/methods.md) — pair selection, Bayesian score, raw win rate, Bradley-Terry, interpretation.
+- [Development guide](docs/development.md) — setup, checks, project structure, migrations, adding languages/methods/media modes.
+
+---
+
 ## How to use it
 
 1. Open the home page and **create a survey**: a title, optional description, and
@@ -59,6 +72,9 @@ bun run dev      # http://localhost:3000, hot reload
      admin links for collaborators.
 3. Participants vote (mouse, or `←` / `→` keys, `S` to skip) and can submit their
    own ideas, which land in the admin moderation queue (unless auto-publish is on).
+
+See [Admin guide](docs/admin.md) for multiple admins, lifecycle, revoke/rotate,
+and deletion.
 
 ---
 
@@ -83,6 +99,9 @@ pending or hidden uploads are not exposed through predictable file paths.
 Participant media uploads are capped more aggressively than admin uploads to
 reduce storage-abuse risk on public surveys.
 
+See [Security notes](docs/security.md) for media access control and upload
+limits.
+
 ## Languages
 
 The whole UI is internationalised. Ships with **Danish** and **English** — use the
@@ -90,6 +109,8 @@ switcher in the header (the choice is remembered in a functional `lang` cookie;
 first visit honours the browser's `Accept-Language`). To add a language, add one catalog object plus a
 `LOCALES` entry in [`src/i18n.ts`](src/i18n.ts) — nothing else changes. Survey
 content (titles, ideas) is shown as authored and never machine-translated.
+
+See [Development guide](docs/development.md) for adding more languages.
 
 ## Privacy posture
 
@@ -108,6 +129,9 @@ technically necessary or functional browser storage:
   uploads are served by the Pairwise instance itself.
 - Admin bearer tokens are stored as SHA-256 hashes in SQLite; raw links are only
   shown when created, rotated, or actively used in the current request.
+
+See [Privacy and GDPR notes](docs/privacy-gdpr.md) for the full data inventory,
+cookie posture, third-party notes, and operator responsibilities.
 
 ---
 
@@ -155,6 +179,8 @@ Pair selection is `O(N²)` in the number of *active* ideas. That's comfortable
 into the hundreds of ideas per survey — plenty for self-hosted use. Past a few
 thousand ideas you'd want to reintroduce the batched/cached approach.
 
+See [Methods and scoring](docs/methods.md) for the deeper method guide.
+
 ---
 
 ## Configuration
@@ -165,6 +191,9 @@ thousand ideas you'd want to reintroduce the batched/cached approach.
 | `DATABASE_PATH` | `./data/pairwise.db` | SQLite file location |
 | `MEDIA_PATH` | `<db dir>/media` | Where uploaded media (WebP, audio, WebM) is stored |
 | `PUBLIC_ORIGIN` | relative links | Optional canonical origin for generated share/admin links, e.g. `https://pairwise.example.com` |
+
+See [Deployment guide](docs/deployment.md) for reverse proxy, HTTPS, backup, and
+upgrade guidance.
 
 ## Project layout
 

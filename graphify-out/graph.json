@@ -510,7 +510,7 @@
       "source_location": "L1",
       "_origin": "ast",
       "id": "src_algorithm",
-      "community": 24,
+      "community": 8,
       "norm_label": "algorithm.ts"
     },
     {
@@ -520,7 +520,7 @@
       "source_location": "L26",
       "_origin": "ast",
       "id": "src_algorithm_scoreof",
-      "community": 24,
+      "community": 8,
       "norm_label": "scoreof()"
     },
     {
@@ -530,7 +530,7 @@
       "source_location": "L30",
       "_origin": "ast",
       "id": "src_algorithm_chosenpair",
-      "community": 24,
+      "community": 8,
       "norm_label": "chosenpair"
     },
     {
@@ -540,7 +540,7 @@
       "source_location": "L35",
       "_origin": "ast",
       "id": "src_algorithm_choosepair",
-      "community": 24,
+      "community": 8,
       "norm_label": "choosepair()"
     },
     {
@@ -550,7 +550,7 @@
       "source_location": "L66",
       "_origin": "ast",
       "id": "src_algorithm_choosesampledpair",
-      "community": 24,
+      "community": 8,
       "norm_label": "choosesampledpair()"
     },
     {
@@ -640,7 +640,7 @@
       "source_location": "L177",
       "_origin": "ast",
       "id": "src_db_idea",
-      "community": 24,
+      "community": 8,
       "norm_label": "idea"
     },
     {
@@ -920,7 +920,7 @@
       "source_location": "L528",
       "_origin": "ast",
       "id": "src_db_listactiveideas",
-      "community": 24,
+      "community": 8,
       "norm_label": "listactiveideas()"
     },
     {
@@ -1050,7 +1050,7 @@
       "source_location": "L650",
       "_origin": "ast",
       "id": "src_db_getpairvotes",
-      "community": 24,
+      "community": 8,
       "norm_label": "getpairvotes()"
     },
     {
@@ -1060,7 +1060,7 @@
       "source_location": "L659",
       "_origin": "ast",
       "id": "src_db_getpairvote",
-      "community": 24,
+      "community": 8,
       "norm_label": "getpairvote()"
     },
     {
@@ -1070,7 +1070,7 @@
       "source_location": "L670",
       "_origin": "ast",
       "id": "src_db_createappearance",
-      "community": 24,
+      "community": 0,
       "norm_label": "createappearance()"
     },
     {
@@ -1250,7 +1250,7 @@
       "source_location": "L493",
       "_origin": "ast",
       "id": "src_i18n_rich",
-      "community": 23,
+      "community": 4,
       "norm_label": "rich()"
     },
     {
@@ -1600,7 +1600,7 @@
       "source_location": "L365",
       "_origin": "ast",
       "id": "src_index_ideapayload",
-      "community": 24,
+      "community": 0,
       "norm_label": "ideapayload()"
     },
     {
@@ -1610,7 +1610,7 @@
       "source_location": "L375",
       "_origin": "ast",
       "id": "src_index_nextpairpayload",
-      "community": 24,
+      "community": 0,
       "norm_label": "nextpairpayload()"
     },
     {
@@ -3054,10 +3054,20 @@
       "norm_label": "local dev (bun)"
     },
     {
-      "label": "How to use it",
+      "label": "Documentation",
       "file_type": "document",
       "source_file": "README.md",
       "source_location": "L50",
+      "_origin": "ast",
+      "id": "readme_documentation",
+      "community": 5,
+      "norm_label": "documentation"
+    },
+    {
+      "label": "How to use it",
+      "file_type": "document",
+      "source_file": "README.md",
+      "source_location": "L63",
       "_origin": "ast",
       "id": "readme_how_to_use_it",
       "community": 5,
@@ -3067,7 +3077,7 @@
       "label": "Comparison modes",
       "file_type": "document",
       "source_file": "README.md",
-      "source_location": "L65",
+      "source_location": "L81",
       "_origin": "ast",
       "id": "readme_comparison_modes",
       "community": 5,
@@ -3077,7 +3087,7 @@
       "label": "Languages",
       "file_type": "document",
       "source_file": "README.md",
-      "source_location": "L86",
+      "source_location": "L105",
       "_origin": "ast",
       "id": "readme_languages",
       "community": 5,
@@ -3087,7 +3097,7 @@
       "label": "Privacy posture",
       "file_type": "document",
       "source_file": "README.md",
-      "source_location": "L94",
+      "source_location": "L115",
       "_origin": "ast",
       "id": "readme_privacy_posture",
       "community": 5,
@@ -3097,7 +3107,7 @@
       "label": "The algorithm",
       "file_type": "document",
       "source_file": "README.md",
-      "source_location": "L114",
+      "source_location": "L138",
       "_origin": "ast",
       "id": "readme_the_algorithm",
       "community": 5,
@@ -3107,7 +3117,7 @@
       "label": "Differences from the original",
       "file_type": "document",
       "source_file": "README.md",
-      "source_location": "L143",
+      "source_location": "L167",
       "_origin": "ast",
       "id": "readme_differences_from_the_original",
       "community": 5,
@@ -3117,7 +3127,7 @@
       "label": "Configuration",
       "file_type": "document",
       "source_file": "README.md",
-      "source_location": "L160",
+      "source_location": "L186",
       "_origin": "ast",
       "id": "readme_configuration",
       "community": 5,
@@ -3127,7 +3137,7 @@
       "label": "Project layout",
       "file_type": "document",
       "source_file": "README.md",
-      "source_location": "L169",
+      "source_location": "L198",
       "_origin": "ast",
       "id": "readme_project_layout",
       "community": 5,
@@ -3137,11 +3147,661 @@
       "label": "License",
       "file_type": "document",
       "source_file": "README.md",
-      "source_location": "L186",
+      "source_location": "L215",
       "_origin": "ast",
       "id": "readme_license",
       "community": 5,
       "norm_label": "license"
+    },
+    {
+      "label": "admin.md",
+      "file_type": "document",
+      "source_file": "docs/admin.md",
+      "source_location": "L1",
+      "_origin": "ast",
+      "id": "docs_admin",
+      "community": 28,
+      "norm_label": "admin.md"
+    },
+    {
+      "label": "Admin Guide",
+      "file_type": "document",
+      "source_file": "docs/admin.md",
+      "source_location": "L1",
+      "_origin": "ast",
+      "id": "docs_admin_admin_guide",
+      "community": 28,
+      "norm_label": "admin guide"
+    },
+    {
+      "label": "First Admin",
+      "file_type": "document",
+      "source_file": "docs/admin.md",
+      "source_location": "L12",
+      "_origin": "ast",
+      "id": "docs_admin_first_admin",
+      "community": 28,
+      "norm_label": "first admin"
+    },
+    {
+      "label": "Multiple Admins",
+      "file_type": "document",
+      "source_file": "docs/admin.md",
+      "source_location": "L22",
+      "_origin": "ast",
+      "id": "docs_admin_multiple_admins",
+      "community": 28,
+      "norm_label": "multiple admins"
+    },
+    {
+      "label": "Revoking Admins",
+      "file_type": "document",
+      "source_file": "docs/admin.md",
+      "source_location": "L34",
+      "_origin": "ast",
+      "id": "docs_admin_revoking_admins",
+      "community": 28,
+      "norm_label": "revoking admins"
+    },
+    {
+      "label": "Rotating the Current Admin Link",
+      "file_type": "document",
+      "source_file": "docs/admin.md",
+      "source_location": "L43",
+      "_origin": "ast",
+      "id": "docs_admin_rotating_the_current_admin_link",
+      "community": 28,
+      "norm_label": "rotating the current admin link"
+    },
+    {
+      "label": "Survey Lifecycle",
+      "file_type": "document",
+      "source_file": "docs/admin.md",
+      "source_location": "L56",
+      "_origin": "ast",
+      "id": "docs_admin_survey_lifecycle",
+      "community": 28,
+      "norm_label": "survey lifecycle"
+    },
+    {
+      "label": "Deleting a Survey",
+      "file_type": "document",
+      "source_file": "docs/admin.md",
+      "source_location": "L70",
+      "_origin": "ast",
+      "id": "docs_admin_deleting_a_survey",
+      "community": 28,
+      "norm_label": "deleting a survey"
+    },
+    {
+      "label": "Moderation",
+      "file_type": "document",
+      "source_file": "docs/admin.md",
+      "source_location": "L84",
+      "_origin": "ast",
+      "id": "docs_admin_moderation",
+      "community": 28,
+      "norm_label": "moderation"
+    },
+    {
+      "label": "deployment.md",
+      "file_type": "document",
+      "source_file": "docs/deployment.md",
+      "source_location": "L1",
+      "_origin": "ast",
+      "id": "docs_deployment",
+      "community": 25,
+      "norm_label": "deployment.md"
+    },
+    {
+      "label": "Deployment Guide",
+      "file_type": "document",
+      "source_file": "docs/deployment.md",
+      "source_location": "L1",
+      "_origin": "ast",
+      "id": "docs_deployment_deployment_guide",
+      "community": 25,
+      "norm_label": "deployment guide"
+    },
+    {
+      "label": "Docker Compose",
+      "file_type": "document",
+      "source_file": "docs/deployment.md",
+      "source_location": "L6",
+      "_origin": "ast",
+      "id": "docs_deployment_docker_compose",
+      "community": 25,
+      "norm_label": "docker compose"
+    },
+    {
+      "label": "Plain Docker",
+      "file_type": "document",
+      "source_file": "docs/deployment.md",
+      "source_location": "L14",
+      "_origin": "ast",
+      "id": "docs_deployment_plain_docker",
+      "community": 25,
+      "norm_label": "plain docker"
+    },
+    {
+      "label": "Environment Variables",
+      "file_type": "document",
+      "source_file": "docs/deployment.md",
+      "source_location": "L25",
+      "_origin": "ast",
+      "id": "docs_deployment_environment_variables",
+      "community": 25,
+      "norm_label": "environment variables"
+    },
+    {
+      "label": "Reverse Proxy",
+      "file_type": "document",
+      "source_file": "docs/deployment.md",
+      "source_location": "L36",
+      "_origin": "ast",
+      "id": "docs_deployment_reverse_proxy",
+      "community": 25,
+      "norm_label": "reverse proxy"
+    },
+    {
+      "label": "HTTPS and Cookies",
+      "file_type": "document",
+      "source_file": "docs/deployment.md",
+      "source_location": "L50",
+      "_origin": "ast",
+      "id": "docs_deployment_https_and_cookies",
+      "community": 25,
+      "norm_label": "https and cookies"
+    },
+    {
+      "label": "Storage",
+      "file_type": "document",
+      "source_file": "docs/deployment.md",
+      "source_location": "L55",
+      "_origin": "ast",
+      "id": "docs_deployment_storage",
+      "community": 25,
+      "norm_label": "storage"
+    },
+    {
+      "label": "Backups",
+      "file_type": "document",
+      "source_file": "docs/deployment.md",
+      "source_location": "L66",
+      "_origin": "ast",
+      "id": "docs_deployment_backups",
+      "community": 25,
+      "norm_label": "backups"
+    },
+    {
+      "label": "Upgrades",
+      "file_type": "document",
+      "source_file": "docs/deployment.md",
+      "source_location": "L79",
+      "_origin": "ast",
+      "id": "docs_deployment_upgrades",
+      "community": 25,
+      "norm_label": "upgrades"
+    },
+    {
+      "label": "Health Check",
+      "file_type": "document",
+      "source_file": "docs/deployment.md",
+      "source_location": "L94",
+      "_origin": "ast",
+      "id": "docs_deployment_health_check",
+      "community": 25,
+      "norm_label": "health check"
+    },
+    {
+      "label": "Scaling",
+      "file_type": "document",
+      "source_file": "docs/deployment.md",
+      "source_location": "L99",
+      "_origin": "ast",
+      "id": "docs_deployment_scaling",
+      "community": 25,
+      "norm_label": "scaling"
+    },
+    {
+      "label": "development.md",
+      "file_type": "document",
+      "source_file": "docs/development.md",
+      "source_location": "L1",
+      "_origin": "ast",
+      "id": "docs_development",
+      "community": 26,
+      "norm_label": "development.md"
+    },
+    {
+      "label": "Development Guide",
+      "file_type": "document",
+      "source_file": "docs/development.md",
+      "source_location": "L1",
+      "_origin": "ast",
+      "id": "docs_development_development_guide",
+      "community": 26,
+      "norm_label": "development guide"
+    },
+    {
+      "label": "Setup",
+      "file_type": "document",
+      "source_file": "docs/development.md",
+      "source_location": "L6",
+      "_origin": "ast",
+      "id": "docs_development_setup",
+      "community": 26,
+      "norm_label": "setup"
+    },
+    {
+      "label": "Checks",
+      "file_type": "document",
+      "source_file": "docs/development.md",
+      "source_location": "L15",
+      "_origin": "ast",
+      "id": "docs_development_checks",
+      "community": 26,
+      "norm_label": "checks"
+    },
+    {
+      "label": "Project Structure",
+      "file_type": "document",
+      "source_file": "docs/development.md",
+      "source_location": "L29",
+      "_origin": "ast",
+      "id": "docs_development_project_structure",
+      "community": 26,
+      "norm_label": "project structure"
+    },
+    {
+      "label": "Data Model",
+      "file_type": "document",
+      "source_file": "docs/development.md",
+      "source_location": "L48",
+      "_origin": "ast",
+      "id": "docs_development_data_model",
+      "community": 26,
+      "norm_label": "data model"
+    },
+    {
+      "label": "Adding a Language",
+      "file_type": "document",
+      "source_file": "docs/development.md",
+      "source_location": "L63",
+      "_origin": "ast",
+      "id": "docs_development_adding_a_language",
+      "community": 26,
+      "norm_label": "adding a language"
+    },
+    {
+      "label": "Adding a Scoring Method",
+      "file_type": "document",
+      "source_file": "docs/development.md",
+      "source_location": "L72",
+      "_origin": "ast",
+      "id": "docs_development_adding_a_scoring_method",
+      "community": 26,
+      "norm_label": "adding a scoring method"
+    },
+    {
+      "label": "Adding a Media Mode",
+      "file_type": "document",
+      "source_file": "docs/development.md",
+      "source_location": "L84",
+      "_origin": "ast",
+      "id": "docs_development_adding_a_media_mode",
+      "community": 26,
+      "norm_label": "adding a media mode"
+    },
+    {
+      "label": "Graphify",
+      "file_type": "document",
+      "source_file": "docs/development.md",
+      "source_location": "L101",
+      "_origin": "ast",
+      "id": "docs_development_graphify",
+      "community": 26,
+      "norm_label": "graphify"
+    },
+    {
+      "label": "Testing Guidance",
+      "file_type": "document",
+      "source_file": "docs/development.md",
+      "source_location": "L119",
+      "_origin": "ast",
+      "id": "docs_development_testing_guidance",
+      "community": 26,
+      "norm_label": "testing guidance"
+    },
+    {
+      "label": "methods.md",
+      "file_type": "document",
+      "source_file": "docs/methods.md",
+      "source_location": "L1",
+      "_origin": "ast",
+      "id": "docs_methods",
+      "community": 29,
+      "norm_label": "methods.md"
+    },
+    {
+      "label": "Methods and Scoring",
+      "file_type": "document",
+      "source_file": "docs/methods.md",
+      "source_location": "L1",
+      "_origin": "ast",
+      "id": "docs_methods_methods_and_scoring",
+      "community": 29,
+      "norm_label": "methods and scoring"
+    },
+    {
+      "label": "Pairwise Voting Flow",
+      "file_type": "document",
+      "source_file": "docs/methods.md",
+      "source_location": "L8",
+      "_origin": "ast",
+      "id": "docs_methods_pairwise_voting_flow",
+      "community": 29,
+      "norm_label": "pairwise voting flow"
+    },
+    {
+      "label": "Pair Selection: Catchup",
+      "file_type": "document",
+      "source_file": "docs/methods.md",
+      "source_location": "L21",
+      "_origin": "ast",
+      "id": "docs_methods_pair_selection_catchup",
+      "community": 29,
+      "norm_label": "pair selection: catchup"
+    },
+    {
+      "label": "Score Method: Bayesian Win Rate",
+      "file_type": "document",
+      "source_file": "docs/methods.md",
+      "source_location": "L43",
+      "_origin": "ast",
+      "id": "docs_methods_score_method_bayesian_win_rate",
+      "community": 29,
+      "norm_label": "score method: bayesian win rate"
+    },
+    {
+      "label": "Score Method: Raw Win Rate",
+      "file_type": "document",
+      "source_file": "docs/methods.md",
+      "source_location": "L62",
+      "_origin": "ast",
+      "id": "docs_methods_score_method_raw_win_rate",
+      "community": 29,
+      "norm_label": "score method: raw win rate"
+    },
+    {
+      "label": "Score Method: Bradley-Terry",
+      "file_type": "document",
+      "source_file": "docs/methods.md",
+      "source_location": "L76",
+      "_origin": "ast",
+      "id": "docs_methods_score_method_bradley_terry",
+      "community": 29,
+      "norm_label": "score method: bradley-terry"
+    },
+    {
+      "label": "Choosing a Method",
+      "file_type": "document",
+      "source_file": "docs/methods.md",
+      "source_location": "L96",
+      "_origin": "ast",
+      "id": "docs_methods_choosing_a_method",
+      "community": 29,
+      "norm_label": "choosing a method"
+    },
+    {
+      "label": "Interpreting Scores",
+      "file_type": "document",
+      "source_file": "docs/methods.md",
+      "source_location": "L106",
+      "_origin": "ast",
+      "id": "docs_methods_interpreting_scores",
+      "community": 29,
+      "norm_label": "interpreting scores"
+    },
+    {
+      "label": "privacy-gdpr.md",
+      "file_type": "document",
+      "source_file": "docs/privacy-gdpr.md",
+      "source_location": "L1",
+      "_origin": "ast",
+      "id": "docs_privacy_gdpr",
+      "community": 27,
+      "norm_label": "privacy-gdpr.md"
+    },
+    {
+      "label": "Privacy and GDPR Notes",
+      "file_type": "document",
+      "source_file": "docs/privacy-gdpr.md",
+      "source_location": "L1",
+      "_origin": "ast",
+      "id": "docs_privacy_gdpr_privacy_and_gdpr_notes",
+      "community": 27,
+      "norm_label": "privacy and gdpr notes"
+    },
+    {
+      "label": "Design Goal",
+      "file_type": "document",
+      "source_file": "docs/privacy-gdpr.md",
+      "source_location": "L11",
+      "_origin": "ast",
+      "id": "docs_privacy_gdpr_design_goal",
+      "community": 27,
+      "norm_label": "design goal"
+    },
+    {
+      "label": "Data Inventory",
+      "file_type": "document",
+      "source_file": "docs/privacy-gdpr.md",
+      "source_location": "L27",
+      "_origin": "ast",
+      "id": "docs_privacy_gdpr_data_inventory",
+      "community": 27,
+      "norm_label": "data inventory"
+    },
+    {
+      "label": "Cookies and Consent Posture",
+      "file_type": "document",
+      "source_file": "docs/privacy-gdpr.md",
+      "source_location": "L43",
+      "_origin": "ast",
+      "id": "docs_privacy_gdpr_cookies_and_consent_posture",
+      "community": 27,
+      "norm_label": "cookies and consent posture"
+    },
+    {
+      "label": "Legal Basis",
+      "file_type": "document",
+      "source_file": "docs/privacy-gdpr.md",
+      "source_location": "L67",
+      "_origin": "ast",
+      "id": "docs_privacy_gdpr_legal_basis",
+      "community": 27,
+      "norm_label": "legal basis"
+    },
+    {
+      "label": "Third Parties",
+      "file_type": "document",
+      "source_file": "docs/privacy-gdpr.md",
+      "source_location": "L83",
+      "_origin": "ast",
+      "id": "docs_privacy_gdpr_third_parties",
+      "community": 27,
+      "norm_label": "third parties"
+    },
+    {
+      "label": "Retention and Deletion",
+      "file_type": "document",
+      "source_file": "docs/privacy-gdpr.md",
+      "source_location": "L96",
+      "_origin": "ast",
+      "id": "docs_privacy_gdpr_retention_and_deletion",
+      "community": 27,
+      "norm_label": "retention and deletion"
+    },
+    {
+      "label": "Data Subject Requests",
+      "file_type": "document",
+      "source_file": "docs/privacy-gdpr.md",
+      "source_location": "L115",
+      "_origin": "ast",
+      "id": "docs_privacy_gdpr_data_subject_requests",
+      "community": 27,
+      "norm_label": "data subject requests"
+    },
+    {
+      "label": "When to Do More",
+      "file_type": "document",
+      "source_file": "docs/privacy-gdpr.md",
+      "source_location": "L129",
+      "_origin": "ast",
+      "id": "docs_privacy_gdpr_when_to_do_more",
+      "community": 27,
+      "norm_label": "when to do more"
+    },
+    {
+      "label": "security.md",
+      "file_type": "document",
+      "source_file": "docs/security.md",
+      "source_location": "L1",
+      "_origin": "ast",
+      "id": "docs_security",
+      "community": 24,
+      "norm_label": "security.md"
+    },
+    {
+      "label": "Security Notes",
+      "file_type": "document",
+      "source_file": "docs/security.md",
+      "source_location": "L1",
+      "_origin": "ast",
+      "id": "docs_security_security_notes",
+      "community": 24,
+      "norm_label": "security notes"
+    },
+    {
+      "label": "Trust Model",
+      "file_type": "document",
+      "source_file": "docs/security.md",
+      "source_location": "L6",
+      "_origin": "ast",
+      "id": "docs_security_trust_model",
+      "community": 24,
+      "norm_label": "trust model"
+    },
+    {
+      "label": "Implemented Protections",
+      "file_type": "document",
+      "source_file": "docs/security.md",
+      "source_location": "L17",
+      "_origin": "ast",
+      "id": "docs_security_implemented_protections",
+      "community": 24,
+      "norm_label": "implemented protections"
+    },
+    {
+      "label": "Admin Tokens",
+      "file_type": "document",
+      "source_file": "docs/security.md",
+      "source_location": "L19",
+      "_origin": "ast",
+      "id": "docs_security_admin_tokens",
+      "community": 24,
+      "norm_label": "admin tokens"
+    },
+    {
+      "label": "CSRF",
+      "file_type": "document",
+      "source_file": "docs/security.md",
+      "source_location": "L28",
+      "_origin": "ast",
+      "id": "docs_security_csrf",
+      "community": 24,
+      "norm_label": "csrf"
+    },
+    {
+      "label": "Voter Cookies",
+      "file_type": "document",
+      "source_file": "docs/security.md",
+      "source_location": "L35",
+      "_origin": "ast",
+      "id": "docs_security_voter_cookies",
+      "community": 24,
+      "norm_label": "voter cookies"
+    },
+    {
+      "label": "Media Access",
+      "file_type": "document",
+      "source_file": "docs/security.md",
+      "source_location": "L48",
+      "_origin": "ast",
+      "id": "docs_security_media_access",
+      "community": 24,
+      "norm_label": "media access"
+    },
+    {
+      "label": "Upload Limits",
+      "file_type": "document",
+      "source_file": "docs/security.md",
+      "source_location": "L64",
+      "_origin": "ast",
+      "id": "docs_security_upload_limits",
+      "community": 24,
+      "norm_label": "upload limits"
+    },
+    {
+      "label": "Host Header Handling",
+      "file_type": "document",
+      "source_file": "docs/security.md",
+      "source_location": "L70",
+      "_origin": "ast",
+      "id": "docs_security_host_header_handling",
+      "community": 24,
+      "norm_label": "host header handling"
+    },
+    {
+      "label": "YouTube",
+      "file_type": "document",
+      "source_file": "docs/security.md",
+      "source_location": "L76",
+      "_origin": "ast",
+      "id": "docs_security_youtube",
+      "community": 24,
+      "norm_label": "youtube"
+    },
+    {
+      "label": "Operational Recommendations",
+      "file_type": "document",
+      "source_file": "docs/security.md",
+      "source_location": "L81",
+      "_origin": "ast",
+      "id": "docs_security_operational_recommendations",
+      "community": 24,
+      "norm_label": "operational recommendations"
+    },
+    {
+      "label": "Known Limits",
+      "file_type": "document",
+      "source_file": "docs/security.md",
+      "source_location": "L93",
+      "_origin": "ast",
+      "id": "docs_security_known_limits",
+      "community": 24,
+      "norm_label": "known limits"
+    },
+    {
+      "label": "Security Review Checklist",
+      "file_type": "document",
+      "source_file": "docs/security.md",
+      "source_location": "L111",
+      "_origin": "ast",
+      "id": "docs_security_security_review_checklist",
+      "community": 24,
+      "norm_label": "security review checklist"
     }
   ],
   "links": [
@@ -3511,9 +4171,9 @@
       "source_file": "public/app.js",
       "source_location": "L301",
       "weight": 1.0,
+      "confidence_score": 1.0,
       "source": "public_app",
-      "target": "public_app_handleapierror",
-      "confidence_score": 1.0
+      "target": "public_app_handleapierror"
     },
     {
       "relation": "contains",
@@ -3531,9 +4191,9 @@
       "source_file": "public/app.js",
       "source_location": "L462",
       "weight": 1.0,
+      "confidence_score": 1.0,
       "source": "public_app",
-      "target": "public_app_isinteractivetarget",
-      "confidence_score": 1.0
+      "target": "public_app_isinteractivetarget"
     },
     {
       "relation": "contains",
@@ -3561,9 +4221,9 @@
       "source_file": "public/app.js",
       "source_location": "L289",
       "weight": 1.0,
+      "confidence_score": 1.0,
       "source": "public_app",
-      "target": "public_app_renderclosed",
-      "confidence_score": 1.0
+      "target": "public_app_renderclosed"
     },
     {
       "relation": "contains",
@@ -3701,9 +4361,9 @@
       "source_file": "public/app.js",
       "source_location": "L304",
       "weight": 1.0,
+      "confidence_score": 1.0,
       "source": "public_app_handleapierror",
-      "target": "public_app_showtoast",
-      "confidence_score": 1.0
+      "target": "public_app_showtoast"
     },
     {
       "relation": "calls",
@@ -3756,9 +4416,9 @@
       "source_file": "public/app.js",
       "source_location": "L413",
       "weight": 1.0,
+      "confidence_score": 1.0,
       "source": "public_app_choose",
-      "target": "public_app_renderclosed",
-      "confidence_score": 1.0
+      "target": "public_app_renderclosed"
     },
     {
       "relation": "calls",
@@ -3767,9 +4427,9 @@
       "source_file": "public/app.js",
       "source_location": "L302",
       "weight": 1.0,
+      "confidence_score": 1.0,
       "source": "public_app_handleapierror",
-      "target": "public_app_renderclosed",
-      "confidence_score": 1.0
+      "target": "public_app_renderclosed"
     },
     {
       "relation": "calls",
@@ -4176,9 +4836,9 @@
       "source_file": "src/db.ts",
       "source_location": "L568",
       "weight": 1.0,
+      "confidence_score": 1.0,
       "source": "src_db",
-      "target": "src_db_getideabymedia",
-      "confidence_score": 1.0
+      "target": "src_db_getideabymedia"
     },
     {
       "relation": "contains",
@@ -4466,9 +5126,9 @@
       "source_file": "src/db.ts",
       "source_location": "L550",
       "weight": 1.0,
+      "confidence_score": 1.0,
       "source": "src_db",
-      "target": "src_db_submittedmediaideacount",
-      "confidence_score": 1.0
+      "target": "src_db_submittedmediaideacount"
     },
     {
       "relation": "contains",
@@ -4979,9 +5639,9 @@
       "source_file": "src/db.ts",
       "source_location": "L367",
       "weight": 1.0,
+      "confidence_score": 1.0,
       "source": "src_db_createsurvey",
-      "target": "src_db_hashadmintoken",
-      "confidence_score": 1.0
+      "target": "src_db_hashadmintoken"
     },
     {
       "relation": "calls",
@@ -4990,9 +5650,9 @@
       "source_file": "src/db.ts",
       "source_location": "L418",
       "weight": 1.0,
+      "confidence_score": 1.0,
       "source": "src_db_createsurveyadmin",
-      "target": "src_db_hashadmintoken",
-      "confidence_score": 1.0
+      "target": "src_db_hashadmintoken"
     },
     {
       "relation": "calls",
@@ -5067,9 +5727,9 @@
       "source_file": "src/db.ts",
       "source_location": "L266",
       "weight": 1.0,
+      "confidence_score": 1.0,
       "source": "src_db_migratelegacysurveyadmins",
-      "target": "src_db_hashstoredadmintoken",
-      "confidence_score": 1.0
+      "target": "src_db_hashstoredadmintoken"
     },
     {
       "relation": "calls",
@@ -5078,9 +5738,9 @@
       "source_file": "src/db.ts",
       "source_location": "L294",
       "weight": 1.0,
+      "confidence_score": 1.0,
       "source": "src_db_migratelegacysurveyadmintokens",
-      "target": "src_db_hashstoredadmintoken",
-      "confidence_score": 1.0
+      "target": "src_db_hashstoredadmintoken"
     },
     {
       "relation": "calls",
@@ -5089,9 +5749,9 @@
       "source_file": "src/db.ts",
       "source_location": "L281",
       "weight": 1.0,
+      "confidence_score": 1.0,
       "source": "src_db_migratesurveyadmintokenhashes",
-      "target": "src_db_hashstoredadmintoken",
-      "confidence_score": 1.0
+      "target": "src_db_hashstoredadmintoken"
     },
     {
       "relation": "calls",
@@ -5386,9 +6046,9 @@
       "source_file": "src/index.ts",
       "source_location": "L8",
       "weight": 1.0,
+      "confidence_score": 1.0,
       "source": "src_index",
-      "target": "src_db_submittedmediaideacount",
-      "confidence_score": 1.0
+      "target": "src_db_submittedmediaideacount"
     },
     {
       "relation": "calls",
@@ -5397,9 +6057,9 @@
       "source_file": "src/index.ts",
       "source_location": "L349",
       "weight": 1.0,
+      "confidence_score": 1.0,
       "source": "src_index_surveyhasparticipantmediaroom",
-      "target": "src_db_submittedmediaideacount",
-      "confidence_score": 1.0
+      "target": "src_db_submittedmediaideacount"
     },
     {
       "relation": "calls",
@@ -5496,9 +6156,9 @@
       "source_file": "src/index.ts",
       "source_location": "L8",
       "weight": 1.0,
+      "confidence_score": 1.0,
       "source": "src_index",
-      "target": "src_db_getideabymedia",
-      "confidence_score": 1.0
+      "target": "src_db_getideabymedia"
     },
     {
       "relation": "imports",
@@ -6230,9 +6890,9 @@
       "source_file": "src/index.ts",
       "source_location": "L392",
       "weight": 1.0,
+      "confidence_score": 1.0,
       "source": "src_index",
-      "target": "src_index_mediacontenttype",
-      "confidence_score": 1.0
+      "target": "src_index_mediacontenttype"
     },
     {
       "relation": "contains",
@@ -6240,9 +6900,9 @@
       "source_file": "src/index.ts",
       "source_location": "L403",
       "weight": 1.0,
+      "confidence_score": 1.0,
       "source": "src_index",
-      "target": "src_index_mediaresponse",
-      "confidence_score": 1.0
+      "target": "src_index_mediaresponse"
     },
     {
       "relation": "contains",
@@ -6270,9 +6930,9 @@
       "source_file": "src/index.ts",
       "source_location": "L169",
       "weight": 1.0,
+      "confidence_score": 1.0,
       "source": "src_index",
-      "target": "src_index_participantwithin",
-      "confidence_score": 1.0
+      "target": "src_index_participantwithin"
     },
     {
       "relation": "contains",
@@ -6280,9 +6940,9 @@
       "source_file": "src/index.ts",
       "source_location": "L87",
       "weight": 1.0,
+      "confidence_score": 1.0,
       "source": "src_index",
-      "target": "src_index_public_origin",
-      "confidence_score": 1.0
+      "target": "src_index_public_origin"
     },
     {
       "relation": "contains",
@@ -6290,9 +6950,9 @@
       "source_file": "src/index.ts",
       "source_location": "L134",
       "weight": 1.0,
+      "confidence_score": 1.0,
       "source": "src_index",
-      "target": "src_index_publicorigin",
-      "confidence_score": 1.0
+      "target": "src_index_publicorigin"
     },
     {
       "relation": "contains",
@@ -6400,9 +7060,9 @@
       "source_file": "src/index.ts",
       "source_location": "L348",
       "weight": 1.0,
+      "confidence_score": 1.0,
       "source": "src_index",
-      "target": "src_index_surveyhasparticipantmediaroom",
-      "confidence_score": 1.0
+      "target": "src_index_surveyhasparticipantmediaroom"
     },
     {
       "relation": "contains",
@@ -6440,9 +7100,9 @@
       "source_file": "src/index.ts",
       "source_location": "L388",
       "weight": 1.0,
+      "confidence_score": 1.0,
       "source": "src_index",
-      "target": "src_index_validmediarel",
-      "confidence_score": 1.0
+      "target": "src_index_validmediarel"
     },
     {
       "relation": "contains",
@@ -7042,9 +7702,9 @@
       "source_file": "src/index.ts",
       "source_location": "L404",
       "weight": 1.0,
+      "confidence_score": 1.0,
       "source": "src_index_mediaresponse",
-      "target": "src_index_validmediarel",
-      "confidence_score": 1.0
+      "target": "src_index_validmediarel"
     },
     {
       "relation": "calls",
@@ -7053,9 +7713,9 @@
       "source_file": "src/index.ts",
       "source_location": "L407",
       "weight": 1.0,
+      "confidence_score": 1.0,
       "source": "src_index_mediaresponse",
-      "target": "src_index_mediacontenttype",
-      "confidence_score": 1.0
+      "target": "src_index_mediacontenttype"
     },
     {
       "relation": "contains",
@@ -7635,9 +8295,9 @@
       "source_file": "src/views.ts",
       "source_location": "L78",
       "weight": 1.0,
+      "confidence_score": 1.0,
       "source": "src_views",
-      "target": "src_views_fileinputattrs",
-      "confidence_score": 1.0
+      "target": "src_views_fileinputattrs"
     },
     {
       "relation": "contains",
@@ -7715,9 +8375,9 @@
       "source_file": "src/views.ts",
       "source_location": "L374",
       "weight": 1.0,
+      "confidence_score": 1.0,
       "source": "src_views",
-      "target": "src_views_mediasrc",
-      "confidence_score": 1.0
+      "target": "src_views_mediasrc"
     },
     {
       "relation": "contains",
@@ -7872,9 +8532,9 @@
       "source_file": "src/views.ts",
       "source_location": "L80",
       "weight": 1.0,
+      "confidence_score": 1.0,
       "source": "src_views_fileinputattrs",
-      "target": "src_views_esc",
-      "confidence_score": 1.0
+      "target": "src_views_esc"
     },
     {
       "relation": "calls",
@@ -7949,9 +8609,9 @@
       "source_file": "src/views.ts",
       "source_location": "L376",
       "weight": 1.0,
+      "confidence_score": 1.0,
       "source": "src_views_mediasrc",
-      "target": "src_views_esc",
-      "confidence_score": 1.0
+      "target": "src_views_esc"
     },
     {
       "relation": "calls",
@@ -8147,9 +8807,9 @@
       "source_file": "src/views.ts",
       "source_location": "L301",
       "weight": 1.0,
+      "confidence_score": 1.0,
       "source": "src_views_addideainput",
-      "target": "src_views_fileinputattrs",
-      "confidence_score": 1.0
+      "target": "src_views_fileinputattrs"
     },
     {
       "relation": "calls",
@@ -8158,9 +8818,9 @@
       "source_file": "src/views.ts",
       "source_location": "L556",
       "weight": 1.0,
+      "confidence_score": 1.0,
       "source": "src_views_adminaddform",
-      "target": "src_views_fileinputattrs",
-      "confidence_score": 1.0
+      "target": "src_views_fileinputattrs"
     },
     {
       "relation": "calls",
@@ -8169,9 +8829,9 @@
       "source_file": "src/views.ts",
       "source_location": "L134",
       "weight": 1.0,
+      "confidence_score": 1.0,
       "source": "src_views_homepage",
-      "target": "src_views_fileinputattrs",
-      "confidence_score": 1.0
+      "target": "src_views_fileinputattrs"
     },
     {
       "relation": "calls",
@@ -8191,9 +8851,9 @@
       "source_file": "src/views.ts",
       "source_location": "L381",
       "weight": 1.0,
+      "confidence_score": 1.0,
       "source": "src_views_mediapreview",
-      "target": "src_views_mediasrc",
-      "confidence_score": 1.0
+      "target": "src_views_mediasrc"
     },
     {
       "relation": "calls",
@@ -8956,6 +9616,16 @@
       "relation": "contains",
       "confidence": "EXTRACTED",
       "source_file": "README.md",
+      "source_location": "L50",
+      "weight": 1.0,
+      "source": "readme_pairwise",
+      "target": "readme_documentation",
+      "confidence_score": 1.0
+    },
+    {
+      "relation": "contains",
+      "confidence": "EXTRACTED",
+      "source_file": "README.md",
       "source_location": "L47",
       "weight": 1.0,
       "confidence_score": 1.0,
@@ -9051,8 +9721,598 @@
       "confidence_score": 1.0,
       "source": "readme_the_algorithm",
       "target": "readme_differences_from_the_original"
+    },
+    {
+      "relation": "contains",
+      "confidence": "EXTRACTED",
+      "source_file": "docs/admin.md",
+      "source_location": "L1",
+      "weight": 1.0,
+      "source": "docs_admin",
+      "target": "docs_admin_admin_guide",
+      "confidence_score": 1.0
+    },
+    {
+      "relation": "contains",
+      "confidence": "EXTRACTED",
+      "source_file": "docs/admin.md",
+      "source_location": "L70",
+      "weight": 1.0,
+      "source": "docs_admin_admin_guide",
+      "target": "docs_admin_deleting_a_survey",
+      "confidence_score": 1.0
+    },
+    {
+      "relation": "contains",
+      "confidence": "EXTRACTED",
+      "source_file": "docs/admin.md",
+      "source_location": "L12",
+      "weight": 1.0,
+      "source": "docs_admin_admin_guide",
+      "target": "docs_admin_first_admin",
+      "confidence_score": 1.0
+    },
+    {
+      "relation": "contains",
+      "confidence": "EXTRACTED",
+      "source_file": "docs/admin.md",
+      "source_location": "L84",
+      "weight": 1.0,
+      "source": "docs_admin_admin_guide",
+      "target": "docs_admin_moderation",
+      "confidence_score": 1.0
+    },
+    {
+      "relation": "contains",
+      "confidence": "EXTRACTED",
+      "source_file": "docs/admin.md",
+      "source_location": "L22",
+      "weight": 1.0,
+      "source": "docs_admin_admin_guide",
+      "target": "docs_admin_multiple_admins",
+      "confidence_score": 1.0
+    },
+    {
+      "relation": "contains",
+      "confidence": "EXTRACTED",
+      "source_file": "docs/admin.md",
+      "source_location": "L34",
+      "weight": 1.0,
+      "source": "docs_admin_admin_guide",
+      "target": "docs_admin_revoking_admins",
+      "confidence_score": 1.0
+    },
+    {
+      "relation": "contains",
+      "confidence": "EXTRACTED",
+      "source_file": "docs/admin.md",
+      "source_location": "L43",
+      "weight": 1.0,
+      "source": "docs_admin_admin_guide",
+      "target": "docs_admin_rotating_the_current_admin_link",
+      "confidence_score": 1.0
+    },
+    {
+      "relation": "contains",
+      "confidence": "EXTRACTED",
+      "source_file": "docs/admin.md",
+      "source_location": "L56",
+      "weight": 1.0,
+      "source": "docs_admin_admin_guide",
+      "target": "docs_admin_survey_lifecycle",
+      "confidence_score": 1.0
+    },
+    {
+      "relation": "contains",
+      "confidence": "EXTRACTED",
+      "source_file": "docs/deployment.md",
+      "source_location": "L1",
+      "weight": 1.0,
+      "source": "docs_deployment",
+      "target": "docs_deployment_deployment_guide",
+      "confidence_score": 1.0
+    },
+    {
+      "relation": "contains",
+      "confidence": "EXTRACTED",
+      "source_file": "docs/deployment.md",
+      "source_location": "L66",
+      "weight": 1.0,
+      "source": "docs_deployment_deployment_guide",
+      "target": "docs_deployment_backups",
+      "confidence_score": 1.0
+    },
+    {
+      "relation": "contains",
+      "confidence": "EXTRACTED",
+      "source_file": "docs/deployment.md",
+      "source_location": "L6",
+      "weight": 1.0,
+      "source": "docs_deployment_deployment_guide",
+      "target": "docs_deployment_docker_compose",
+      "confidence_score": 1.0
+    },
+    {
+      "relation": "contains",
+      "confidence": "EXTRACTED",
+      "source_file": "docs/deployment.md",
+      "source_location": "L25",
+      "weight": 1.0,
+      "source": "docs_deployment_deployment_guide",
+      "target": "docs_deployment_environment_variables",
+      "confidence_score": 1.0
+    },
+    {
+      "relation": "contains",
+      "confidence": "EXTRACTED",
+      "source_file": "docs/deployment.md",
+      "source_location": "L94",
+      "weight": 1.0,
+      "source": "docs_deployment_deployment_guide",
+      "target": "docs_deployment_health_check",
+      "confidence_score": 1.0
+    },
+    {
+      "relation": "contains",
+      "confidence": "EXTRACTED",
+      "source_file": "docs/deployment.md",
+      "source_location": "L50",
+      "weight": 1.0,
+      "source": "docs_deployment_deployment_guide",
+      "target": "docs_deployment_https_and_cookies",
+      "confidence_score": 1.0
+    },
+    {
+      "relation": "contains",
+      "confidence": "EXTRACTED",
+      "source_file": "docs/deployment.md",
+      "source_location": "L14",
+      "weight": 1.0,
+      "source": "docs_deployment_deployment_guide",
+      "target": "docs_deployment_plain_docker",
+      "confidence_score": 1.0
+    },
+    {
+      "relation": "contains",
+      "confidence": "EXTRACTED",
+      "source_file": "docs/deployment.md",
+      "source_location": "L36",
+      "weight": 1.0,
+      "source": "docs_deployment_deployment_guide",
+      "target": "docs_deployment_reverse_proxy",
+      "confidence_score": 1.0
+    },
+    {
+      "relation": "contains",
+      "confidence": "EXTRACTED",
+      "source_file": "docs/deployment.md",
+      "source_location": "L99",
+      "weight": 1.0,
+      "source": "docs_deployment_deployment_guide",
+      "target": "docs_deployment_scaling",
+      "confidence_score": 1.0
+    },
+    {
+      "relation": "contains",
+      "confidence": "EXTRACTED",
+      "source_file": "docs/deployment.md",
+      "source_location": "L55",
+      "weight": 1.0,
+      "source": "docs_deployment_deployment_guide",
+      "target": "docs_deployment_storage",
+      "confidence_score": 1.0
+    },
+    {
+      "relation": "contains",
+      "confidence": "EXTRACTED",
+      "source_file": "docs/deployment.md",
+      "source_location": "L79",
+      "weight": 1.0,
+      "source": "docs_deployment_deployment_guide",
+      "target": "docs_deployment_upgrades",
+      "confidence_score": 1.0
+    },
+    {
+      "relation": "contains",
+      "confidence": "EXTRACTED",
+      "source_file": "docs/development.md",
+      "source_location": "L1",
+      "weight": 1.0,
+      "source": "docs_development",
+      "target": "docs_development_development_guide",
+      "confidence_score": 1.0
+    },
+    {
+      "relation": "contains",
+      "confidence": "EXTRACTED",
+      "source_file": "docs/development.md",
+      "source_location": "L63",
+      "weight": 1.0,
+      "source": "docs_development_development_guide",
+      "target": "docs_development_adding_a_language",
+      "confidence_score": 1.0
+    },
+    {
+      "relation": "contains",
+      "confidence": "EXTRACTED",
+      "source_file": "docs/development.md",
+      "source_location": "L84",
+      "weight": 1.0,
+      "source": "docs_development_development_guide",
+      "target": "docs_development_adding_a_media_mode",
+      "confidence_score": 1.0
+    },
+    {
+      "relation": "contains",
+      "confidence": "EXTRACTED",
+      "source_file": "docs/development.md",
+      "source_location": "L72",
+      "weight": 1.0,
+      "source": "docs_development_development_guide",
+      "target": "docs_development_adding_a_scoring_method",
+      "confidence_score": 1.0
+    },
+    {
+      "relation": "contains",
+      "confidence": "EXTRACTED",
+      "source_file": "docs/development.md",
+      "source_location": "L15",
+      "weight": 1.0,
+      "source": "docs_development_development_guide",
+      "target": "docs_development_checks",
+      "confidence_score": 1.0
+    },
+    {
+      "relation": "contains",
+      "confidence": "EXTRACTED",
+      "source_file": "docs/development.md",
+      "source_location": "L48",
+      "weight": 1.0,
+      "source": "docs_development_development_guide",
+      "target": "docs_development_data_model",
+      "confidence_score": 1.0
+    },
+    {
+      "relation": "contains",
+      "confidence": "EXTRACTED",
+      "source_file": "docs/development.md",
+      "source_location": "L101",
+      "weight": 1.0,
+      "source": "docs_development_development_guide",
+      "target": "docs_development_graphify",
+      "confidence_score": 1.0
+    },
+    {
+      "relation": "contains",
+      "confidence": "EXTRACTED",
+      "source_file": "docs/development.md",
+      "source_location": "L29",
+      "weight": 1.0,
+      "source": "docs_development_development_guide",
+      "target": "docs_development_project_structure",
+      "confidence_score": 1.0
+    },
+    {
+      "relation": "contains",
+      "confidence": "EXTRACTED",
+      "source_file": "docs/development.md",
+      "source_location": "L6",
+      "weight": 1.0,
+      "source": "docs_development_development_guide",
+      "target": "docs_development_setup",
+      "confidence_score": 1.0
+    },
+    {
+      "relation": "contains",
+      "confidence": "EXTRACTED",
+      "source_file": "docs/development.md",
+      "source_location": "L119",
+      "weight": 1.0,
+      "source": "docs_development_development_guide",
+      "target": "docs_development_testing_guidance",
+      "confidence_score": 1.0
+    },
+    {
+      "relation": "contains",
+      "confidence": "EXTRACTED",
+      "source_file": "docs/methods.md",
+      "source_location": "L1",
+      "weight": 1.0,
+      "source": "docs_methods",
+      "target": "docs_methods_methods_and_scoring",
+      "confidence_score": 1.0
+    },
+    {
+      "relation": "contains",
+      "confidence": "EXTRACTED",
+      "source_file": "docs/methods.md",
+      "source_location": "L96",
+      "weight": 1.0,
+      "source": "docs_methods_methods_and_scoring",
+      "target": "docs_methods_choosing_a_method",
+      "confidence_score": 1.0
+    },
+    {
+      "relation": "contains",
+      "confidence": "EXTRACTED",
+      "source_file": "docs/methods.md",
+      "source_location": "L106",
+      "weight": 1.0,
+      "source": "docs_methods_methods_and_scoring",
+      "target": "docs_methods_interpreting_scores",
+      "confidence_score": 1.0
+    },
+    {
+      "relation": "contains",
+      "confidence": "EXTRACTED",
+      "source_file": "docs/methods.md",
+      "source_location": "L21",
+      "weight": 1.0,
+      "source": "docs_methods_methods_and_scoring",
+      "target": "docs_methods_pair_selection_catchup",
+      "confidence_score": 1.0
+    },
+    {
+      "relation": "contains",
+      "confidence": "EXTRACTED",
+      "source_file": "docs/methods.md",
+      "source_location": "L8",
+      "weight": 1.0,
+      "source": "docs_methods_methods_and_scoring",
+      "target": "docs_methods_pairwise_voting_flow",
+      "confidence_score": 1.0
+    },
+    {
+      "relation": "contains",
+      "confidence": "EXTRACTED",
+      "source_file": "docs/methods.md",
+      "source_location": "L43",
+      "weight": 1.0,
+      "source": "docs_methods_methods_and_scoring",
+      "target": "docs_methods_score_method_bayesian_win_rate",
+      "confidence_score": 1.0
+    },
+    {
+      "relation": "contains",
+      "confidence": "EXTRACTED",
+      "source_file": "docs/methods.md",
+      "source_location": "L76",
+      "weight": 1.0,
+      "source": "docs_methods_methods_and_scoring",
+      "target": "docs_methods_score_method_bradley_terry",
+      "confidence_score": 1.0
+    },
+    {
+      "relation": "contains",
+      "confidence": "EXTRACTED",
+      "source_file": "docs/methods.md",
+      "source_location": "L62",
+      "weight": 1.0,
+      "source": "docs_methods_methods_and_scoring",
+      "target": "docs_methods_score_method_raw_win_rate",
+      "confidence_score": 1.0
+    },
+    {
+      "relation": "contains",
+      "confidence": "EXTRACTED",
+      "source_file": "docs/privacy-gdpr.md",
+      "source_location": "L1",
+      "weight": 1.0,
+      "source": "docs_privacy_gdpr",
+      "target": "docs_privacy_gdpr_privacy_and_gdpr_notes",
+      "confidence_score": 1.0
+    },
+    {
+      "relation": "contains",
+      "confidence": "EXTRACTED",
+      "source_file": "docs/privacy-gdpr.md",
+      "source_location": "L43",
+      "weight": 1.0,
+      "source": "docs_privacy_gdpr_privacy_and_gdpr_notes",
+      "target": "docs_privacy_gdpr_cookies_and_consent_posture",
+      "confidence_score": 1.0
+    },
+    {
+      "relation": "contains",
+      "confidence": "EXTRACTED",
+      "source_file": "docs/privacy-gdpr.md",
+      "source_location": "L27",
+      "weight": 1.0,
+      "source": "docs_privacy_gdpr_privacy_and_gdpr_notes",
+      "target": "docs_privacy_gdpr_data_inventory",
+      "confidence_score": 1.0
+    },
+    {
+      "relation": "contains",
+      "confidence": "EXTRACTED",
+      "source_file": "docs/privacy-gdpr.md",
+      "source_location": "L115",
+      "weight": 1.0,
+      "source": "docs_privacy_gdpr_privacy_and_gdpr_notes",
+      "target": "docs_privacy_gdpr_data_subject_requests",
+      "confidence_score": 1.0
+    },
+    {
+      "relation": "contains",
+      "confidence": "EXTRACTED",
+      "source_file": "docs/privacy-gdpr.md",
+      "source_location": "L11",
+      "weight": 1.0,
+      "source": "docs_privacy_gdpr_privacy_and_gdpr_notes",
+      "target": "docs_privacy_gdpr_design_goal",
+      "confidence_score": 1.0
+    },
+    {
+      "relation": "contains",
+      "confidence": "EXTRACTED",
+      "source_file": "docs/privacy-gdpr.md",
+      "source_location": "L67",
+      "weight": 1.0,
+      "source": "docs_privacy_gdpr_privacy_and_gdpr_notes",
+      "target": "docs_privacy_gdpr_legal_basis",
+      "confidence_score": 1.0
+    },
+    {
+      "relation": "contains",
+      "confidence": "EXTRACTED",
+      "source_file": "docs/privacy-gdpr.md",
+      "source_location": "L96",
+      "weight": 1.0,
+      "source": "docs_privacy_gdpr_privacy_and_gdpr_notes",
+      "target": "docs_privacy_gdpr_retention_and_deletion",
+      "confidence_score": 1.0
+    },
+    {
+      "relation": "contains",
+      "confidence": "EXTRACTED",
+      "source_file": "docs/privacy-gdpr.md",
+      "source_location": "L83",
+      "weight": 1.0,
+      "source": "docs_privacy_gdpr_privacy_and_gdpr_notes",
+      "target": "docs_privacy_gdpr_third_parties",
+      "confidence_score": 1.0
+    },
+    {
+      "relation": "contains",
+      "confidence": "EXTRACTED",
+      "source_file": "docs/privacy-gdpr.md",
+      "source_location": "L129",
+      "weight": 1.0,
+      "source": "docs_privacy_gdpr_privacy_and_gdpr_notes",
+      "target": "docs_privacy_gdpr_when_to_do_more",
+      "confidence_score": 1.0
+    },
+    {
+      "relation": "contains",
+      "confidence": "EXTRACTED",
+      "source_file": "docs/security.md",
+      "source_location": "L1",
+      "weight": 1.0,
+      "source": "docs_security",
+      "target": "docs_security_security_notes",
+      "confidence_score": 1.0
+    },
+    {
+      "relation": "contains",
+      "confidence": "EXTRACTED",
+      "source_file": "docs/security.md",
+      "source_location": "L17",
+      "weight": 1.0,
+      "source": "docs_security_security_notes",
+      "target": "docs_security_implemented_protections",
+      "confidence_score": 1.0
+    },
+    {
+      "relation": "contains",
+      "confidence": "EXTRACTED",
+      "source_file": "docs/security.md",
+      "source_location": "L93",
+      "weight": 1.0,
+      "source": "docs_security_security_notes",
+      "target": "docs_security_known_limits",
+      "confidence_score": 1.0
+    },
+    {
+      "relation": "contains",
+      "confidence": "EXTRACTED",
+      "source_file": "docs/security.md",
+      "source_location": "L81",
+      "weight": 1.0,
+      "source": "docs_security_security_notes",
+      "target": "docs_security_operational_recommendations",
+      "confidence_score": 1.0
+    },
+    {
+      "relation": "contains",
+      "confidence": "EXTRACTED",
+      "source_file": "docs/security.md",
+      "source_location": "L111",
+      "weight": 1.0,
+      "source": "docs_security_security_notes",
+      "target": "docs_security_security_review_checklist",
+      "confidence_score": 1.0
+    },
+    {
+      "relation": "contains",
+      "confidence": "EXTRACTED",
+      "source_file": "docs/security.md",
+      "source_location": "L6",
+      "weight": 1.0,
+      "source": "docs_security_security_notes",
+      "target": "docs_security_trust_model",
+      "confidence_score": 1.0
+    },
+    {
+      "relation": "contains",
+      "confidence": "EXTRACTED",
+      "source_file": "docs/security.md",
+      "source_location": "L19",
+      "weight": 1.0,
+      "source": "docs_security_implemented_protections",
+      "target": "docs_security_admin_tokens",
+      "confidence_score": 1.0
+    },
+    {
+      "relation": "contains",
+      "confidence": "EXTRACTED",
+      "source_file": "docs/security.md",
+      "source_location": "L28",
+      "weight": 1.0,
+      "source": "docs_security_implemented_protections",
+      "target": "docs_security_csrf",
+      "confidence_score": 1.0
+    },
+    {
+      "relation": "contains",
+      "confidence": "EXTRACTED",
+      "source_file": "docs/security.md",
+      "source_location": "L70",
+      "weight": 1.0,
+      "source": "docs_security_implemented_protections",
+      "target": "docs_security_host_header_handling",
+      "confidence_score": 1.0
+    },
+    {
+      "relation": "contains",
+      "confidence": "EXTRACTED",
+      "source_file": "docs/security.md",
+      "source_location": "L48",
+      "weight": 1.0,
+      "source": "docs_security_implemented_protections",
+      "target": "docs_security_media_access",
+      "confidence_score": 1.0
+    },
+    {
+      "relation": "contains",
+      "confidence": "EXTRACTED",
+      "source_file": "docs/security.md",
+      "source_location": "L64",
+      "weight": 1.0,
+      "source": "docs_security_implemented_protections",
+      "target": "docs_security_upload_limits",
+      "confidence_score": 1.0
+    },
+    {
+      "relation": "contains",
+      "confidence": "EXTRACTED",
+      "source_file": "docs/security.md",
+      "source_location": "L35",
+      "weight": 1.0,
+      "source": "docs_security_implemented_protections",
+      "target": "docs_security_voter_cookies",
+      "confidence_score": 1.0
+    },
+    {
+      "relation": "contains",
+      "confidence": "EXTRACTED",
+      "source_file": "docs/security.md",
+      "source_location": "L76",
+      "weight": 1.0,
+      "source": "docs_security_implemented_protections",
+      "target": "docs_security_youtube",
+      "confidence_score": 1.0
     }
   ],
   "hyperedges": [],
-  "built_at_commit": "9da60a12e6184f676ee396943f29e175dafdd633"
+  "built_at_commit": "bde65cbb2cc2f24e7c26e2545e717f8ed5d43d74"
 }

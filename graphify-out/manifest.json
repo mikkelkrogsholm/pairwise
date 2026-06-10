@@ -125,8 +125,8 @@
     "semantic_hash": ""
   },
   "README.md": {
-    "mtime": 1781079043.0785587,
-    "ast_hash": "2397a52cc8e575367f888846f65d19ca",
+    "mtime": 1781081396.337494,
+    "ast_hash": "29a31e9697023d8cb73d84d4d1472762",
     "semantic_hash": ""
   },
   "docker-compose.yml": {
@@ -147,6 +147,36 @@
   "public/readme-banner.png": {
     "mtime": 1781042019.509735,
     "ast_hash": "a6b075fa90274de4b5db22d35668d93d",
+    "semantic_hash": ""
+  },
+  "docs/admin.md": {
+    "mtime": 1781081352.3380702,
+    "ast_hash": "60fda829684550d9d683e636ed569237",
+    "semantic_hash": ""
+  },
+  "docs/deployment.md": {
+    "mtime": 1781081352.338887,
+    "ast_hash": "d01cf09ce928c34775cd4e05ef1695b4",
+    "semantic_hash": ""
+  },
+  "docs/development.md": {
+    "mtime": 1781081352.3392298,
+    "ast_hash": "86df1ccf35729c8e85dd3fac7789e7f3",
+    "semantic_hash": ""
+  },
+  "docs/methods.md": {
+    "mtime": 1781081352.3390903,
+    "ast_hash": "c01bf0e09ce2683715679a453fa51e93",
+    "semantic_hash": ""
+  },
+  "docs/privacy-gdpr.md": {
+    "mtime": 1781081352.3384202,
+    "ast_hash": "91a65e0bfeafba117f20c4e6a229de62",
+    "semantic_hash": ""
+  },
+  "docs/security.md": {
+    "mtime": 1781081352.338669,
+    "ast_hash": "b0702b636f906927a93dd4d20d5fe797",
     "semantic_hash": ""
   }
 }
