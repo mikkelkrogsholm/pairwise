@@ -1,13 +1,18 @@
-# Graph Report - pairwise-ideas  (2026-06-09)
+# Graph Report - pairwise-ideas  (2026-06-10)
 
 ## Corpus Check
-- 28 files · ~23,524 words
+- 28 files · ~70,838 words
 - Verdict: corpus is large enough that graph structure adds value.
 
 ## Summary
-- 271 nodes · 466 edges · 24 communities (15 shown, 9 thin omitted)
+- 314 nodes · 563 edges · 25 communities (16 shown, 9 thin omitted)
 - Extraction: 100% EXTRACTED · 0% INFERRED · 0% AMBIGUOUS
 - Token cost: 0 input · 0 output
+
+## Graph Freshness
+- Built from commit: `9da60a12`
+- Run `git rev-parse HEAD` and compare to check if the graph is stale.
+- Run `graphify update .` after code changes (no API cost).
 
 ## Community Hubs (Navigation)
 - [[_COMMUNITY_Community 0|Community 0]]
@@ -34,18 +39,19 @@
 - [[_COMMUNITY_Community 21|Community 21]]
 - [[_COMMUNITY_Community 22|Community 22]]
 - [[_COMMUNITY_Community 23|Community 23]]
+- [[_COMMUNITY_Community 24|Community 24]]
 
 ## God Nodes (most connected - your core abstractions)
-1. `esc()` - 16 edges
+1. `esc()` - 20 edges
 2. `ingestMedia()` - 12 edges
 3. `layout()` - 11 edges
 4. `compilerOptions` - 11 edges
 5. `What You Must Do When Invoked` - 11 edges
 6. `/graphify` - 10 edges
-7. `⚖️ Pairwise` - 9 edges
-8. `scripts` - 7 edges
-9. `choose()` - 7 edges
-10. `Idea` - 7 edges
+7. `⚖️ Pairwise` - 10 edges
+8. `choose()` - 9 edges
+9. `adminPage()` - 9 edges
+10. `createSurvey()` - 8 edges
 
 ## Surprising Connections (you probably didn't know these)
 - `idea()` --calls--> `bayesianScore()`  [EXTRACTED]
@@ -54,23 +60,23 @@
   src/algorithm.ts → src/db.ts
 - `normalizeSurvey()` --calls--> `scoreMethodOrDefault()`  [EXTRACTED]
   src/db.ts → src/scoring.ts
-- `signVoterId()` --calls--> `voterCookieSecret()`  [EXTRACTED]
+- `requireAdmin()` --calls--> `getSurveyByToken()`  [EXTRACTED]
   src/index.ts → src/db.ts
-- `deleteSurveyWithMedia()` --calls--> `listAllIdeas()`  [EXTRACTED]
-  src/index.ts → src/db.ts
+- `homePage()` --calls--> `rich()`  [EXTRACTED]
+  src/views.ts → src/i18n.ts
 
 ## Import Cycles
 - None detected.
 
-## Communities (24 total, 9 thin omitted)
+## Communities (25 total, 9 thin omitted)
 
 ### Community 0 - "Community 0"
-Cohesion: 0.09
-Nodes (41): addIdea(), deleteIdea(), deleteSurvey(), getIdea(), totalIdeaCount(), updateIdeaMedia(), addAudioIdea(), addImageIdea() (+33 more)
+Cohesion: 0.07
+Nodes (51): addIdea(), adminIdeasFor(), deleteIdea(), deleteSurvey(), getIdea(), listAllIdeas(), submittedMediaIdeaCount(), totalIdeaCount() (+43 more)
 
 ### Community 1 - "Community 1"
-Cohesion: 0.07
-Nodes (38): choosePair(), chooseSampledPair(), ChosenPair, activeIdeaCount(), adminIdeasFor(), Appearance, createAppearance(), createSurvey() (+30 more)
+Cohesion: 0.08
+Nodes (41): activeIdeaCount(), Appearance, createSurvey(), createSurveyAdmin(), db, fillMissingAdminCsrfTokens(), getAppearanceByLookup(), getIdeaByMedia() (+33 more)
 
 ### Community 2 - "Community 2"
 Cohesion: 0.08
@@ -81,20 +87,20 @@ Cohesion: 0.10
 Nodes (19): dependencies, hono, description, devDependencies, bun-types, eslint, @eslint/js, typescript (+11 more)
 
 ### Community 4 - "Community 4"
-Cohesion: 0.21
-Nodes (20): rich(), addIdeaInput(), adminAddForm(), adminPage(), createdPage(), csrfInput(), esc(), homePage() (+12 more)
+Cohesion: 0.19
+Nodes (25): Survey, ScoreMethod, addIdeaInput(), adminAccessPanel(), adminAddForm(), adminPage(), createdPage(), csrfInput() (+17 more)
 
 ### Community 5 - "Community 5"
-Cohesion: 0.15
-Nodes (12): Comparison modes, Configuration, Differences from the original, How to use it, Languages, License, Local dev (Bun), ⚖️ Pairwise (+4 more)
+Cohesion: 0.14
+Nodes (13): Comparison modes, Configuration, Differences from the original, How to use it, Languages, License, Local dev (Bun), ⚖️ Pairwise (+5 more)
 
 ### Community 6 - "Community 6"
 Cohesion: 0.17
 Nodes (11): compilerOptions, allowImportingTsExtensions, lib, module, moduleResolution, noEmit, skipLibCheck, strict (+3 more)
 
 ### Community 7 - "Community 7"
-Cohesion: 0.42
-Nodes (10): advance(), api(), buildArena(), buildChoice(), choose(), el(), fmtCount(), kbd() (+2 more)
+Cohesion: 0.20
+Nodes (16): advance(), api(), buildArena(), buildChoice(), choose(), closeImageLightbox(), el(), enhanceFileInput() (+8 more)
 
 ### Community 8 - "Community 8"
 Cohesion: 0.24
@@ -121,25 +127,31 @@ Cohesion: 0.50
 Nodes (3): For --cluster-only, For --update (incremental re-extraction), graphify reference: incremental update and cluster-only
 
 ### Community 23 - "Community 23"
-Cohesion: 0.25
-Nodes (9): Catalog, catalogs, da, en, isLocale(), LOCALES, pickLocale(), translator (+1 more)
+Cohesion: 0.24
+Nodes (10): Catalog, catalogs, da, en, isLocale(), LOCALES, pickLocale(), rich() (+2 more)
+
+### Community 24 - "Community 24"
+Cohesion: 0.24
+Nodes (10): choosePair(), chooseSampledPair(), ChosenPair, createAppearance(), getPairVote(), getPairVotes(), Idea, listActiveIdeas() (+2 more)
 
 ## Knowledge Gaps
-- **93 isolated node(s):** `version`, `configurations`, `PreToolUse`, `commonGlobals`, `browserGlobals` (+88 more)
+- **96 isolated node(s):** `version`, `configurations`, `PreToolUse`, `commonGlobals`, `browserGlobals` (+91 more)
   These have ≤1 connection - possible missing edges or undocumented components.
 - **9 thin communities (<3 nodes) omitted from report** — run `graphify query` to explore isolated nodes.
 
 ## Suggested Questions
 _Questions this graph is uniquely positioned to answer:_
 
-- **Why does `Idea` connect `Community 1` to `Community 0`, `Community 8`, `Community 4`?**
+- **Why does `adminPage()` connect `Community 4` to `Community 0`?**
   _High betweenness centrality (0.004) - this node is a cross-community bridge._
+- **Why does `Idea` connect `Community 24` to `Community 0`, `Community 1`, `Community 4`, `Community 8`?**
+  _High betweenness centrality (0.003) - this node is a cross-community bridge._
 - **What connects `version`, `configurations`, `PreToolUse` to the rest of the system?**
-  _93 weakly-connected nodes found - possible documentation gaps or missing edges._
+  _96 weakly-connected nodes found - possible documentation gaps or missing edges._
 - **Should `Community 0` be split into smaller, more focused modules?**
-  _Cohesion score 0.09308510638297872 - nodes in this community are weakly interconnected._
+  _Cohesion score 0.07005649717514124 - nodes in this community are weakly interconnected._
 - **Should `Community 1` be split into smaller, more focused modules?**
-  _Cohesion score 0.07308970099667775 - nodes in this community are weakly interconnected._
+  _Cohesion score 0.07575757575757576 - nodes in this community are weakly interconnected._
 - **Should `Community 2` be split into smaller, more focused modules?**
   _Cohesion score 0.08333333333333333 - nodes in this community are weakly interconnected._
 - **Should `Community 3` be split into smaller, more focused modules?**

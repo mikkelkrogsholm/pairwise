@@ -1,5 +1,5 @@
 // Server-rendered HTML. Template-literal views, no build step, no client framework.
-import type { Idea, Survey } from "./db.ts";
+import type { Idea, Survey, SurveyAdmin } from "./db.ts";
 import { LOCALES, rich, type Translator } from "./i18n.ts";
 import { SCORE_METHODS, type ScoreMethod } from "./scoring.ts";
 
@@ -75,6 +75,14 @@ function scoreMethodSelect(t: Translator, selected: ScoreMethod = "bayesian"): s
   </select>`;
 }
 
+function fileInputAttrs(t: Translator, kind: "image" | "audio" | "video", multiple = true): string {
+  return [
+    `data-upload-prompt="${esc(t(`upload.drop.${kind}${multiple ? "s" : ""}`))}"`,
+    `data-upload-hint="${esc(t(multiple ? "upload.hint.multiple" : "upload.hint.single"))}"`,
+    `data-upload-remove="${esc(t("upload.remove"))}"`,
+  ].join(" ");
+}
+
 // ── home / create ────────────────────────────────────────────────────────────
 
 export function homePage(t: Translator, locale: string, error?: string): string {
@@ -123,7 +131,7 @@ export function homePage(t: Translator, locale: string, error?: string): string 
       <div class="mode-group" data-mode="image" hidden>
         <label class="field">
           <span class="field-label">${esc(t("home.f.images.label"))} <span class="muted">${esc(t("home.f.images.hint"))}</span></span>
-          <input type="file" name="media" accept="image/*" multiple class="file-input" />
+          <input type="file" name="media" accept="image/*" multiple class="file-input" ${fileInputAttrs(t, "image")} />
         </label>
         <p class="idea-note">${esc(t("home.f.media.note"))}</p>
       </div>
@@ -131,7 +139,7 @@ export function homePage(t: Translator, locale: string, error?: string): string 
       <div class="mode-group" data-mode="audio" hidden>
         <label class="field">
           <span class="field-label">${esc(t("home.f.audio.label"))} <span class="muted">${esc(t("home.f.audio.hint"))}</span></span>
-          <input type="file" name="media" accept="audio/*" multiple class="file-input" />
+          <input type="file" name="media" accept="audio/*" multiple class="file-input" ${fileInputAttrs(t, "audio")} />
         </label>
         <p class="idea-note">${esc(t("home.f.media.note"))}</p>
       </div>
@@ -143,7 +151,7 @@ export function homePage(t: Translator, locale: string, error?: string): string 
         </label>
         <label class="field">
           <span class="field-label">${esc(t("home.f.webm.label"))} <span class="muted">${esc(t("home.f.webm.hint"))}</span></span>
-          <input type="file" name="media" accept="video/webm,.webm" multiple class="file-input" />
+          <input type="file" name="media" accept="video/webm,.webm" multiple class="file-input" ${fileInputAttrs(t, "video")} />
         </label>
         <p class="idea-note">${esc(t("home.f.media.note"))}</p>
       </div>
@@ -180,7 +188,8 @@ export function homePage(t: Translator, locale: string, error?: string): string 
   <script>
     function pwMode(m){document.querySelectorAll('.mode-group').forEach(function(el){el.hidden=el.dataset.mode!==m;});}
     pwMode((document.querySelector('input[name=mode]:checked')||{value:'text'}).value);
-  </script>`;
+  </script>
+  <script src="/app.js"></script>`;
   return layout(t, locale, { title: t("home.create.title") + " · Pairwise", body });
 }
 
@@ -289,13 +298,14 @@ export function createdPage(t: Translator, locale: string, survey: Survey, origi
 // ── vote ─────────────────────────────────────────────────────────────────────
 
 function addIdeaInput(t: Translator, mode: string): string {
-  if (mode === "image") return `<input type="file" id="idea-file" accept="image/*" class="file-input" />`;
-  if (mode === "audio") return `<input type="file" id="idea-file" accept="audio/*" class="file-input" />`;
+  if (mode === "image") return `<input type="file" id="idea-file" accept="image/*" class="file-input" ${fileInputAttrs(t, "image", false)} />`;
+  if (mode === "audio") return `<input type="file" id="idea-file" accept="audio/*" class="file-input" ${fileInputAttrs(t, "audio", false)} />`;
   if (mode === "video") return `<input id="idea-url" maxlength="400" placeholder="${esc(t("admin.add.video.ph"))}" />`;
   return `<input id="idea-text" maxlength="280" placeholder="${esc(t("vote.add.ph"))}" />`;
 }
 
 export function votePage(t: Translator, locale: string, survey: Survey, canVote: boolean, totalVotes: number): string {
+  const isOpen = survey.status === "open";
   const cfg = {
     slug: survey.slug,
     mode: survey.mode,
@@ -306,10 +316,16 @@ export function votePage(t: Translator, locale: string, survey: Survey, canVote:
       done: t("vote.done"),
       results: t("vote.results"),
       emptyMedia: t("vote.empty.media"),
+      closed: t("vote.closed"),
       addedLive: t("toast.added_live"),
       addedPending: t("toast.added_pending"),
       addFailed: t("toast.add_failed"),
       error: t("toast.error"),
+      loadVideo: t("vote.load_video"),
+      zoom: t("vote.zoom"),
+      zoomImage: t("vote.zoom_image"),
+      close: t("action.close"),
+      pickImage: t("vote.pick_image"),
     },
   };
 
@@ -323,7 +339,7 @@ export function votePage(t: Translator, locale: string, survey: Survey, canVote:
   ${
     !canVote
       ? `<section class="card empty-state">
-           <p>${esc(t("vote.empty"))}</p>
+           <p>${esc(isOpen ? t("vote.empty") : t("vote.closed"))}</p>
            <a class="btn" href="/s/${esc(survey.slug)}/results">${esc(t("vote.results"))}</a>
          </section>`
       : `<section class="arena" id="arena" data-mode="${esc(survey.mode)}"><div class="arena-loading"></div><div class="arena-loading"></div></section>
@@ -334,7 +350,7 @@ export function votePage(t: Translator, locale: string, survey: Survey, canVote:
   }
 
   ${
-    survey.allow_user_ideas
+    survey.allow_user_ideas && isOpen
       ? `<section class="card add-idea">
            <h2>${esc(t("vote.add.title"))}</h2>
            <form id="idea-form" class="idea-form" data-mode="${esc(survey.mode)}">
@@ -355,11 +371,16 @@ export function votePage(t: Translator, locale: string, survey: Survey, canVote:
 
 // ── media previews (results / admin) ─────────────────────────────────────────
 
-function mediaPreview(idea: Idea): string {
+function mediaSrc(idea: Idea, adminToken?: string): string {
+  if (!idea.media || !idea.media_kind || idea.media_kind === "youtube") return "";
+  return adminToken ? `/a/${esc(adminToken)}/media/${idea.id}` : `/media/${esc(idea.media)}`;
+}
+
+function mediaPreview(idea: Idea, adminToken?: string): string {
   if (idea.media_kind === "image" && idea.media)
-    return `<img class="thumb" src="/media/${esc(idea.media)}" alt="${esc(idea.text)}" loading="lazy" />`;
+    return `<img class="thumb" src="${mediaSrc(idea, adminToken)}" alt="${esc(idea.text)}" loading="lazy" />`;
   if (idea.media_kind === "youtube" && idea.media)
-    return `<img class="thumb" src="https://i.ytimg.com/vi/${esc(idea.media)}/mqdefault.jpg" alt="${esc(idea.text)}" loading="lazy" />`;
+    return `<div class="thumb thumb--ic">▶</div>`;
   if (idea.media_kind === "audio") return `<div class="thumb thumb--ic">♪</div>`;
   if (idea.media_kind === "webm") return `<div class="thumb thumb--ic">▶</div>`;
   return "";
@@ -382,6 +403,91 @@ function nonNegativeInt(value: number): number {
 
 function csrfInput(survey: Survey): string {
   return `<input type="hidden" name="csrf" value="${esc(survey.admin_csrf_token)}" />`;
+}
+
+function adminAccessPanel(
+  t: Translator,
+  survey: Survey,
+  admins: SurveyAdmin[],
+  origin: string,
+  revealedAdmin?: SurveyAdmin,
+): string {
+  const revealedUrl = revealedAdmin ? `${origin}/a/${revealedAdmin.token}` : "";
+  const revealed = revealedAdmin
+    ? `<div class="link-row admin-access-reveal">
+        <div class="link-meta">
+          <span class="link-label">${esc(t("admin.access.new"))}: ${esc(revealedAdmin.label)}</span>
+          <span class="muted">${esc(t("admin.access.new_hint"))}</span>
+        </div>
+        <div class="link-copy">
+          <input class="link-input" readonly value="${esc(revealedUrl)}" onclick="this.select()" />
+          <button class="btn btn-copy" type="button" data-copy="${esc(revealedUrl)}">${esc(t("action.copy"))}</button>
+        </div>
+      </div>`
+    : "";
+
+  const rows = admins
+    .map((admin) => {
+      const url = `${origin}/a/${admin.token}`;
+      const current = admin.id === survey.admin_id;
+      return `<li class="admin-access-row">
+        <div class="link-meta">
+          <span class="link-label">${esc(admin.label)}${current ? ` <span class="muted">${esc(t("admin.access.current"))}</span>` : ""}</span>
+          <span class="muted">${esc(t("admin.access.created"))}: ${esc(admin.created_at.slice(0, 10))}</span>
+          ${admin.rotated_at ? `<span class="muted">${esc(t("admin.access.rotated"))}: ${esc(admin.rotated_at.slice(0, 10))}</span>` : ""}
+          ${admin.last_used_at ? `<span class="muted">${esc(t("admin.access.last_used"))}: ${esc(admin.last_used_at.slice(0, 10))}</span>` : ""}
+        </div>
+        <div class="link-copy">
+          ${
+            current
+              ? `<input class="link-input" readonly value="${esc(url)}" onclick="this.select()" />
+                 <button class="btn btn-copy" type="button" data-copy="${esc(url)}">${esc(t("action.copy"))}</button>`
+              : `<form method="post" action="/a/${esc(survey.admin_token)}/admins/${admin.id}/revoke" data-confirm="${esc(t("admin.access.confirm_revoke"))}">
+                  ${csrfInput(survey)}
+                  <button class="btn btn-danger" type="submit">${esc(t("admin.access.revoke"))}</button>
+                </form>`
+          }
+        </div>
+      </li>`;
+    })
+    .join("");
+
+  return `<section class="card">
+    <h2>${esc(t("admin.access.title"))}</h2>
+    <p class="field-help">${esc(t("admin.access.help"))}</p>
+    ${revealed}
+    <ul class="admin-access-list">${rows}</ul>
+    <div class="admin-access-actions">
+      <form method="post" action="/a/${esc(survey.admin_token)}/admins" class="idea-form idea-form--admin">
+        ${csrfInput(survey)}
+        <input name="label" maxlength="80" placeholder="${esc(t("admin.access.label_ph"))}" />
+        <button class="btn btn-primary" type="submit">${esc(t("admin.access.add"))}</button>
+      </form>
+      <form method="post" action="/a/${esc(survey.admin_token)}/admins/rotate" data-confirm="${esc(t("admin.access.confirm_rotate"))}">
+        ${csrfInput(survey)}
+        <button class="btn btn-danger" type="submit">${esc(t("admin.access.rotate"))}</button>
+      </form>
+    </div>
+  </section>`;
+}
+
+function lifecyclePanel(t: Translator, survey: Survey): string {
+  const option = (status: string) =>
+    `<button class="btn ${survey.status === status ? "btn-primary" : ""}" name="status" value="${esc(status)}" type="submit">${esc(t("admin.status." + status))}</button>`;
+  return `<section class="card">
+    <h2>${esc(t("admin.lifecycle.title"))}</h2>
+    <p class="field-help">${esc(t("admin.lifecycle.help"))}</p>
+    <form method="post" action="/a/${esc(survey.admin_token)}/status" class="admin-status-actions">
+      ${csrfInput(survey)}
+      ${option("open")}
+      ${option("closed")}
+      ${option("archived")}
+    </form>
+    <form method="post" action="/a/${esc(survey.admin_token)}/delete" data-confirm="${esc(t("admin.lifecycle.confirm_delete"))}">
+      ${csrfInput(survey)}
+      <button class="btn btn-danger" type="submit">${esc(t("admin.lifecycle.delete"))}</button>
+    </form>
+  </section>`;
 }
 
 // ── results ──────────────────────────────────────────────────────────────────
@@ -423,9 +529,18 @@ export function resultsPage(
     <p class="vote-sub">${esc(t("results.subtitle"))} · <span class="counter">${esc(t("vote.count", { n: totalVotes }))}</span></p>
     <p class="vote-sub">${esc(t("results.method"))}: <a href="/method">${esc(t("score." + scoreMethod))}</a></p>
     <div class="actions">
-      <a class="btn btn-primary" href="/s/${esc(survey.slug)}">${esc(t("results.vote"))}</a>
+      ${
+        survey.status === "archived"
+          ? `<span class="btn btn-disabled" aria-disabled="true">${esc(t("admin.status.archived"))}</span>`
+          : `<a class="btn btn-primary" href="/s/${esc(survey.slug)}">${esc(t("results.vote"))}</a>`
+      }
       <button class="btn" type="button" onclick="location.reload()">${esc(t("results.refresh"))}</button>
     </div>
+  </section>
+  <section class="card result-method-card">
+    <h2>${esc(t("results.method_title"))}</h2>
+    <p>${esc(t("score." + scoreMethod + ".desc"))}</p>
+    <a href="/method">${esc(t("score.field.learn"))}</a>
   </section>
   ${ideas.length ? `<ol class="results-list">${rows}</ol>` : `<section class="card empty-state"><p>${esc(t("results.empty"))}</p></section>`}`;
 
@@ -438,11 +553,11 @@ function adminAddForm(t: Translator, survey: Survey): string {
   let inner: string;
   const token = survey.admin_token;
   const mode = survey.mode;
-  if (mode === "image") inner = `<input type="file" name="media" accept="image/*" multiple class="file-input" />`;
-  else if (mode === "audio") inner = `<input type="file" name="media" accept="audio/*" multiple class="file-input" />`;
+  if (mode === "image") inner = `<input type="file" name="media" accept="image/*" multiple class="file-input" ${fileInputAttrs(t, "image")} />`;
+  else if (mode === "audio") inner = `<input type="file" name="media" accept="audio/*" multiple class="file-input" ${fileInputAttrs(t, "audio")} />`;
   else if (mode === "video")
     inner = `<textarea name="youtube" rows="2" placeholder="${esc(t("admin.add.video.ph"))}"></textarea>
-             <input type="file" name="media" accept="video/webm,.webm" multiple class="file-input" />`;
+             <input type="file" name="media" accept="video/webm,.webm" multiple class="file-input" ${fileInputAttrs(t, "video")} />`;
   else inner = `<input name="text" maxlength="280" required placeholder="${esc(t("admin.add.ph"))}" />`;
   return `<form method="post" action="/a/${esc(token)}/ideas" class="idea-form idea-form--admin" enctype="multipart/form-data">
     ${csrfInput(survey)}
@@ -457,7 +572,9 @@ export function adminPage(
   survey: Survey,
   ideas: Idea[],
   stats: { votes: number; skips: number; active: number; pending: number },
+  admins: SurveyAdmin[],
   origin: string,
+  revealedAdmin?: SurveyAdmin,
 ): string {
   const token = survey.admin_token;
   const active = ideas.filter((i) => i.active);
@@ -467,11 +584,11 @@ export function adminPage(
     ? pending
         .map(
           (idea, i) => `<li class="admin-idea pending">
-        ${mediaPreview(idea)}
+        ${mediaPreview(idea, token)}
         <span class="admin-idea-text">${ideaLabel(t, idea, i + 1)}</span>
         <span class="admin-idea-actions">
           <form method="post" action="/a/${esc(token)}/ideas/${idea.id}/activate">${csrfInput(survey)}<button class="btn btn-sm btn-primary">${esc(t("admin.approve"))}</button></form>
-          <form method="post" action="/a/${esc(token)}/ideas/${idea.id}/delete" onsubmit="return confirm('${esc(t("admin.confirm.reject"))}')">${csrfInput(survey)}<button class="btn btn-sm btn-danger">${esc(t("admin.reject"))}</button></form>
+          <form method="post" action="/a/${esc(token)}/ideas/${idea.id}/delete" data-confirm="${esc(t("admin.confirm.reject"))}">${csrfInput(survey)}<button class="btn btn-sm btn-danger">${esc(t("admin.reject"))}</button></form>
         </span>
       </li>`,
         )
@@ -483,12 +600,12 @@ export function adminPage(
         .map(
           (idea, i) => `<li class="admin-idea">
         <span class="admin-idea-score">${displayScore(idea.score).toFixed(0)}</span>
-        ${mediaPreview(idea)}
+        ${mediaPreview(idea, token)}
         <span class="admin-idea-text">${ideaLabel(t, idea, i + 1)}</span>
         <span class="muted admin-idea-stat">${nonNegativeInt(idea.wins)}–${nonNegativeInt(idea.losses)}</span>
         <span class="admin-idea-actions">
           <form method="post" action="/a/${esc(token)}/ideas/${idea.id}/deactivate">${csrfInput(survey)}<button class="btn btn-sm">${esc(t("admin.hide"))}</button></form>
-          <form method="post" action="/a/${esc(token)}/ideas/${idea.id}/delete" onsubmit="return confirm('${esc(t("admin.confirm.delete"))}')">${csrfInput(survey)}<button class="btn btn-sm btn-danger">${esc(t("admin.delete"))}</button></form>
+          <form method="post" action="/a/${esc(token)}/ideas/${idea.id}/delete" data-confirm="${esc(t("admin.confirm.delete"))}">${csrfInput(survey)}<button class="btn btn-sm btn-danger">${esc(t("admin.delete"))}</button></form>
         </span>
       </li>`,
         )
@@ -499,6 +616,7 @@ export function adminPage(
   <section class="admin-head">
     <h1>${esc(t("admin.title"))} · ${esc(survey.title)}</h1>
     <p class="vote-sub">${esc(t("admin.mode_label"))}: ${esc(t("mode." + survey.mode))}</p>
+    <p class="vote-sub">${esc(t("admin.lifecycle.status"))}: ${esc(t("admin.status." + survey.status))}</p>
     <div class="stat-grid">
       <div class="stat"><div class="stat-num">${stats.votes}</div><div class="stat-label">${esc(t("admin.stat.votes"))}</div></div>
       <div class="stat"><div class="stat-num">${stats.active}</div><div class="stat-label">${esc(t("admin.stat.active"))}</div></div>
@@ -517,6 +635,10 @@ export function adminPage(
     <h2>${esc(t("admin.add.title"))}</h2>
     ${adminAddForm(t, survey)}
   </section>
+
+  ${adminAccessPanel(t, survey, admins, origin, revealedAdmin)}
+
+  ${lifecyclePanel(t, survey)}
 
   <section class="card">
     <h2>${esc(t("admin.active.title"))} (${active.length})</h2>

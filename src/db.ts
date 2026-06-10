@@ -1,5 +1,6 @@
 // SQLite data layer. Zero external dependencies — uses Bun's built-in `bun:sqlite`.
 import { Database } from "bun:sqlite";
+import { createHash } from "node:crypto";
 import { mkdirSync } from "node:fs";
 import { dirname } from "node:path";
 import {
@@ -32,6 +33,8 @@ db.exec(`
     mode             TEXT NOT NULL DEFAULT 'text',  -- text | image | audio | video
     score_method     TEXT NOT NULL DEFAULT 'bayesian'
                      CHECK (score_method IN ('bayesian', 'raw', 'bradley_terry')),
+    status           TEXT NOT NULL DEFAULT 'open'
+                     CHECK (status IN ('open', 'closed', 'archived')),
     created_at       TEXT NOT NULL DEFAULT (datetime('now'))
   );
 
@@ -88,6 +91,20 @@ db.exec(`
     key   TEXT PRIMARY KEY,
     value TEXT NOT NULL
   );
+
+  CREATE TABLE IF NOT EXISTS survey_admins (
+    id         INTEGER PRIMARY KEY AUTOINCREMENT,
+    survey_id  INTEGER NOT NULL REFERENCES surveys(id) ON DELETE CASCADE,
+    token      TEXT UNIQUE NOT NULL,
+    token_hash TEXT UNIQUE NOT NULL,
+    csrf_token TEXT UNIQUE NOT NULL,
+    label      TEXT NOT NULL DEFAULT 'Admin',
+    revoked_at TEXT,
+    rotated_at TEXT,
+    last_used_at TEXT,
+    created_at TEXT NOT NULL DEFAULT (datetime('now'))
+  );
+  CREATE INDEX IF NOT EXISTS idx_survey_admins_survey ON survey_admins(survey_id, revoked_at);
 `);
 
 // Migrate databases created before multimodal support: add any missing columns.
@@ -99,6 +116,7 @@ function ensureColumn(table: string, column: string, definition: string): void {
 }
 ensureColumn("surveys", "mode", "mode TEXT NOT NULL DEFAULT 'text'");
 ensureColumn("surveys", "score_method", "score_method TEXT NOT NULL DEFAULT 'bayesian'");
+ensureColumn("surveys", "status", "status TEXT NOT NULL DEFAULT 'open'");
 ensureColumn("surveys", "admin_csrf_token", "admin_csrf_token TEXT");
 ensureColumn("ideas", "media", "media TEXT");
 ensureColumn("ideas", "media_kind", "media_kind TEXT");
@@ -108,8 +126,12 @@ ensureColumn("votes", "loser_id", "loser_id INTEGER");
 ensureColumn("votes", "appearance_id", "appearance_id INTEGER");
 ensureColumn("votes", "voter_id", "voter_id TEXT NOT NULL DEFAULT ''");
 ensureColumn("votes", "kind", "kind TEXT NOT NULL DEFAULT 'vote'");
+ensureColumn("survey_admins", "token_hash", "token_hash TEXT");
+ensureColumn("survey_admins", "rotated_at", "rotated_at TEXT");
+ensureColumn("survey_admins", "last_used_at", "last_used_at TEXT");
 db.exec("UPDATE surveys SET score_method = 'bayesian' WHERE score_method NOT IN ('bayesian', 'raw', 'bradley_terry');");
 db.exec("UPDATE surveys SET mode = 'text' WHERE mode NOT IN ('text', 'image', 'audio', 'video');");
+db.exec("UPDATE surveys SET status = 'open' WHERE status NOT IN ('open', 'closed', 'archived') OR status IS NULL;");
 db.exec("UPDATE ideas SET wins = 0 WHERE wins IS NULL OR wins < 0;");
 db.exec("UPDATE ideas SET losses = 0 WHERE losses IS NULL OR losses < 0;");
 db.exec("UPDATE ideas SET active = CASE WHEN active = 1 THEN 1 ELSE 0 END WHERE active NOT IN (0, 1) OR active IS NULL;");
@@ -119,12 +141,15 @@ db.exec("UPDATE votes SET kind = 'vote' WHERE kind NOT IN ('vote', 'skip') OR ki
 db.exec("UPDATE pairs SET votes = 0 WHERE votes IS NULL OR votes < 0;");
 
 export type SurveyMode = "text" | "image" | "audio" | "video";
+export type SurveyStatus = "open" | "closed" | "archived";
 export type MediaKind = "image" | "audio" | "webm" | "youtube";
 
 export interface Survey {
   id: number;
   slug: string;
   admin_token: string;
+  admin_id?: number;
+  admin_token_hash?: string;
   admin_csrf_token: string;
   title: string;
   description: string;
@@ -132,6 +157,20 @@ export interface Survey {
   auto_activate: number;
   mode: SurveyMode;
   score_method: ScoreMethod;
+  status: SurveyStatus;
+  created_at: string;
+}
+
+export interface SurveyAdmin {
+  id: number;
+  survey_id: number;
+  token: string;
+  token_hash: string;
+  csrf_token: string;
+  label: string;
+  revoked_at: string | null;
+  rotated_at: string | null;
+  last_used_at: string | null;
   created_at: string;
 }
 
@@ -153,11 +192,16 @@ function normalizeSurvey(row: Survey | null): Survey | null {
   if (!row) return null;
   row.score_method = scoreMethodOrDefault(row.score_method);
   row.mode = surveyModeOrDefault(row.mode);
+  row.status = surveyStatusOrDefault(row.status);
   return row;
 }
 
 function surveyModeOrDefault(value: string | null | undefined): SurveyMode {
   return value === "image" || value === "audio" || value === "video" ? value : "text";
+}
+
+function surveyStatusOrDefault(value: string | null | undefined): SurveyStatus {
+  return value === "closed" || value === "archived" ? value : "open";
 }
 
 // ── identifiers ────────────────────────────────────────────────────────────
@@ -166,6 +210,32 @@ function hexToken(len = 32): string {
   const bytes = new Uint8Array(len / 2);
   crypto.getRandomValues(bytes);
   return Array.from(bytes, (b) => b.toString(16).padStart(2, "0")).join("");
+}
+
+const ADMIN_TOKEN_HASH_PREFIX = "sha256:";
+
+function hashAdminToken(token: string): string {
+  return `${ADMIN_TOKEN_HASH_PREFIX}${createHash("sha256").update(token, "utf8").digest("hex")}`;
+}
+
+function isAdminTokenHash(value: string | null | undefined): value is string {
+  return typeof value === "string" && /^sha256:[a-f0-9]{64}$/.test(value);
+}
+
+function hashStoredAdminToken(value: string): string {
+  return isAdminTokenHash(value) ? value : hashAdminToken(value);
+}
+
+function normalizeSurveyAdmin(row: SurveyAdmin | null, revealedToken?: string): SurveyAdmin | null {
+  if (!row) return null;
+  row.token_hash = row.token_hash || hashStoredAdminToken(row.token);
+  row.token = revealedToken ?? "";
+  return row;
+}
+
+function revealSurveyAdminToken(survey: Survey, token: string): Survey {
+  survey.admin_token = token;
+  return survey;
 }
 
 function fillMissingAdminCsrfTokens(): void {
@@ -177,6 +247,54 @@ function fillMissingAdminCsrfTokens(): void {
 }
 
 fillMissingAdminCsrfTokens();
+
+function migrateLegacySurveyAdmins(): void {
+  const surveys = db
+    .query(
+      `SELECT id, admin_token, admin_csrf_token
+       FROM surveys
+       WHERE NOT EXISTS (
+         SELECT 1 FROM survey_admins WHERE survey_admins.survey_id = surveys.id
+       )`,
+    )
+    .all() as { id: number; admin_token: string; admin_csrf_token: string }[];
+  const insert = db.query(
+    `INSERT INTO survey_admins (survey_id, token, token_hash, csrf_token, label)
+     VALUES (?, ?, ?, ?, 'Primary admin')`,
+  );
+  for (const survey of surveys) {
+    const tokenHash = hashStoredAdminToken(survey.admin_token);
+    insert.run(survey.id, tokenHash, tokenHash, survey.admin_csrf_token);
+  }
+}
+
+migrateLegacySurveyAdmins();
+
+function migrateSurveyAdminTokenHashes(): void {
+  const admins = db
+    .query("SELECT id, token, token_hash FROM survey_admins WHERE token_hash IS NULL OR token_hash = '' OR token NOT LIKE 'sha256:%'")
+    .all() as { id: number; token: string; token_hash: string | null }[];
+  const update = db.query("UPDATE survey_admins SET token = ?, token_hash = ? WHERE id = ?");
+  for (const admin of admins) {
+    const tokenHash = admin.token_hash && isAdminTokenHash(admin.token_hash)
+      ? admin.token_hash
+      : hashStoredAdminToken(admin.token);
+    update.run(tokenHash, tokenHash, admin.id);
+  }
+}
+
+migrateSurveyAdminTokenHashes();
+
+function migrateLegacySurveyAdminTokens(): void {
+  const surveys = db.query("SELECT id, admin_token FROM surveys WHERE admin_token NOT LIKE 'sha256:%'").all() as {
+    id: number;
+    admin_token: string;
+  }[];
+  const update = db.query("UPDATE surveys SET admin_token = ? WHERE id = ?");
+  for (const survey of surveys) update.run(hashStoredAdminToken(survey.admin_token), survey.id);
+}
+
+migrateLegacySurveyAdminTokens();
 
 export function voterCookieSecret(): string {
   const existing = db.query("SELECT value FROM app_meta WHERE key = 'voter_cookie_secret'").get() as {
@@ -202,7 +320,36 @@ export function getSurveyBySlug(slug: string): Survey | null {
 }
 
 export function getSurveyByToken(token: string): Survey | null {
-  return normalizeSurvey(db.query("SELECT * FROM surveys WHERE admin_token = ?").get(token) as Survey | null);
+  if (!token) return null;
+  const tokenHash = hashAdminToken(token);
+  const survey = normalizeSurvey(
+    db
+      .query(
+        `SELECT
+           surveys.id,
+           surveys.slug,
+           ? AS admin_token,
+           survey_admins.id AS admin_id,
+           survey_admins.token_hash AS admin_token_hash,
+           survey_admins.csrf_token AS admin_csrf_token,
+           surveys.title,
+           surveys.description,
+           surveys.allow_user_ideas,
+           surveys.auto_activate,
+           surveys.mode,
+           surveys.score_method,
+           surveys.status,
+           surveys.created_at
+         FROM survey_admins
+         JOIN surveys ON surveys.id = survey_admins.survey_id
+         WHERE survey_admins.token_hash = ? AND survey_admins.revoked_at IS NULL`,
+      )
+      .get(token, tokenHash) as Survey | null,
+  );
+  if (survey) {
+    markSurveyAdminLastUsed(token);
+  }
+  return survey;
 }
 
 export function createSurvey(input: {
@@ -217,6 +364,7 @@ export function createSurvey(input: {
     let slug = randomSlug();
     while (getSurveyBySlug(slug)) slug = randomSlug();
     const token = hexToken(32);
+    const tokenHash = hashAdminToken(token);
     const csrfToken = hexToken(32);
 
   const create = db.transaction(() => {
@@ -227,7 +375,7 @@ export function createSurvey(input: {
         )
         .run(
           slug,
-          token,
+          tokenHash,
           csrfToken,
           input.title,
         input.description,
@@ -237,6 +385,9 @@ export function createSurvey(input: {
         input.score_method ?? "bayesian",
       );
     const surveyId = Number(lastInsertRowid);
+    db.query(
+      "INSERT INTO survey_admins (survey_id, token, token_hash, csrf_token, label) VALUES (?, ?, ?, ?, 'Primary admin')",
+    ).run(surveyId, tokenHash, tokenHash, csrfToken);
     if (input.ideas?.length) {
       const insertIdea = db.query(
         "INSERT INTO ideas (survey_id, text, active, submitted) VALUES (?, ?, 1, 0)",
@@ -247,7 +398,101 @@ export function createSurvey(input: {
   });
 
   const id = create();
-  return normalizeSurvey(db.query("SELECT * FROM surveys WHERE id = ?").get(id) as Survey | null)!;
+  return revealSurveyAdminToken(normalizeSurvey(db.query("SELECT * FROM surveys WHERE id = ?").get(id) as Survey | null)!, token);
+}
+
+export function listSurveyAdmins(surveyId: number): SurveyAdmin[] {
+  const rows = db
+    .query(
+      `SELECT * FROM survey_admins
+       WHERE survey_id = ? AND revoked_at IS NULL
+       ORDER BY id`,
+    )
+    .all(surveyId) as SurveyAdmin[];
+  return rows.map((row) => normalizeSurveyAdmin(row)!);
+}
+
+export function createSurveyAdmin(surveyId: number, label: string): SurveyAdmin {
+  const cleanLabel = label.trim().slice(0, 80) || "Admin";
+  const token = hexToken(32);
+  const tokenHash = hashAdminToken(token);
+  const csrfToken = hexToken(32);
+  const { lastInsertRowid } = db
+    .query("INSERT INTO survey_admins (survey_id, token, token_hash, csrf_token, label) VALUES (?, ?, ?, ?, ?)")
+    .run(surveyId, tokenHash, tokenHash, csrfToken, cleanLabel);
+  return normalizeSurveyAdmin(
+    db.query("SELECT * FROM survey_admins WHERE id = ?").get(Number(lastInsertRowid)) as SurveyAdmin,
+    token,
+  )!;
+}
+
+export function rotateSurveyAdmin(surveyId: number, token: string): SurveyAdmin | null {
+  const tokenHash = hashAdminToken(token);
+  const existing = db
+    .query("SELECT * FROM survey_admins WHERE survey_id = ? AND token_hash = ? AND revoked_at IS NULL")
+    .get(surveyId, tokenHash) as SurveyAdmin | null;
+  if (!existing) return null;
+
+  const nextToken = hexToken(32);
+  const nextTokenHash = hashAdminToken(nextToken);
+  const nextCsrfToken = hexToken(32);
+  const rotate = db.transaction(() => {
+    db.query("UPDATE survey_admins SET token = ?, token_hash = ?, csrf_token = ?, rotated_at = datetime('now') WHERE id = ?").run(
+      nextTokenHash,
+      nextTokenHash,
+      nextCsrfToken,
+      existing.id,
+    );
+    db.query(
+      `UPDATE surveys
+       SET admin_token = CASE WHEN admin_token = ? THEN ? ELSE admin_token END,
+           admin_csrf_token = CASE WHEN admin_csrf_token = ? THEN ? ELSE admin_csrf_token END
+       WHERE id = ?`,
+    ).run(tokenHash, nextTokenHash, existing.csrf_token, nextCsrfToken, surveyId);
+  });
+  rotate();
+  return normalizeSurveyAdmin(db.query("SELECT * FROM survey_admins WHERE id = ?").get(existing.id) as SurveyAdmin, nextToken);
+}
+
+export function revokeSurveyAdmin(surveyId: number, adminId: number): boolean {
+  const active = listSurveyAdmins(surveyId);
+  const target = active.find((admin) => admin.id === adminId);
+  if (!target || active.length <= 1) return false;
+
+  const fallback = active.find((admin) => admin.id !== adminId)!;
+  const revoke = db.transaction(() => {
+    db.query("UPDATE survey_admins SET revoked_at = datetime('now') WHERE id = ? AND survey_id = ?").run(
+      adminId,
+      surveyId,
+    );
+    db.query(
+      `UPDATE surveys
+       SET admin_token = CASE WHEN admin_token = ? THEN ? ELSE admin_token END,
+           admin_csrf_token = CASE WHEN admin_csrf_token = ? THEN ? ELSE admin_csrf_token END
+       WHERE id = ?`,
+    ).run(target.token_hash, fallback.token_hash, target.csrf_token, fallback.csrf_token, surveyId);
+  });
+  revoke();
+  return true;
+}
+
+export function updateSurveyStatus(id: number, status: SurveyStatus): boolean {
+  const nextStatus = surveyStatusOrDefault(status);
+  const result = db.query("UPDATE surveys SET status = ? WHERE id = ?").run(nextStatus, id);
+  return result.changes === 1;
+}
+
+export function markSurveyAdminLastUsed(token: string): boolean {
+  if (!token) return false;
+  const result = db
+    .query("UPDATE survey_admins SET last_used_at = datetime('now') WHERE token_hash = ? AND revoked_at IS NULL")
+    .run(hashAdminToken(token));
+  return result.changes === 1;
+}
+
+export function markSurveyAdminRotated(adminId: number): boolean {
+  const result = db.query("UPDATE survey_admins SET rotated_at = datetime('now') WHERE id = ?").run(adminId);
+  return result.changes === 1;
 }
 
 export function updateSurvey(
@@ -302,6 +547,14 @@ export function totalIdeaCount(surveyId: number): number {
   ).c;
 }
 
+export function submittedMediaIdeaCount(surveyId: number): number {
+  return (
+    db
+      .query("SELECT COUNT(*) AS c FROM ideas WHERE survey_id = ? AND submitted = 1 AND media_kind IS NOT NULL")
+      .get(surveyId) as { c: number }
+  ).c;
+}
+
 export function listAllIdeas(surveyId: number): Idea[] {
   return db
     .query("SELECT * FROM ideas WHERE survey_id = ? ORDER BY id")
@@ -310,6 +563,10 @@ export function listAllIdeas(surveyId: number): Idea[] {
 
 export function getIdea(id: number): Idea | null {
   return db.query("SELECT * FROM ideas WHERE id = ?").get(id) as Idea | null;
+}
+
+export function getIdeaByMedia(media: string): Idea | null {
+  return db.query("SELECT * FROM ideas WHERE media = ?").get(media) as Idea | null;
 }
 
 export function addIdea(

@@ -20,8 +20,8 @@
     "semantic_hash": ""
   },
   "public/app.js": {
-    "mtime": 1781034728.2384808,
-    "ast_hash": "5fa3229add51099503eb35c1d1a8748e",
+    "mtime": 1781078930.4049926,
+    "ast_hash": "8d064a936ec194421b6acfc6fbf27167",
     "semantic_hash": ""
   },
   "src/algorithm.ts": {
@@ -30,18 +30,18 @@
     "semantic_hash": ""
   },
   "src/db.ts": {
-    "mtime": 1781040769.8861587,
-    "ast_hash": "7cdab86209be65908531b59d0f5763b8",
+    "mtime": 1781078603.2506738,
+    "ast_hash": "04fb1f4217445fd7e27979581047f9e1",
     "semantic_hash": ""
   },
   "src/i18n.ts": {
-    "mtime": 1781041178.0914023,
-    "ast_hash": "e2c3a29e659e03657f160ec9891e6c70",
+    "mtime": 1781078659.9726624,
+    "ast_hash": "46d5dc4a3fa08604a1fbabd307bbcdc3",
     "semantic_hash": ""
   },
   "src/index.ts": {
-    "mtime": 1781041225.3543293,
-    "ast_hash": "a489c9096f9f20a18b31b33e0ff18072",
+    "mtime": 1781078640.438028,
+    "ast_hash": "d4796d105cc5a4f01122beeed287a12f",
     "semantic_hash": ""
   },
   "src/media.ts": {
@@ -50,13 +50,13 @@
     "semantic_hash": ""
   },
   "src/views.ts": {
-    "mtime": 1781041206.7732193,
-    "ast_hash": "ae8ebd5133a506e5c5cf3f37eb7c2e73",
+    "mtime": 1781078730.0171561,
+    "ast_hash": "8464fcf869be791674bc23a73f0d541a",
     "semantic_hash": ""
   },
   "test/algorithm.test.ts": {
-    "mtime": 1781041329.6068697,
-    "ast_hash": "4f10209a3d6d7b32abc299431b29e27e",
+    "mtime": 1781078980.7652657,
+    "ast_hash": "17427f0b975c2c77df048fb1ee3e2ced",
     "semantic_hash": ""
   },
   "test/i18n.test.ts": {
@@ -125,8 +125,8 @@
     "semantic_hash": ""
   },
   "README.md": {
-    "mtime": 1781035174.6289816,
-    "ast_hash": "ddf3c104cb1f97cac149e72ff05b83d5",
+    "mtime": 1781079043.0785587,
+    "ast_hash": "2397a52cc8e575367f888846f65d19ca",
     "semantic_hash": ""
   },
   "docker-compose.yml": {
@@ -142,6 +142,11 @@
   "test/scoring.test.ts": {
     "mtime": 1781038374.1459076,
     "ast_hash": "a24e251ea2018d21526027c080f3dc48",
+    "semantic_hash": ""
+  },
+  "public/readme-banner.png": {
+    "mtime": 1781042019.509735,
+    "ast_hash": "a6b075fa90274de4b5db22d35668d93d",
     "semantic_hash": ""
   }
 }

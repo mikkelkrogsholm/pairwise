@@ -2,28 +2,36 @@ import { Hono, type Context } from "hono";
 import { serveStatic } from "hono/bun";
 import { getCookie, setCookie } from "hono/cookie";
 import { createHmac, timingSafeEqual } from "node:crypto";
+import { join } from "node:path";
 
 import { choosePair } from "./algorithm.ts";
 import {
   addIdea,
   activeIdeaCount,
   adminIdeasFor,
+  createSurveyAdmin,
   createAppearance,
   createSurvey,
   deleteIdea,
   deleteSurvey,
   getIdea,
+  getIdeaByMedia,
   getSurveyBySlug,
   getSurveyByToken,
   listAllIdeas,
+  listSurveyAdmins,
   recordSkip,
   recordVote,
   resultsFor,
+  revokeSurveyAdmin,
+  rotateSurveyAdmin,
   setIdeaActive,
+  submittedMediaIdeaCount,
   surveyStats,
   totalIdeaCount,
   updateIdeaMedia,
   updateSurvey,
+  updateSurveyStatus,
   voterAnswerCount,
   voterCookieSecret,
   type Idea,
@@ -68,55 +76,79 @@ const MAX_DESCRIPTION_LENGTH = 1000;
 const MAX_IDEA_TEXT_LENGTH = 280;
 const MAX_INITIAL_IDEAS = 500;
 const MAX_SURVEY_IDEAS = 500;
+const MAX_PARTICIPANT_MEDIA_SUBMISSIONS = 50;
+const MAX_PARTICIPANT_UPLOAD_BODY = 12 * 1024 * 1024;
 const MAX_ANSWERS_PER_VOTER_PER_SURVEY = 250;
 const API_RATE_WINDOW_MS = 60_000;
 const API_RATE_LIMIT = 180;
 const TRUST_PROXY_HEADERS = process.env.TRUST_PROXY_HEADERS === "1";
+const COOKIE_MAX_AGE = 60 * 60 * 24 * 365;
+const SECURE_COOKIES = process.env.NODE_ENV === "production";
+const PUBLIC_ORIGIN = (process.env.PUBLIC_ORIGIN ?? "").replace(/\/+$/, "");
 
 // ── i18n + voter helpers ─────────────────────────────────────────────────────
+
+app.use("*", async (c, next) => {
+  await next();
+  const q = c.req.query("lang");
+  const cookie = getCookie(c, "lang");
+  const locale = pickLocale(q, cookie, c.req.header("accept-language"));
+  if (q && q === locale && q !== cookie) {
+    setCookie(c, "lang", locale, {
+      path: "/",
+      maxAge: COOKIE_MAX_AGE,
+      sameSite: "Lax",
+      httpOnly: true,
+      secure: SECURE_COOKIES,
+    });
+  }
+});
 
 function i18n(c: Context): { locale: string; t: Translator } {
   const q = c.req.query("lang");
   const cookie = getCookie(c, "lang");
   const locale = pickLocale(q, cookie, c.req.header("accept-language"));
-  if (q && q === locale && q !== cookie) {
-    setCookie(c, "lang", locale, { path: "/", maxAge: 60 * 60 * 24 * 365, sameSite: "Lax" });
-  }
   return { locale, t: translator(locale) };
 }
 
-function voterId(c: Context): string {
-  const existing = parseSignedVoterCookie(getCookie(c, "pwid"));
+function voterCookieName(survey: Survey): string {
+  return `pwid_${survey.slug}`;
+}
+
+function voterId(c: Context, survey: Survey): string {
+  const cookieName = voterCookieName(survey);
+  const existing = parseSignedVoterCookie(getCookie(c, cookieName), survey.id);
   if (existing) return existing;
 
   const id = crypto.randomUUID();
-  setCookie(c, "pwid", signedVoterCookie(id), {
+  setCookie(c, cookieName, signedVoterCookie(survey.id, id), {
     httpOnly: true,
     sameSite: "Lax",
-    path: "/",
-    maxAge: 60 * 60 * 24 * 365,
+    secure: SECURE_COOKIES,
+    path: `/api/s/${survey.slug}`,
+    maxAge: COOKIE_MAX_AGE,
   });
   return id;
 }
 
-const origin = (c: { req: { url: string } }) => new URL(c.req.url).origin;
+const publicOrigin = () => PUBLIC_ORIGIN;
 
-function signedVoterCookie(id: string): string {
-  return `${id}.${signVoterId(id)}`;
+function signedVoterCookie(surveyId: number, id: string): string {
+  return `${id}.${signVoterId(surveyId, id)}`;
 }
 
-function signVoterId(id: string): string {
-  return createHmac("sha256", voterCookieSecret()).update(id).digest("base64url");
+function signVoterId(surveyId: number, id: string): string {
+  return createHmac("sha256", voterCookieSecret()).update(`${surveyId}:${id}`).digest("base64url");
 }
 
-function parseSignedVoterCookie(raw: string | undefined): string | null {
+function parseSignedVoterCookie(raw: string | undefined, surveyId: number): string | null {
   if (!raw) return null;
   const dot = raw.lastIndexOf(".");
   if (dot <= 0) return null;
   const id = raw.slice(0, dot);
   const signature = raw.slice(dot + 1);
   if (!id || !signature) return null;
-  const expected = signVoterId(id);
+  const expected = signVoterId(surveyId, id);
   const actualBuffer = Buffer.from(signature);
   const expectedBuffer = Buffer.from(expected);
   if (actualBuffer.length !== expectedBuffer.length) return null;
@@ -134,6 +166,8 @@ function asFiles(v: Field): File[] {
   return arr.filter((x): x is File => x instanceof File && x.size > 0);
 }
 const within = (f: File, kind: string) => f.size <= (UPLOAD_LIMITS[kind] ?? Infinity);
+const participantWithin = (f: File, kind: string) =>
+  f.size <= Math.min(UPLOAD_LIMITS[kind] ?? Infinity, kind === "audio" ? 10 * 1024 * 1024 : 5 * 1024 * 1024);
 
 function tooLarge(status = 413) {
   return new Response("Payload too large", { status });
@@ -311,6 +345,14 @@ function surveyHasRoom(survey: Survey): boolean {
   return totalIdeaCount(survey.id) < MAX_SURVEY_IDEAS;
 }
 
+function surveyHasParticipantMediaRoom(survey: Survey): boolean {
+  return submittedMediaIdeaCount(survey.id) < MAX_PARTICIPANT_MEDIA_SUBMISSIONS;
+}
+
+function surveyAcceptsParticipantInput(survey: Survey): boolean {
+  return survey.status === "open";
+}
+
 async function deleteSurveyWithMedia(survey: Survey): Promise<void> {
   for (const idea of listAllIdeas(survey.id)) {
     if (idea.media && idea.media_kind && idea.media_kind !== "youtube") await deleteMediaFile(idea.media);
@@ -342,7 +384,37 @@ function nextPairPayload(survey: Survey, voter: string) {
 app.get("/styles.css", serveStatic({ path: "./public/styles.css" }));
 app.get("/app.js", serveStatic({ path: "./public/app.js" }));
 app.get("/fonts/*", serveStatic({ root: "./public" }));
-app.get("/media/*", serveStatic({ root: MEDIA_PATH, rewriteRequestPath: (p) => p.replace(/^\/media/, "") }));
+
+function validMediaRel(rel: string): boolean {
+  return /^\d+\/[a-zA-Z0-9._-]+$/.test(rel) && !rel.includes("..");
+}
+
+function mediaContentType(rel: string): string {
+  if (/\.webp$/i.test(rel)) return "image/webp";
+  if (/\.webm$/i.test(rel)) return "video/webm";
+  if (/\.mp3$/i.test(rel)) return "audio/mpeg";
+  if (/\.wav$/i.test(rel)) return "audio/wav";
+  if (/\.(ogg|oga|opus)$/i.test(rel)) return "audio/ogg";
+  if (/\.(m4a|aac)$/i.test(rel)) return "audio/aac";
+  if (/\.flac$/i.test(rel)) return "audio/flac";
+  return "application/octet-stream";
+}
+
+async function mediaResponse(rel: string): Promise<Response> {
+  if (!validMediaRel(rel)) return new Response("Not found", { status: 404 });
+  const file = Bun.file(join(MEDIA_PATH, rel));
+  if (!(await file.exists())) return new Response("Not found", { status: 404 });
+  return new Response(file, { headers: { "content-type": mediaContentType(rel), "cache-control": "private, max-age=3600" } });
+}
+
+app.get("/media/:surveyId/:file", async (c) => {
+  const rel = `${c.req.param("surveyId")}/${c.req.param("file")}`;
+  const idea = validMediaRel(rel) ? getIdeaByMedia(rel) : null;
+  if (!idea || idea.active !== 1 || String(idea.survey_id) !== c.req.param("surveyId")) {
+    return new Response("Not found", { status: 404 });
+  }
+  return mediaResponse(rel);
+});
 
 // ── home / create ────────────────────────────────────────────────────────────
 
@@ -388,7 +460,7 @@ app.post("/surveys", async (c) => {
       return html(homePage(t, locale, t("err.ideas_too_large")), 400);
     }
     const survey = createSurvey({ title, description, mode, score_method, ideas, allow_user_ideas, auto_activate });
-    return html(createdPage(t, locale, survey, origin(c)));
+    return html(createdPage(t, locale, survey, publicOrigin()));
   }
 
   const candidates = mediaCandidateCount(mode, body);
@@ -399,7 +471,7 @@ app.post("/surveys", async (c) => {
     await deleteSurveyWithMedia(survey);
     return html(homePage(t, locale, t("err.min_media")), 400);
   }
-  return html(createdPage(t, locale, survey, origin(c)));
+  return html(createdPage(t, locale, survey, publicOrigin()));
 });
 
 // ── public vote + results ────────────────────────────────────────────────────
@@ -408,8 +480,8 @@ app.get("/s/:slug", (c) => {
   const { t, locale } = i18n(c);
   const survey = getSurveyBySlug(c.req.param("slug"));
   if (!survey) return html(notFoundPage(t, locale), 404);
-  voterId(c);
-  const canVote = activeIdeaCount(survey.id) >= 2;
+  if (survey.status === "archived") return html(notFoundPage(t, locale), 404);
+  const canVote = surveyAcceptsParticipantInput(survey) && activeIdeaCount(survey.id) >= 2;
   return html(votePage(t, locale, survey, canVote, surveyStats(survey.id).votes));
 });
 
@@ -429,7 +501,8 @@ app.get("/api/s/:slug/pair", (c) => {
   if (limited) return limited;
   const survey = getSurveyBySlug(c.req.param("slug"));
   if (!survey) return c.json({ error: "not_found" }, 404);
-  const voter = voterId(c);
+  if (!surveyAcceptsParticipantInput(survey)) return c.json({ error: "survey_closed" }, 403);
+  const voter = voterId(c, survey);
   if (voterAnswerCount(survey.id, voter) >= MAX_ANSWERS_PER_VOTER_PER_SURVEY) return c.json({ error: "answer_limit" }, 429);
   const next = nextPairPayload(survey, voter);
   if (!next) return c.json({ error: "not_enough" }, 200);
@@ -443,7 +516,8 @@ app.post("/api/s/:slug/vote", async (c) => {
   if (tooLargeResponse) return tooLargeResponse;
   const survey = getSurveyBySlug(c.req.param("slug"));
   if (!survey) return c.json({ error: "not_found" }, 404);
-  const voter = voterId(c);
+  if (!surveyAcceptsParticipantInput(survey)) return c.json({ error: "survey_closed" }, 403);
+  const voter = voterId(c, survey);
   if (voterAnswerCount(survey.id, voter) >= MAX_ANSWERS_PER_VOTER_PER_SURVEY) return c.json({ error: "answer_limit" }, 429);
   const body = (await c.req.json().catch(() => ({}))) as { lookup?: string; winner?: number };
   if (!body.lookup || !body.winner) return c.json({ error: "bad_request" }, 400);
@@ -461,7 +535,8 @@ app.post("/api/s/:slug/skip", async (c) => {
   if (tooLargeResponse) return tooLargeResponse;
   const survey = getSurveyBySlug(c.req.param("slug"));
   if (!survey) return c.json({ error: "not_found" }, 404);
-  const voter = voterId(c);
+  if (!surveyAcceptsParticipantInput(survey)) return c.json({ error: "survey_closed" }, 403);
+  const voter = voterId(c, survey);
   if (voterAnswerCount(survey.id, voter) >= MAX_ANSWERS_PER_VOTER_PER_SURVEY) return c.json({ error: "answer_limit" }, 429);
   const body = (await c.req.json().catch(() => ({}))) as { lookup?: string };
   if (!body.lookup) return c.json({ error: "bad_request" }, 400);
@@ -479,11 +554,15 @@ app.post("/api/s/:slug/idea", async (c) => {
   if (limited) return limited;
   const survey = getSurveyBySlug(c.req.param("slug"));
   if (!survey) return c.json({ error: "not_found" }, 404);
+  if (!surveyAcceptsParticipantInput(survey)) return c.json({ error: "survey_closed" }, 403);
   if (!survey.allow_user_ideas) return c.json({ error: "not_allowed" }, 403);
-  const maxBody = survey.mode === "text" || survey.mode === "video" ? MAX_TEXT_BODY : MAX_UPLOAD_BODY;
+  const maxBody = survey.mode === "text" || survey.mode === "video" ? MAX_TEXT_BODY : MAX_PARTICIPANT_UPLOAD_BODY;
   const tooLargeResponse = await rejectLargeBody(c, maxBody, true);
   if (tooLargeResponse) return tooLargeResponse;
   if (!surveyHasRoom(survey)) return c.json({ error: "survey_full" }, 409);
+  if ((survey.mode === "image" || survey.mode === "audio") && !surveyHasParticipantMediaRoom(survey)) {
+    return c.json({ error: "survey_full" }, 409);
+  }
   const active = !!survey.auto_activate;
   const opts = { active, submitted: true };
   const body = (await c.req.parseBody({ all: true }).catch(() => ({}))) as Record<string, Field>;
@@ -497,13 +576,13 @@ app.post("/api/s/:slug/idea", async (c) => {
     const caption = str(body.text);
     if (caption.length > MAX_IDEA_TEXT_LENGTH) return c.json({ error: "too_long" }, 400);
     const f = asFiles(body.file)[0];
-    if (!f || !isImage(f) || !within(f, "image")) return c.json({ error: "bad_file" }, 400);
+    if (!f || !isImage(f) || !participantWithin(f, "image")) return c.json({ error: "bad_file" }, 400);
     if (!(await addImageIdea(survey, f, caption, opts))) return c.json({ error: "bad_file" }, 400);
   } else if (survey.mode === "audio") {
     const caption = str(body.text);
     if (caption.length > MAX_IDEA_TEXT_LENGTH) return c.json({ error: "too_long" }, 400);
     const f = asFiles(body.file)[0];
-    if (!f || !isAudio(f) || !within(f, "audio")) return c.json({ error: "bad_file" }, 400);
+    if (!f || !isAudio(f) || !participantWithin(f, "audio")) return c.json({ error: "bad_file" }, 400);
     if (!(await addAudioIdea(survey, f, caption, opts))) return c.json({ error: "bad_file" }, 400);
   } else if (survey.mode === "video") {
     const id = parseYouTube(str(body.url));
@@ -525,7 +604,27 @@ app.get("/a/:token", (c) => {
   const { t, locale } = i18n(c);
   const survey = requireAdmin(c);
   if (!survey) return html(notFoundPage(t, locale), 404);
-  return html(adminPage(t, locale, survey, adminIdeasFor(survey.id, survey.score_method), surveyStats(survey.id), origin(c)));
+  return html(
+    adminPage(
+      t,
+      locale,
+      survey,
+      adminIdeasFor(survey.id, survey.score_method),
+      surveyStats(survey.id),
+      listSurveyAdmins(survey.id),
+      publicOrigin(),
+    ),
+  );
+});
+
+app.get("/a/:token/media/:id", async (c) => {
+  const survey = requireAdmin(c);
+  if (!survey) return new Response("Not found", { status: 404 });
+  const idea = getIdea(Number(c.req.param("id")));
+  if (!idea || idea.survey_id !== survey.id || !idea.media || !idea.media_kind || idea.media_kind === "youtube") {
+    return new Response("Not found", { status: 404 });
+  }
+  return mediaResponse(idea.media);
 });
 
 app.post("/a/:token/ideas", async (c) => {
@@ -602,6 +701,81 @@ app.post("/a/:token/settings", async (c) => {
     auto_activate: !!body.auto_activate,
     score_method: scoreMethodOrDefault(String(body.score_method ?? survey.score_method)),
   });
+  return adminRedirect(survey.admin_token);
+});
+
+app.post("/a/:token/status", async (c) => {
+  const survey = requireAdmin(c);
+  if (!survey) return html(notFoundPage(translator("da"), "da"), 404);
+  const tooLargeResponse = await rejectLargeBody(c, MAX_TEXT_BODY);
+  if (tooLargeResponse) return tooLargeResponse;
+  const body = (await c.req.parseBody()) as Record<string, Field>;
+  if (!validAdminCsrf(survey, body)) return new Response("Forbidden", { status: 403 });
+  const status = str(body.status);
+  if (status !== "open" && status !== "closed" && status !== "archived") return new Response("Bad request", { status: 400 });
+  updateSurveyStatus(survey.id, status);
+  return adminRedirect(survey.admin_token);
+});
+
+app.post("/a/:token/delete", async (c) => {
+  const survey = requireAdmin(c);
+  if (!survey) return html(notFoundPage(translator("da"), "da"), 404);
+  const tooLargeResponse = await rejectLargeBody(c, MAX_TEXT_BODY);
+  if (tooLargeResponse) return tooLargeResponse;
+  const body = (await c.req.parseBody()) as Record<string, Field>;
+  if (!validAdminCsrf(survey, body)) return new Response("Forbidden", { status: 403 });
+  await deleteSurveyWithMedia(survey);
+  return new Response(null, { status: 303, headers: { location: "/" } });
+});
+
+app.post("/a/:token/admins", async (c) => {
+  const { t, locale } = i18n(c);
+  const survey = requireAdmin(c);
+  if (!survey) return html(notFoundPage(t, locale), 404);
+  const tooLargeResponse = await rejectLargeBody(c, MAX_TEXT_BODY);
+  if (tooLargeResponse) return tooLargeResponse;
+  const body = (await c.req.parseBody()) as Record<string, Field>;
+  if (!validAdminCsrf(survey, body)) return new Response("Forbidden", { status: 403 });
+  const label = str(body.label);
+  if (label.length > 80) return new Response("Bad request", { status: 400 });
+  const revealedAdmin = createSurveyAdmin(survey.id, label);
+  return html(
+    adminPage(
+      t,
+      locale,
+      survey,
+      adminIdeasFor(survey.id, survey.score_method),
+      surveyStats(survey.id),
+      listSurveyAdmins(survey.id),
+      publicOrigin(),
+      revealedAdmin,
+    ),
+  );
+});
+
+app.post("/a/:token/admins/rotate", async (c) => {
+  const survey = requireAdmin(c);
+  if (!survey) return html(notFoundPage(translator("da"), "da"), 404);
+  const tooLargeResponse = await rejectLargeBody(c, MAX_TEXT_BODY);
+  if (tooLargeResponse) return tooLargeResponse;
+  const body = (await c.req.parseBody()) as Record<string, Field>;
+  if (!validAdminCsrf(survey, body)) return new Response("Forbidden", { status: 403 });
+  const rotated = rotateSurveyAdmin(survey.id, survey.admin_token);
+  if (!rotated) return new Response("Not found", { status: 404 });
+  return adminRedirect(rotated.token);
+});
+
+app.post("/a/:token/admins/:id/revoke", async (c) => {
+  const survey = requireAdmin(c);
+  if (!survey) return html(notFoundPage(translator("da"), "da"), 404);
+  const tooLargeResponse = await rejectLargeBody(c, MAX_TEXT_BODY);
+  if (tooLargeResponse) return tooLargeResponse;
+  const body = (await c.req.parseBody()) as Record<string, Field>;
+  if (!validAdminCsrf(survey, body)) return new Response("Forbidden", { status: 403 });
+  const adminId = Number(c.req.param("id"));
+  const target = listSurveyAdmins(survey.id).find((admin) => admin.id === adminId);
+  if (!target || target.id === survey.admin_id) return new Response("Bad request", { status: 400 });
+  revokeSurveyAdmin(survey.id, adminId);
   return adminRedirect(survey.admin_token);
 });
 

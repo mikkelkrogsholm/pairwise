@@ -15,7 +15,8 @@ ideas along the way.
 - **Multimodal.** Compare **text**, **images**, **audio**, or **video** — pick the mode per survey. Images are auto-converted to WebP and downscaled with Bun's built-in image API; video is YouTube embeds or uploaded WebM.
 - **Multilingual.** Full i18n — ships with Danish and English, switchable in the header. Adding a language is one object in `src/i18n.ts`.
 - **Looks good out of the box.** Responsive, light/dark theme, keyboard voting.
-- **Link-based, no login.** Create a survey → get a public vote link, a results link, and a secret admin link.
+- **Link-based, no login.** Create a survey → get a public vote link, a results link, and secret admin links that can be shared, rotated, and revoked.
+- **Practical admin lifecycle.** Close voting, archive the public voting page, or delete a survey and its local uploads.
 
 ---
 
@@ -54,7 +55,8 @@ bun run dev      # http://localhost:3000, hot reload
    - **Vote link** `…/s/<slug>` — share this with participants.
    - **Results link** `…/s/<slug>/results` — public ranking.
    - **Admin link** `…/a/<token>` — **keep secret.** Approve submitted ideas,
-     add/hide/delete ideas, edit settings, see stats.
+     add/hide/delete ideas, edit settings, see stats, and create separate
+     admin links for collaborators.
 3. Participants vote (mouse, or `←` / `→` keys, `S` to skip) and can submit their
    own ideas, which land in the admin moderation queue (unless auto-publish is on).
 
@@ -71,18 +73,41 @@ Each survey has one **mode**, chosen at creation:
 | **Audio** | Audio clips | Upload (mp3, wav, ogg, m4a … stored as-is) |
 | **Video** | Videos | Paste YouTube links and/or upload WebM files |
 
-You can add media both **on the create page** and later **in admin**. Participants
-can also submit their own items (image/audio upload, or a YouTube link), subject
-to the same moderation queue. Media files live on disk under `MEDIA_PATH` (inside
-the data volume), so they persist with the database.
+You can add media both **on the create page** and later **in admin** with
+drag-and-drop upload previews before submit. Participants can also submit their
+own items (image/audio upload, or a YouTube link), subject to the same moderation
+queue. Media files live on disk under `MEDIA_PATH` (inside the data volume), so
+they persist with the database. Public media URLs are checked against the
+database and only serve active ideas; admin previews use the admin route so
+pending or hidden uploads are not exposed through predictable file paths.
+Participant media uploads are capped more aggressively than admin uploads to
+reduce storage-abuse risk on public surveys.
 
 ## Languages
 
 The whole UI is internationalised. Ships with **Danish** and **English** — use the
-switcher in the header (the choice is remembered in a cookie; first visit honours
-the browser's `Accept-Language`). To add a language, add one catalog object plus a
+switcher in the header (the choice is remembered in a functional `lang` cookie;
+first visit honours the browser's `Accept-Language`). To add a language, add one catalog object plus a
 `LOCALES` entry in [`src/i18n.ts`](src/i18n.ts) — nothing else changes. Survey
 content (titles, ideas) is shown as authored and never machine-translated.
+
+## Privacy posture
+
+Pairwise is designed to run without a cookie-consent banner by only using
+technically necessary or functional browser storage:
+
+- Survey-specific `pwid_*` cookies keep a participant's voting flow tied to one
+  survey, so voter identifiers are not reused across surveys. They are scoped to
+  `/api/s/<slug>` so old survey cookies are not sent to unrelated pages or
+  assets.
+- The `lang` cookie stores the user's language choice.
+- `localStorage` stores only the light/dark theme preference.
+- The app ships with no analytics, tracking, advertising cookies, or external
+  error reporting.
+- YouTube videos use a click-to-load flow and `youtube-nocookie.com`; local
+  uploads are served by the Pairwise instance itself.
+- Admin bearer tokens are stored as SHA-256 hashes in SQLite; raw links are only
+  shown when created, rotated, or actively used in the current request.
 
 ---
 
@@ -139,6 +164,7 @@ thousand ideas you'd want to reintroduce the batched/cached approach.
 | `PORT` | `3000` | HTTP port |
 | `DATABASE_PATH` | `./data/pairwise.db` | SQLite file location |
 | `MEDIA_PATH` | `<db dir>/media` | Where uploaded media (WebP, audio, WebM) is stored |
+| `PUBLIC_ORIGIN` | relative links | Optional canonical origin for generated share/admin links, e.g. `https://pairwise.example.com` |
 
 ## Project layout
 
