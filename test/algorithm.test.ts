@@ -60,6 +60,48 @@ describe("choosePair", () => {
     expect(pair).not.toBeNull();
     expect([pair!.left.id, pair!.right.id].sort()).toEqual(ideas.map((idea) => idea.id).sort());
   });
+
+  test("avoids repeating pairs already shown to the same voter", () => {
+    const survey = data.createSurvey({
+      title: "Avoid voter repeats",
+      description: "",
+      mode: "text",
+      ideas: ["A", "B", "C"],
+      allow_user_ideas: true,
+      auto_activate: false,
+    });
+    const ideas = data.listActiveIdeas(survey.id);
+    data.createAppearance(survey.id, ideas[0].id, ideas[1].id, "voter-1");
+
+    const pair = algorithm.choosePair(survey.id, "voter-1");
+    const ids = [pair!.left.id, pair!.right.id].sort();
+
+    expect(pair).not.toBeNull();
+    expect(ids).not.toEqual([ideas[0].id, ideas[1].id].sort());
+    expect(ids).toContain(ideas[2].id);
+  });
+
+  test("pair API cycles through unseen pairs before repeating for one voter", async () => {
+    const survey = data.createSurvey({
+      title: "Unseen pairs first",
+      description: "",
+      mode: "text",
+      ideas: ["A", "B", "C"],
+      allow_user_ideas: true,
+      auto_activate: false,
+    });
+
+    const seen = new Set<string>();
+    let cookie = "";
+    for (let i = 0; i < 3; i++) {
+      const response = await httpApp.request(`/api/s/${survey.slug}/pair`, cookie ? { headers: { cookie } } : {});
+      cookie ||= voterCookie(response, survey.slug);
+      const pair = (await response.json()) as { left: { id: number }; right: { id: number } };
+      seen.add([pair.left.id, pair.right.id].sort((a, b) => a - b).join(":"));
+    }
+
+    expect(seen.size).toBe(3);
+  });
 });
 
 describe("vote API hardening", () => {

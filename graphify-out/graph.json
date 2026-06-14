@@ -560,48 +560,108 @@
       "source_location": "L1",
       "_origin": "ast",
       "id": "src_algorithm",
-      "community": 8,
+      "community": 15,
       "norm_label": "algorithm.ts"
     },
     {
       "label": "scoreOf()",
       "file_type": "code",
       "source_file": "src/algorithm.ts",
-      "source_location": "L26",
+      "source_location": "L27",
       "_origin": "ast",
       "id": "src_algorithm_scoreof",
-      "community": 8,
+      "community": 15,
       "norm_label": "scoreof()"
     },
     {
       "label": "ChosenPair",
       "file_type": "code",
       "source_file": "src/algorithm.ts",
-      "source_location": "L30",
+      "source_location": "L31",
       "_origin": "ast",
       "id": "src_algorithm_chosenpair",
-      "community": 8,
+      "community": 15,
       "norm_label": "chosenpair"
+    },
+    {
+      "label": "Candidate",
+      "file_type": "code",
+      "source_file": "src/algorithm.ts",
+      "source_location": "L36",
+      "_origin": "ast",
+      "id": "src_algorithm_candidate",
+      "community": 15,
+      "norm_label": "candidate"
     },
     {
       "label": "choosePair()",
       "file_type": "code",
       "source_file": "src/algorithm.ts",
-      "source_location": "L35",
+      "source_location": "L41",
       "_origin": "ast",
       "id": "src_algorithm_choosepair",
-      "community": 8,
+      "community": 15,
       "norm_label": "choosepair()"
     },
     {
       "label": "chooseSampledPair()",
       "file_type": "code",
       "source_file": "src/algorithm.ts",
-      "source_location": "L66",
+      "source_location": "L77",
       "_origin": "ast",
       "id": "src_algorithm_choosesampledpair",
-      "community": 8,
+      "community": 15,
       "norm_label": "choosesampledpair()"
+    },
+    {
+      "label": "chooseBalancedCandidate()",
+      "file_type": "code",
+      "source_file": "src/algorithm.ts",
+      "source_location": "L115",
+      "_origin": "ast",
+      "id": "src_algorithm_choosebalancedcandidate",
+      "community": 15,
+      "norm_label": "choosebalancedcandidate()"
+    },
+    {
+      "label": "weightedChoice()",
+      "file_type": "code",
+      "source_file": "src/algorithm.ts",
+      "source_location": "L156",
+      "_origin": "ast",
+      "id": "src_algorithm_weightedchoice",
+      "community": 15,
+      "norm_label": "weightedchoice()"
+    },
+    {
+      "label": "candidateWeight()",
+      "file_type": "code",
+      "source_file": "src/algorithm.ts",
+      "source_location": "L167",
+      "_origin": "ast",
+      "id": "src_algorithm_candidateweight",
+      "community": 15,
+      "norm_label": "candidateweight()"
+    },
+    {
+      "label": "pairShows()",
+      "file_type": "code",
+      "source_file": "src/algorithm.ts",
+      "source_location": "L182",
+      "_origin": "ast",
+      "id": "src_algorithm_pairshows",
+      "community": 15,
+      "norm_label": "pairshows()"
+    },
+    {
+      "label": "ideaShows()",
+      "file_type": "code",
+      "source_file": "src/algorithm.ts",
+      "source_location": "L188",
+      "_origin": "ast",
+      "id": "src_algorithm_ideashows",
+      "community": 15,
+      "norm_label": "ideashows()"
     },
     {
       "label": "db.ts",
@@ -690,14 +750,24 @@
       "source_location": "L177",
       "_origin": "ast",
       "id": "src_db_idea",
-      "community": 8,
+      "community": 15,
       "norm_label": "idea"
+    },
+    {
+      "label": "pairSelectionStats",
+      "file_type": "code",
+      "source_file": "src/db.ts",
+      "source_location": "L675",
+      "_origin": "ast",
+      "id": "src_db_pairselectionstats",
+      "community": 15,
+      "norm_label": "pairselectionstats"
     },
     {
       "label": "normalizeSurvey()",
       "file_type": "code",
       "source_file": "src/db.ts",
-      "source_location": "L191",
+      "source_location": "L198",
       "_origin": "ast",
       "id": "src_db_normalizesurvey",
       "community": 1,
@@ -707,7 +777,7 @@
       "label": "surveyModeOrDefault()",
       "file_type": "code",
       "source_file": "src/db.ts",
-      "source_location": "L199",
+      "source_location": "L206",
       "_origin": "ast",
       "id": "src_db_surveymodeordefault",
       "community": 1,
@@ -717,7 +787,7 @@
       "label": "surveyStatusOrDefault()",
       "file_type": "code",
       "source_file": "src/db.ts",
-      "source_location": "L203",
+      "source_location": "L210",
       "_origin": "ast",
       "id": "src_db_surveystatusordefault",
       "community": 1,
@@ -727,7 +797,7 @@
       "label": "hexToken()",
       "file_type": "code",
       "source_file": "src/db.ts",
-      "source_location": "L209",
+      "source_location": "L216",
       "_origin": "ast",
       "id": "src_db_hextoken",
       "community": 1,
@@ -737,7 +807,7 @@
       "label": "hashAdminToken()",
       "file_type": "code",
       "source_file": "src/db.ts",
-      "source_location": "L217",
+      "source_location": "L224",
       "_origin": "ast",
       "id": "src_db_hashadmintoken",
       "community": 1,
@@ -747,7 +817,7 @@
       "label": "isAdminTokenHash()",
       "file_type": "code",
       "source_file": "src/db.ts",
-      "source_location": "L221",
+      "source_location": "L228",
       "_origin": "ast",
       "id": "src_db_isadmintokenhash",
       "community": 1,
@@ -757,7 +827,7 @@
       "label": "hashStoredAdminToken()",
       "file_type": "code",
       "source_file": "src/db.ts",
-      "source_location": "L225",
+      "source_location": "L232",
       "_origin": "ast",
       "id": "src_db_hashstoredadmintoken",
       "community": 1,
@@ -767,7 +837,7 @@
       "label": "normalizeSurveyAdmin()",
       "file_type": "code",
       "source_file": "src/db.ts",
-      "source_location": "L229",
+      "source_location": "L236",
       "_origin": "ast",
       "id": "src_db_normalizesurveyadmin",
       "community": 1,
@@ -777,7 +847,7 @@
       "label": "revealSurveyAdminToken()",
       "file_type": "code",
       "source_file": "src/db.ts",
-      "source_location": "L236",
+      "source_location": "L243",
       "_origin": "ast",
       "id": "src_db_revealsurveyadmintoken",
       "community": 1,
@@ -787,7 +857,7 @@
       "label": "fillMissingAdminCsrfTokens()",
       "file_type": "code",
       "source_file": "src/db.ts",
-      "source_location": "L241",
+      "source_location": "L248",
       "_origin": "ast",
       "id": "src_db_fillmissingadmincsrftokens",
       "community": 1,
@@ -797,7 +867,7 @@
       "label": "migrateLegacySurveyAdmins()",
       "file_type": "code",
       "source_file": "src/db.ts",
-      "source_location": "L251",
+      "source_location": "L258",
       "_origin": "ast",
       "id": "src_db_migratelegacysurveyadmins",
       "community": 1,
@@ -807,7 +877,7 @@
       "label": "migrateSurveyAdminTokenHashes()",
       "file_type": "code",
       "source_file": "src/db.ts",
-      "source_location": "L273",
+      "source_location": "L280",
       "_origin": "ast",
       "id": "src_db_migratesurveyadmintokenhashes",
       "community": 1,
@@ -817,7 +887,7 @@
       "label": "migrateLegacySurveyAdminTokens()",
       "file_type": "code",
       "source_file": "src/db.ts",
-      "source_location": "L288",
+      "source_location": "L295",
       "_origin": "ast",
       "id": "src_db_migratelegacysurveyadmintokens",
       "community": 1,
@@ -827,7 +897,7 @@
       "label": "voterCookieSecret()",
       "file_type": "code",
       "source_file": "src/db.ts",
-      "source_location": "L299",
+      "source_location": "L306",
       "_origin": "ast",
       "id": "src_db_votercookiesecret",
       "community": 0,
@@ -837,7 +907,7 @@
       "label": "randomSlug()",
       "file_type": "code",
       "source_file": "src/db.ts",
-      "source_location": "L310",
+      "source_location": "L317",
       "_origin": "ast",
       "id": "src_db_randomslug",
       "community": 1,
@@ -847,7 +917,7 @@
       "label": "getSurveyBySlug()",
       "file_type": "code",
       "source_file": "src/db.ts",
-      "source_location": "L318",
+      "source_location": "L325",
       "_origin": "ast",
       "id": "src_db_getsurveybyslug",
       "community": 1,
@@ -857,7 +927,7 @@
       "label": "getSurveyByToken()",
       "file_type": "code",
       "source_file": "src/db.ts",
-      "source_location": "L322",
+      "source_location": "L329",
       "_origin": "ast",
       "id": "src_db_getsurveybytoken",
       "community": 1,
@@ -867,7 +937,7 @@
       "label": "createSurvey()",
       "file_type": "code",
       "source_file": "src/db.ts",
-      "source_location": "L355",
+      "source_location": "L362",
       "_origin": "ast",
       "id": "src_db_createsurvey",
       "community": 1,
@@ -877,17 +947,17 @@
       "label": "listSurveyAdmins()",
       "file_type": "code",
       "source_file": "src/db.ts",
-      "source_location": "L404",
+      "source_location": "L411",
       "_origin": "ast",
       "id": "src_db_listsurveyadmins",
-      "community": 0,
+      "community": 1,
       "norm_label": "listsurveyadmins()"
     },
     {
       "label": "createSurveyAdmin()",
       "file_type": "code",
       "source_file": "src/db.ts",
-      "source_location": "L415",
+      "source_location": "L422",
       "_origin": "ast",
       "id": "src_db_createsurveyadmin",
       "community": 1,
@@ -897,7 +967,7 @@
       "label": "rotateSurveyAdmin()",
       "file_type": "code",
       "source_file": "src/db.ts",
-      "source_location": "L429",
+      "source_location": "L436",
       "_origin": "ast",
       "id": "src_db_rotatesurveyadmin",
       "community": 1,
@@ -907,17 +977,17 @@
       "label": "revokeSurveyAdmin()",
       "file_type": "code",
       "source_file": "src/db.ts",
-      "source_location": "L457",
+      "source_location": "L464",
       "_origin": "ast",
       "id": "src_db_revokesurveyadmin",
-      "community": 0,
+      "community": 1,
       "norm_label": "revokesurveyadmin()"
     },
     {
       "label": "updateSurveyStatus()",
       "file_type": "code",
       "source_file": "src/db.ts",
-      "source_location": "L479",
+      "source_location": "L486",
       "_origin": "ast",
       "id": "src_db_updatesurveystatus",
       "community": 1,
@@ -927,7 +997,7 @@
       "label": "markSurveyAdminLastUsed()",
       "file_type": "code",
       "source_file": "src/db.ts",
-      "source_location": "L485",
+      "source_location": "L492",
       "_origin": "ast",
       "id": "src_db_marksurveyadminlastused",
       "community": 1,
@@ -937,7 +1007,7 @@
       "label": "markSurveyAdminRotated()",
       "file_type": "code",
       "source_file": "src/db.ts",
-      "source_location": "L493",
+      "source_location": "L500",
       "_origin": "ast",
       "id": "src_db_marksurveyadminrotated",
       "community": 1,
@@ -947,7 +1017,7 @@
       "label": "updateSurvey()",
       "file_type": "code",
       "source_file": "src/db.ts",
-      "source_location": "L498",
+      "source_location": "L505",
       "_origin": "ast",
       "id": "src_db_updatesurvey",
       "community": 1,
@@ -957,7 +1027,7 @@
       "label": "deleteSurvey()",
       "file_type": "code",
       "source_file": "src/db.ts",
-      "source_location": "L522",
+      "source_location": "L529",
       "_origin": "ast",
       "id": "src_db_deletesurvey",
       "community": 0,
@@ -967,17 +1037,17 @@
       "label": "listActiveIdeas()",
       "file_type": "code",
       "source_file": "src/db.ts",
-      "source_location": "L528",
+      "source_location": "L535",
       "_origin": "ast",
       "id": "src_db_listactiveideas",
-      "community": 8,
+      "community": 15,
       "norm_label": "listactiveideas()"
     },
     {
       "label": "activeIdeaCount()",
       "file_type": "code",
       "source_file": "src/db.ts",
-      "source_location": "L534",
+      "source_location": "L541",
       "_origin": "ast",
       "id": "src_db_activeideacount",
       "community": 1,
@@ -987,7 +1057,7 @@
       "label": "totalIdeaCount()",
       "file_type": "code",
       "source_file": "src/db.ts",
-      "source_location": "L542",
+      "source_location": "L549",
       "_origin": "ast",
       "id": "src_db_totalideacount",
       "community": 0,
@@ -997,7 +1067,7 @@
       "label": "submittedMediaIdeaCount()",
       "file_type": "code",
       "source_file": "src/db.ts",
-      "source_location": "L550",
+      "source_location": "L557",
       "_origin": "ast",
       "id": "src_db_submittedmediaideacount",
       "community": 0,
@@ -1007,7 +1077,7 @@
       "label": "listAllIdeas()",
       "file_type": "code",
       "source_file": "src/db.ts",
-      "source_location": "L558",
+      "source_location": "L565",
       "_origin": "ast",
       "id": "src_db_listallideas",
       "community": 0,
@@ -1017,17 +1087,17 @@
       "label": "getIdea()",
       "file_type": "code",
       "source_file": "src/db.ts",
-      "source_location": "L564",
+      "source_location": "L571",
       "_origin": "ast",
       "id": "src_db_getidea",
-      "community": 14,
+      "community": 0,
       "norm_label": "getidea()"
     },
     {
       "label": "getIdeaByMedia()",
       "file_type": "code",
       "source_file": "src/db.ts",
-      "source_location": "L568",
+      "source_location": "L575",
       "_origin": "ast",
       "id": "src_db_getideabymedia",
       "community": 1,
@@ -1037,27 +1107,27 @@
       "label": "addIdea()",
       "file_type": "code",
       "source_file": "src/db.ts",
-      "source_location": "L572",
+      "source_location": "L579",
       "_origin": "ast",
       "id": "src_db_addidea",
-      "community": 14,
+      "community": 0,
       "norm_label": "addidea()"
     },
     {
       "label": "updateIdeaMedia()",
       "file_type": "code",
       "source_file": "src/db.ts",
-      "source_location": "L597",
+      "source_location": "L604",
       "_origin": "ast",
       "id": "src_db_updateideamedia",
-      "community": 14,
+      "community": 0,
       "norm_label": "updateideamedia()"
     },
     {
       "label": "setIdeaActive()",
       "file_type": "code",
       "source_file": "src/db.ts",
-      "source_location": "L601",
+      "source_location": "L608",
       "_origin": "ast",
       "id": "src_db_setideaactive",
       "community": 1,
@@ -1067,17 +1137,17 @@
       "label": "deleteIdea()",
       "file_type": "code",
       "source_file": "src/db.ts",
-      "source_location": "L609",
+      "source_location": "L616",
       "_origin": "ast",
       "id": "src_db_deleteidea",
-      "community": 14,
+      "community": 0,
       "norm_label": "deleteidea()"
     },
     {
       "label": "resultsFor()",
       "file_type": "code",
       "source_file": "src/db.ts",
-      "source_location": "L613",
+      "source_location": "L620",
       "_origin": "ast",
       "id": "src_db_resultsfor",
       "community": 8,
@@ -1087,7 +1157,7 @@
       "label": "adminIdeasFor()",
       "file_type": "code",
       "source_file": "src/db.ts",
-      "source_location": "L642",
+      "source_location": "L649",
       "_origin": "ast",
       "id": "src_db_adminideasfor",
       "community": 0,
@@ -1097,27 +1167,27 @@
       "label": "getPairVotes()",
       "file_type": "code",
       "source_file": "src/db.ts",
-      "source_location": "L650",
+      "source_location": "L657",
       "_origin": "ast",
       "id": "src_db_getpairvotes",
-      "community": 8,
+      "community": 15,
       "norm_label": "getpairvotes()"
     },
     {
       "label": "getPairVote()",
       "file_type": "code",
       "source_file": "src/db.ts",
-      "source_location": "L659",
+      "source_location": "L666",
       "_origin": "ast",
       "id": "src_db_getpairvote",
-      "community": 8,
+      "community": 15,
       "norm_label": "getpairvote()"
     },
     {
       "label": "createAppearance()",
       "file_type": "code",
       "source_file": "src/db.ts",
-      "source_location": "L670",
+      "source_location": "L735",
       "_origin": "ast",
       "id": "src_db_createappearance",
       "community": 0,
@@ -1127,7 +1197,7 @@
       "label": "Appearance",
       "file_type": "code",
       "source_file": "src/db.ts",
-      "source_location": "L685",
+      "source_location": "L750",
       "_origin": "ast",
       "id": "src_db_appearance",
       "community": 1,
@@ -1137,7 +1207,7 @@
       "label": "getAppearanceByLookup()",
       "file_type": "code",
       "source_file": "src/db.ts",
-      "source_location": "L695",
+      "source_location": "L760",
       "_origin": "ast",
       "id": "src_db_getappearancebylookup",
       "community": 1,
@@ -1147,7 +1217,7 @@
       "label": "appearanceIdeasAreActive()",
       "file_type": "code",
       "source_file": "src/db.ts",
-      "source_location": "L699",
+      "source_location": "L764",
       "_origin": "ast",
       "id": "src_db_appearanceideasareactive",
       "community": 1,
@@ -1157,7 +1227,7 @@
       "label": "VoteResult",
       "file_type": "code",
       "source_file": "src/db.ts",
-      "source_location": "L712",
+      "source_location": "L777",
       "_origin": "ast",
       "id": "src_db_voteresult",
       "community": 1,
@@ -1167,7 +1237,7 @@
       "label": "recordVote()",
       "file_type": "code",
       "source_file": "src/db.ts",
-      "source_location": "L721",
+      "source_location": "L786",
       "_origin": "ast",
       "id": "src_db_recordvote",
       "community": 1,
@@ -1177,7 +1247,7 @@
       "label": "recordSkip()",
       "file_type": "code",
       "source_file": "src/db.ts",
-      "source_location": "L769",
+      "source_location": "L834",
       "_origin": "ast",
       "id": "src_db_recordskip",
       "community": 1,
@@ -1187,7 +1257,7 @@
       "label": "surveyStats()",
       "file_type": "code",
       "source_file": "src/db.ts",
-      "source_location": "L795",
+      "source_location": "L860",
       "_origin": "ast",
       "id": "src_db_surveystats",
       "community": 1,
@@ -1197,7 +1267,7 @@
       "label": "voterVoteCount()",
       "file_type": "code",
       "source_file": "src/db.ts",
-      "source_location": "L819",
+      "source_location": "L884",
       "_origin": "ast",
       "id": "src_db_votervotecount",
       "community": 1,
@@ -1207,7 +1277,7 @@
       "label": "voterAnswerCount()",
       "file_type": "code",
       "source_file": "src/db.ts",
-      "source_location": "L828",
+      "source_location": "L893",
       "_origin": "ast",
       "id": "src_db_voteranswercount",
       "community": 1,
@@ -1470,7 +1540,7 @@
       "source_location": "L169",
       "_origin": "ast",
       "id": "src_index_lines",
-      "community": 14,
+      "community": 0,
       "norm_label": "lines()"
     },
     {
@@ -1480,7 +1550,7 @@
       "source_location": "L170",
       "_origin": "ast",
       "id": "src_index_asfiles",
-      "community": 14,
+      "community": 0,
       "norm_label": "asfiles()"
     },
     {
@@ -1490,7 +1560,7 @@
       "source_location": "L175",
       "_origin": "ast",
       "id": "src_index_within",
-      "community": 14,
+      "community": 0,
       "norm_label": "within()"
     },
     {
@@ -1580,7 +1650,7 @@
       "source_location": "L256",
       "_origin": "ast",
       "id": "src_index_addimageidea",
-      "community": 14,
+      "community": 0,
       "norm_label": "addimageidea()"
     },
     {
@@ -1590,7 +1660,7 @@
       "source_location": "L271",
       "_origin": "ast",
       "id": "src_index_addaudioidea",
-      "community": 14,
+      "community": 0,
       "norm_label": "addaudioidea()"
     },
     {
@@ -1600,7 +1670,7 @@
       "source_location": "L286",
       "_origin": "ast",
       "id": "src_index_addwebmidea",
-      "community": 14,
+      "community": 0,
       "norm_label": "addwebmidea()"
     },
     {
@@ -1610,7 +1680,7 @@
       "source_location": "L303",
       "_origin": "ast",
       "id": "src_index_ingestmedia",
-      "community": 14,
+      "community": 0,
       "norm_label": "ingestmedia()"
     },
     {
@@ -1620,7 +1690,7 @@
       "source_location": "L338",
       "_origin": "ast",
       "id": "src_index_mediacandidatecount",
-      "community": 14,
+      "community": 0,
       "norm_label": "mediacandidatecount()"
     },
     {
@@ -1750,7 +1820,7 @@
       "source_location": "L1",
       "_origin": "ast",
       "id": "src_media",
-      "community": 14,
+      "community": 0,
       "norm_label": "media.ts"
     },
     {
@@ -1760,7 +1830,7 @@
       "source_location": "L17",
       "_origin": "ast",
       "id": "src_media_upload_limits",
-      "community": 14,
+      "community": 0,
       "norm_label": "upload_limits"
     },
     {
@@ -1770,7 +1840,7 @@
       "source_location": "L23",
       "_origin": "ast",
       "id": "src_media_surveydir",
-      "community": 14,
+      "community": 0,
       "norm_label": "surveydir()"
     },
     {
@@ -1780,7 +1850,7 @@
       "source_location": "L29",
       "_origin": "ast",
       "id": "src_media_extensionof",
-      "community": 14,
+      "community": 0,
       "norm_label": "extensionof()"
     },
     {
@@ -1790,7 +1860,7 @@
       "source_location": "L40",
       "_origin": "ast",
       "id": "src_media_audioext",
-      "community": 14,
+      "community": 0,
       "norm_label": "audioext()"
     },
     {
@@ -1800,7 +1870,7 @@
       "source_location": "L53",
       "_origin": "ast",
       "id": "src_media_saveimage",
-      "community": 14,
+      "community": 0,
       "norm_label": "saveimage()"
     },
     {
@@ -1810,7 +1880,7 @@
       "source_location": "L68",
       "_origin": "ast",
       "id": "src_media_saveaudio",
-      "community": 14,
+      "community": 0,
       "norm_label": "saveaudio()"
     },
     {
@@ -1820,7 +1890,7 @@
       "source_location": "L76",
       "_origin": "ast",
       "id": "src_media_savewebm",
-      "community": 14,
+      "community": 0,
       "norm_label": "savewebm()"
     },
     {
@@ -1840,7 +1910,7 @@
       "source_location": "L92",
       "_origin": "ast",
       "id": "src_media_isimage",
-      "community": 14,
+      "community": 0,
       "norm_label": "isimage()"
     },
     {
@@ -1850,7 +1920,7 @@
       "source_location": "L95",
       "_origin": "ast",
       "id": "src_media_isaudio",
-      "community": 14,
+      "community": 0,
       "norm_label": "isaudio()"
     },
     {
@@ -1860,7 +1930,7 @@
       "source_location": "L98",
       "_origin": "ast",
       "id": "src_media_iswebm",
-      "community": 14,
+      "community": 0,
       "norm_label": "iswebm()"
     },
     {
@@ -1870,7 +1940,7 @@
       "source_location": "L103",
       "_origin": "ast",
       "id": "src_media_parseyoutube",
-      "community": 14,
+      "community": 0,
       "norm_label": "parseyoutube()"
     },
     {
@@ -2297,7 +2367,7 @@
       "label": "countRows()",
       "file_type": "code",
       "source_file": "test/algorithm.test.ts",
-      "source_location": "L722",
+      "source_location": "L764",
       "_origin": "ast",
       "id": "test_algorithm_test_countrows",
       "community": 21,
@@ -2307,7 +2377,7 @@
       "label": "voterCookie()",
       "file_type": "code",
       "source_file": "test/algorithm.test.ts",
-      "source_location": "L726",
+      "source_location": "L768",
       "_origin": "ast",
       "id": "test_algorithm_test_votercookie",
       "community": 21,
@@ -2317,7 +2387,7 @@
       "label": "signedCookieId()",
       "file_type": "code",
       "source_file": "test/algorithm.test.ts",
-      "source_location": "L732",
+      "source_location": "L774",
       "_origin": "ast",
       "id": "test_algorithm_test_signedcookieid",
       "community": 21,
@@ -3187,7 +3257,7 @@
       "label": "Differences from the original",
       "file_type": "document",
       "source_file": "README.md",
-      "source_location": "L167",
+      "source_location": "L169",
       "_origin": "ast",
       "id": "readme_differences_from_the_original",
       "community": 5,
@@ -3197,7 +3267,7 @@
       "label": "Configuration",
       "file_type": "document",
       "source_file": "README.md",
-      "source_location": "L186",
+      "source_location": "L188",
       "_origin": "ast",
       "id": "readme_configuration",
       "community": 5,
@@ -3207,7 +3277,7 @@
       "label": "Project layout",
       "file_type": "document",
       "source_file": "README.md",
-      "source_location": "L198",
+      "source_location": "L200",
       "_origin": "ast",
       "id": "readme_project_layout",
       "community": 5,
@@ -3217,7 +3287,7 @@
       "label": "License",
       "file_type": "document",
       "source_file": "README.md",
-      "source_location": "L215",
+      "source_location": "L217",
       "_origin": "ast",
       "id": "readme_license",
       "community": 5,
@@ -3574,14 +3644,14 @@
       "norm_label": "pairwise voting flow"
     },
     {
-      "label": "Pair Selection: Catchup",
+      "label": "Pair Selection: Balanced Adaptive",
       "file_type": "document",
       "source_file": "docs/methods.md",
       "source_location": "L21",
       "_origin": "ast",
-      "id": "docs_methods_pair_selection_catchup",
+      "id": "docs_methods_pair_selection_balanced_adaptive",
       "community": 29,
-      "norm_label": "pair selection: catchup"
+      "norm_label": "pair selection: balanced adaptive"
     },
     {
       "label": "Score Method: Bayesian Win Rate",
@@ -4251,9 +4321,9 @@
       "source_file": "public/app.js",
       "source_location": "L410",
       "weight": 1.0,
+      "confidence_score": 1.0,
       "source": "public_app",
-      "target": "public_app_loadfreshpair",
-      "confidence_score": 1.0
+      "target": "public_app_loadfreshpair"
     },
     {
       "relation": "contains",
@@ -4399,9 +4469,9 @@
       "source_file": "public/app.js",
       "source_location": "L411",
       "weight": 1.0,
+      "confidence_score": 1.0,
       "source": "public_app_loadfreshpair",
-      "target": "public_app_api",
-      "confidence_score": 1.0
+      "target": "public_app_api"
     },
     {
       "relation": "calls",
@@ -4509,9 +4579,9 @@
       "source_file": "public/app.js",
       "source_location": "L412",
       "weight": 1.0,
+      "confidence_score": 1.0,
       "source": "public_app_loadfreshpair",
-      "target": "public_app_renderclosed",
-      "confidence_score": 1.0
+      "target": "public_app_renderclosed"
     },
     {
       "relation": "calls",
@@ -4586,9 +4656,9 @@
       "source_file": "public/app.js",
       "source_location": "L413",
       "weight": 1.0,
+      "confidence_score": 1.0,
       "source": "public_app_loadfreshpair",
-      "target": "public_app_renderdone",
-      "confidence_score": 1.0
+      "target": "public_app_renderdone"
     },
     {
       "relation": "calls",
@@ -4608,9 +4678,9 @@
       "source_file": "public/app.js",
       "source_location": "L414",
       "weight": 1.0,
+      "confidence_score": 1.0,
       "source": "public_app_loadfreshpair",
-      "target": "public_app_advance",
-      "confidence_score": 1.0
+      "target": "public_app_advance"
     },
     {
       "relation": "calls",
@@ -4619,9 +4689,9 @@
       "source_file": "public/app.js",
       "source_location": "L432",
       "weight": 1.0,
+      "confidence_score": 1.0,
       "source": "public_app_choose",
-      "target": "public_app_loadfreshpair",
-      "confidence_score": 1.0
+      "target": "public_app_loadfreshpair"
     },
     {
       "relation": "contains",
@@ -4818,6 +4888,36 @@
       "relation": "contains",
       "confidence": "EXTRACTED",
       "source_file": "src/algorithm.ts",
+      "source_location": "L36",
+      "weight": 1.0,
+      "source": "src_algorithm",
+      "target": "src_algorithm_candidate",
+      "confidence_score": 1.0
+    },
+    {
+      "relation": "contains",
+      "confidence": "EXTRACTED",
+      "source_file": "src/algorithm.ts",
+      "source_location": "L167",
+      "weight": 1.0,
+      "source": "src_algorithm",
+      "target": "src_algorithm_candidateweight",
+      "confidence_score": 1.0
+    },
+    {
+      "relation": "contains",
+      "confidence": "EXTRACTED",
+      "source_file": "src/algorithm.ts",
+      "source_location": "L115",
+      "weight": 1.0,
+      "source": "src_algorithm",
+      "target": "src_algorithm_choosebalancedcandidate",
+      "confidence_score": 1.0
+    },
+    {
+      "relation": "contains",
+      "confidence": "EXTRACTED",
+      "source_file": "src/algorithm.ts",
       "source_location": "L33",
       "weight": 1.0,
       "confidence_score": 1.0,
@@ -4848,11 +4948,41 @@
       "relation": "contains",
       "confidence": "EXTRACTED",
       "source_file": "src/algorithm.ts",
+      "source_location": "L188",
+      "weight": 1.0,
+      "source": "src_algorithm",
+      "target": "src_algorithm_ideashows",
+      "confidence_score": 1.0
+    },
+    {
+      "relation": "contains",
+      "confidence": "EXTRACTED",
+      "source_file": "src/algorithm.ts",
+      "source_location": "L182",
+      "weight": 1.0,
+      "source": "src_algorithm",
+      "target": "src_algorithm_pairshows",
+      "confidence_score": 1.0
+    },
+    {
+      "relation": "contains",
+      "confidence": "EXTRACTED",
+      "source_file": "src/algorithm.ts",
       "source_location": "L24",
       "weight": 1.0,
       "confidence_score": 1.0,
       "source": "src_algorithm",
       "target": "src_algorithm_scoreof"
+    },
+    {
+      "relation": "contains",
+      "confidence": "EXTRACTED",
+      "source_file": "src/algorithm.ts",
+      "source_location": "L156",
+      "weight": 1.0,
+      "source": "src_algorithm",
+      "target": "src_algorithm_weightedchoice",
+      "confidence_score": 1.0
     },
     {
       "relation": "imports_from",
@@ -4910,6 +5040,17 @@
       "target": "src_db_listactiveideas"
     },
     {
+      "relation": "imports",
+      "context": "import",
+      "confidence": "EXTRACTED",
+      "source_file": "src/algorithm.ts",
+      "source_location": "L20",
+      "weight": 1.0,
+      "source": "src_algorithm",
+      "target": "src_db_pairselectionstats",
+      "confidence_score": 1.0
+    },
+    {
       "relation": "imports_from",
       "context": "import",
       "confidence": "EXTRACTED",
@@ -4930,6 +5071,28 @@
       "confidence_score": 1.0,
       "source": "src_algorithm_chosenpair",
       "target": "src_db_idea"
+    },
+    {
+      "relation": "references",
+      "context": "field",
+      "confidence": "EXTRACTED",
+      "source_file": "src/algorithm.ts",
+      "source_location": "L37",
+      "weight": 1.0,
+      "source": "src_algorithm_candidate",
+      "target": "src_db_idea",
+      "confidence_score": 1.0
+    },
+    {
+      "relation": "calls",
+      "context": "call",
+      "confidence": "EXTRACTED",
+      "source_file": "src/algorithm.ts",
+      "source_location": "L69",
+      "weight": 1.0,
+      "source": "src_algorithm_choosepair",
+      "target": "src_algorithm_choosebalancedcandidate",
+      "confidence_score": 1.0
     },
     {
       "relation": "calls",
@@ -4991,11 +5154,55 @@
       "context": "call",
       "confidence": "EXTRACTED",
       "source_file": "src/algorithm.ts",
+      "source_location": "L101",
+      "weight": 1.0,
+      "source": "src_algorithm_choosesampledpair",
+      "target": "src_algorithm_choosebalancedcandidate",
+      "confidence_score": 1.0
+    },
+    {
+      "relation": "calls",
+      "context": "call",
+      "confidence": "EXTRACTED",
+      "source_file": "src/algorithm.ts",
       "source_location": "L81",
       "weight": 1.0,
       "confidence_score": 1.0,
       "source": "src_algorithm_choosesampledpair",
       "target": "src_db_getpairvote"
+    },
+    {
+      "relation": "calls",
+      "context": "call",
+      "confidence": "EXTRACTED",
+      "source_file": "src/algorithm.ts",
+      "source_location": "L153",
+      "weight": 1.0,
+      "source": "src_algorithm_choosebalancedcandidate",
+      "target": "src_algorithm_weightedchoice",
+      "confidence_score": 1.0
+    },
+    {
+      "relation": "calls",
+      "context": "call",
+      "confidence": "EXTRACTED",
+      "source_file": "src/algorithm.ts",
+      "source_location": "L169",
+      "weight": 1.0,
+      "source": "src_algorithm_candidateweight",
+      "target": "src_algorithm_ideashows",
+      "confidence_score": 1.0
+    },
+    {
+      "relation": "calls",
+      "context": "call",
+      "confidence": "EXTRACTED",
+      "source_file": "src/algorithm.ts",
+      "source_location": "L168",
+      "weight": 1.0,
+      "source": "src_algorithm_candidateweight",
+      "target": "src_algorithm_pairshows",
+      "confidence_score": 1.0
     },
     {
       "relation": "contains",
@@ -5356,6 +5563,16 @@
       "confidence_score": 1.0,
       "source": "src_db",
       "target": "src_db_normalizesurveyadmin"
+    },
+    {
+      "relation": "contains",
+      "confidence": "EXTRACTED",
+      "source_file": "src/db.ts",
+      "source_location": "L675",
+      "weight": 1.0,
+      "source": "src_db",
+      "target": "src_db_pairselectionstats",
+      "confidence_score": 1.0
     },
     {
       "relation": "contains",
@@ -10385,9 +10602,9 @@
       "source_file": "docs/methods.md",
       "source_location": "L21",
       "weight": 1.0,
-      "confidence_score": 1.0,
       "source": "docs_methods_methods_and_scoring",
-      "target": "docs_methods_pair_selection_catchup"
+      "target": "docs_methods_pair_selection_balanced_adaptive",
+      "confidence_score": 1.0
     },
     {
       "relation": "contains",
@@ -10651,5 +10868,5 @@
     }
   ],
   "hyperedges": [],
-  "built_at_commit": "ed0b967381615376d3b01c87d8e6e2d019697faa"
+  "built_at_commit": "de2c28dc17f1bb2eaa2d383c820e40a112aaa69f"
 }

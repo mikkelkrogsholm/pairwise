@@ -18,27 +18,27 @@ For each vote:
 This is easier for participants than ranking a long list. It also lets new ideas
 enter the process without restarting the survey.
 
-## Pair Selection: Catchup
+## Pair Selection: Balanced Adaptive
 
-Pairwise uses an adaptive pair-selection strategy inspired by All Our Ideas.
-For every possible active pair:
+Pairwise uses a balanced adaptive pair-selection strategy. For every request, it
+looks at the active options and previous appearances, then chooses from the best
+balanced candidate set.
 
-```text
-weight(pair) = min(1 / (pair_votes + 1), 0.05)
-```
+Selection priorities:
 
-The next pair is drawn randomly in proportion to that weight.
-
-Implications:
-
-- pairs with few answers are prioritised,
-- new ideas enter rotation quickly,
-- heavily answered pairs appear less often,
-- the algorithm explores the active option space without precomputing a queue.
+- avoid repeating a pair for the same participant while unseen pairs remain,
+- show each participant their least-seen options first,
+- keep global option and pair exposure balanced,
+- after early coverage, mildly favour close or uncertain comparisons.
 
 The implementation computes weights from SQLite on each request. This is simple
 and reliable for hundreds of active ideas. For thousands of active ideas, a
 batched or cached pair queue would be more appropriate.
+
+The selector does not choose a winner or directly change scores. It changes
+which missing comparisons are collected next. For surveys that use adaptive
+selection heavily, Bradley-Terry is usually the best result method because it
+accounts for uneven opponent strength.
 
 ## Score Method: Bayesian Win Rate
 
@@ -100,7 +100,7 @@ data shape.
 | General surveys | Bayesian win rate |
 | Public-facing prioritisation | Bayesian win rate |
 | Debugging or transparency comparison | Raw win rate |
-| Large surveys with many comparisons | Bradley-Terry |
+| Adaptive or large surveys with many comparisons | Bradley-Terry |
 | Very sparse surveys | Bayesian win rate |
 
 ## Interpreting Scores
@@ -119,4 +119,3 @@ Bad interpretation:
 - treating 63.2 vs 64.1 as a meaningful difference,
 - trusting raw win rate with very few votes,
 - ignoring whether an option has enough comparisons.
-

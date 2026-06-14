@@ -149,16 +149,18 @@ A brand-new idea sits at a neutral **50** and only moves once it accumulates
 votes — so low-data ideas don't shoot to the top or bottom by luck. The score
 approximates *"the chance this idea beats a randomly chosen other idea."*
 
-**2. "Catchup" pair selection** — for every possible pair, the weight is:
+**2. Balanced adaptive pair selection** — the server uses prior appearances to
+choose the next pair:
 
-```
-weight(pair) = min( 1 / (pair_votes + 1) , 0.05 )
-```
+1. avoid repeating a pair for the same participant while unseen pairs remain,
+2. pull in options the participant has seen least,
+3. prefer globally under-shown pairs and options,
+4. once coverage is healthy, mildly favour close or uncertain comparisons.
 
-and the next pair is drawn at random in proportion to weight. Every pair with
-few votes is explored roughly equally (so freshly-added ideas immediately enter
-the rotation), while already-settled pairs are progressively starved. This is
-the "greedy"/adaptive behaviour that makes the rankings converge efficiently.
+This keeps the interaction randomised, but removes the frustrating case where a
+participant sees the same options too often while other options are barely seen.
+For sparse rankings, Bradley-Terry is the recommended score method because it
+accounts better for different opponent mixes.
 
 **3. Anti-double-vote** — each impression gets a one-time `appearance` token; a
 vote claims it with an atomic `UPDATE … WHERE answered IS NULL`, so the same
@@ -169,7 +171,7 @@ impression can never be counted twice.
 | All Our Ideas (`pairwise-api`) | This project |
 | --- | --- |
 | Ruby on Rails + MySQL + Redis | Bun + Hono + `bun:sqlite` |
-| 1000 pairs pre-generated into a Redis queue | weights computed per request from SQLite |
+| 1000 pairs pre-generated into a Redis queue | balanced/adaptive candidates computed per request from SQLite |
 | MySQL deadlock-retry machinery | SQLite WAL + atomic conditional update |
 | accounts, sites, multi-app API | link-based, no accounts |
 | text ideas only | text · image · audio · video modes |
@@ -201,7 +203,7 @@ upgrade guidance.
 src/
   index.ts       Hono app + routes (pages + JSON API)
   db.ts          SQLite schema + data access (+ migrations)
-  algorithm.ts   score() + choosePair() (catchup)
+  algorithm.ts   score() + choosePair() (balanced adaptive selection)
   media.ts       image→WebP (Bun.Image), audio/WebM, YouTube parsing
   i18n.ts        locale catalogs (da, en) + translator
   views.ts       server-rendered HTML

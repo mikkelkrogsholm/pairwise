@@ -380,7 +380,7 @@ function ideaPayload(idea: Idea) {
   };
 }
 function nextPairPayload(survey: Survey, voter: string) {
-  const pair = choosePair(survey.id);
+  const pair = choosePair(survey.id, voter);
   if (!pair) return null;
   const { lookup } = createAppearance(survey.id, pair.left.id, pair.right.id, voter);
   return { lookup, left: ideaPayload(pair.left), right: ideaPayload(pair.right) };

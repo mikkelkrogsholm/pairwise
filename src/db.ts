@@ -188,6 +188,13 @@ export interface Idea {
   created_at: string;
 }
 
+export interface PairSelectionStats {
+  pairShows: Map<string, number>;
+  voterPairShows: Map<string, number>;
+  ideaShows: Map<number, number>;
+  voterIdeaShows: Map<number, number>;
+}
+
 function normalizeSurvey(row: Survey | null): Survey | null {
   if (!row) return null;
   row.score_method = scoreMethodOrDefault(row.score_method);
@@ -663,6 +670,64 @@ export function getPairVote(surveyId: number, leftId: number, rightId: number): 
     .query("SELECT votes FROM pairs WHERE survey_id = ? AND a_id = ? AND b_id = ?")
     .get(surveyId, a, b) as { votes: number } | null;
   return row?.votes ?? 0;
+}
+
+export function pairSelectionStats(surveyId: number, voterId = ""): PairSelectionStats {
+  const pairRows = db
+    .query(
+      `SELECT
+         CASE WHEN left_id < right_id THEN left_id ELSE right_id END AS a_id,
+         CASE WHEN left_id < right_id THEN right_id ELSE left_id END AS b_id,
+         COUNT(*) AS shows
+       FROM appearances
+       WHERE survey_id = ?
+       GROUP BY a_id, b_id`,
+    )
+    .all(surveyId) as { a_id: number; b_id: number; shows: number }[];
+  const voterPairRows = voterId
+    ? (db
+        .query(
+          `SELECT
+             CASE WHEN left_id < right_id THEN left_id ELSE right_id END AS a_id,
+             CASE WHEN left_id < right_id THEN right_id ELSE left_id END AS b_id,
+             COUNT(*) AS shows
+           FROM appearances
+           WHERE survey_id = ? AND voter_id = ?
+           GROUP BY a_id, b_id`,
+        )
+        .all(surveyId, voterId) as { a_id: number; b_id: number; shows: number }[])
+    : [];
+  const ideaRows = db
+    .query(
+      `SELECT idea_id, COUNT(*) AS shows
+       FROM (
+         SELECT left_id AS idea_id FROM appearances WHERE survey_id = ?
+         UNION ALL
+         SELECT right_id AS idea_id FROM appearances WHERE survey_id = ?
+       )
+       GROUP BY idea_id`,
+    )
+    .all(surveyId, surveyId) as { idea_id: number; shows: number }[];
+  const voterIdeaRows = voterId
+    ? (db
+        .query(
+          `SELECT idea_id, COUNT(*) AS shows
+           FROM (
+             SELECT left_id AS idea_id FROM appearances WHERE survey_id = ? AND voter_id = ?
+             UNION ALL
+             SELECT right_id AS idea_id FROM appearances WHERE survey_id = ? AND voter_id = ?
+           )
+           GROUP BY idea_id`,
+        )
+        .all(surveyId, voterId, surveyId, voterId) as { idea_id: number; shows: number }[])
+    : [];
+
+  return {
+    pairShows: new Map(pairRows.map((row) => [`${row.a_id}:${row.b_id}`, row.shows])),
+    voterPairShows: new Map(voterPairRows.map((row) => [`${row.a_id}:${row.b_id}`, row.shows])),
+    ideaShows: new Map(ideaRows.map((row) => [row.idea_id, row.shows])),
+    voterIdeaShows: new Map(voterIdeaRows.map((row) => [row.idea_id, row.shows])),
+  };
 }
 
 // ── appearances ──────────────────────────────────────────────────────────────

@@ -51,7 +51,7 @@ async function main(): Promise<void> {
     title: "DR TOP100 - yndlingssang",
     description: "Privat lokal pairwise-afstemning baseret på DR's TOP100-liste.",
     mode: "audio",
-    score_method: "bayesian",
+    score_method: "bradley_terry",
     allow_user_ideas: false,
     auto_activate: false,
   });
@@ -85,4 +85,3 @@ main().catch((error) => {
   console.error(error);
   process.exit(1);
 });
-
