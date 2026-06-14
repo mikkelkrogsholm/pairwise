@@ -407,6 +407,14 @@
     setTimeout(function () { buildArena(next); }, 180);
   }
 
+  function loadFreshPair() {
+    return api("/pair").then(function (res) {
+      if (res.error === "survey_closed") { renderClosed(); return; }
+      if (res.error === "not_enough" || !res.lookup) { renderDone(); return; }
+      advance(res);
+    }).catch(handleApiError);
+  }
+
   function choose(side) {
     if (busy || !current) return;
     busy = true;
@@ -419,6 +427,11 @@
       body: JSON.stringify({ lookup: current.lookup, winner: winnerId }),
     })
       .then(function (res) {
+        if (res.ok === false) {
+          showToast(I.error);
+          loadFreshPair();
+          return;
+        }
         if (typeof res.totalVotes === "number" && counter) counter.textContent = fmtCount(res.totalVotes);
         setTimeout(function () { advance(res.next); }, 120);
       })
@@ -468,7 +481,14 @@
         method: "POST",
         headers: { "content-type": "application/json" },
         body: JSON.stringify({ lookup: current.lookup }),
-      }).then(function (res) { advance(res.next); }).catch(handleApiError);
+      }).then(function (res) {
+        if (res.ok === false) {
+          showToast(I.error);
+          loadFreshPair();
+          return;
+        }
+        advance(res.next);
+      }).catch(handleApiError);
     });
   }
 

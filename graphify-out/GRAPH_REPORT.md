@@ -1,16 +1,16 @@
 # Graph Report - pairwise-ideas  (2026-06-14)
 
 ## Corpus Check
-- 35 files · ~74,772 words
+- 35 files · ~74,818 words
 - Verdict: corpus is large enough that graph structure adds value.
 
 ## Summary
-- 386 nodes · 642 edges · 28 communities (21 shown, 7 thin omitted)
+- 387 nodes · 648 edges · 28 communities (21 shown, 7 thin omitted)
 - Extraction: 100% EXTRACTED · 0% INFERRED · 0% AMBIGUOUS
 - Token cost: 0 input · 0 output
 
 ## Graph Freshness
-- Built from commit: `402a5d0c`
+- Built from commit: `ed0b9673`
 - Run `git rev-parse HEAD` and compare to check if the graph is stale.
 - Run `graphify update .` after code changes (no API cost).
 
@@ -52,14 +52,14 @@
 5. `What You Must Do When Invoked` - 11 edges
 6. `⚖️ Pairwise` - 11 edges
 7. `Deployment Guide` - 11 edges
-8. `createSurvey()` - 10 edges
-9. `/graphify` - 10 edges
-10. `Development Guide` - 10 edges
+8. `choose()` - 10 edges
+9. `createSurvey()` - 10 edges
+10. `/graphify` - 10 edges
 
 ## Surprising Connections (you probably didn't know these)
-- `main()` --calls--> `addIdea()`  [EXTRACTED]
-  scripts/seed-dr-top100.ts → src/db.ts
 - `main()` --calls--> `createSurvey()`  [EXTRACTED]
+  scripts/seed-dr-top100.ts → src/db.ts
+- `main()` --calls--> `addIdea()`  [EXTRACTED]
   scripts/seed-dr-top100.ts → src/db.ts
 - `main()` --calls--> `updateIdeaMedia()`  [EXTRACTED]
   scripts/seed-dr-top100.ts → src/db.ts
@@ -74,12 +74,12 @@
 ## Communities (28 total, 7 thin omitted)
 
 ### Community 0 - "Community 0"
-Cohesion: 0.06
-Nodes (55): addIdea(), adminIdeasFor(), createAppearance(), deleteIdea(), deleteSurvey(), getIdea(), listAllIdeas(), submittedMediaIdeaCount() (+47 more)
+Cohesion: 0.07
+Nodes (34): adminIdeasFor(), createAppearance(), deleteSurvey(), listAllIdeas(), listSurveyAdmins(), revokeSurveyAdmin(), submittedMediaIdeaCount(), totalIdeaCount() (+26 more)
 
 ### Community 1 - "Community 1"
 Cohesion: 0.08
-Nodes (41): activeIdeaCount(), Appearance, createSurvey(), createSurveyAdmin(), db, fillMissingAdminCsrfTokens(), getAppearanceByLookup(), getIdeaByMedia() (+33 more)
+Nodes (39): activeIdeaCount(), Appearance, createSurvey(), createSurveyAdmin(), db, fillMissingAdminCsrfTokens(), getAppearanceByLookup(), getIdeaByMedia() (+31 more)
 
 ### Community 2 - "Community 2"
 Cohesion: 0.08
@@ -102,8 +102,8 @@ Cohesion: 0.17
 Nodes (11): compilerOptions, allowImportingTsExtensions, lib, module, moduleResolution, noEmit, skipLibCheck, strict (+3 more)
 
 ### Community 7 - "Community 7"
-Cohesion: 0.19
-Nodes (17): advance(), api(), buildArena(), buildChoice(), choose(), closeImageLightbox(), el(), enhanceFileInput() (+9 more)
+Cohesion: 0.20
+Nodes (18): advance(), api(), buildArena(), buildChoice(), choose(), closeImageLightbox(), el(), enhanceFileInput() (+10 more)
 
 ### Community 8 - "Community 8"
 Cohesion: 0.15
@@ -130,8 +130,8 @@ Cohesion: 0.50
 Nodes (3): For --cluster-only, For --update (incremental re-extraction), graphify reference: incremental update and cluster-only
 
 ### Community 14 - "Community 14"
-Cohesion: 0.36
-Nodes (6): downloadTrack(), DrRevealResponse, DrSong, main(), songLabel(), trackUrl()
+Cohesion: 0.13
+Nodes (29): downloadTrack(), DrRevealResponse, DrSong, main(), songLabel(), trackUrl(), addIdea(), deleteIdea() (+21 more)
 
 ### Community 24 - "Community 24"
 Cohesion: 0.14
@@ -172,9 +172,9 @@ _Questions this graph is uniquely positioned to answer:_
 - **What connects `commonGlobals`, `browserGlobals`, `name` to the rest of the system?**
   _150 weakly-connected nodes found - possible documentation gaps or missing edges._
 - **Should `Community 0` be split into smaller, more focused modules?**
-  _Cohesion score 0.06298076923076923 - nodes in this community are weakly interconnected._
+  _Cohesion score 0.06866002214839424 - nodes in this community are weakly interconnected._
 - **Should `Community 1` be split into smaller, more focused modules?**
-  _Cohesion score 0.07575757575757576 - nodes in this community are weakly interconnected._
+  _Cohesion score 0.07973421926910298 - nodes in this community are weakly interconnected._
 - **Should `Community 2` be split into smaller, more focused modules?**
   _Cohesion score 0.08333333333333333 - nodes in this community are weakly interconnected._
 - **Should `Community 3` be split into smaller, more focused modules?**

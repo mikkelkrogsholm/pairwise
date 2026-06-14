@@ -189,7 +189,7 @@ export function homePage(t: Translator, locale: string, error?: string): string 
     function pwMode(m){document.querySelectorAll('.mode-group').forEach(function(el){el.hidden=el.dataset.mode!==m;});}
     pwMode((document.querySelector('input[name=mode]:checked')||{value:'text'}).value);
   </script>
-  <script src="/app.js"></script>`;
+  <script src="/app.js?v=20260614b"></script>`;
   return layout(t, locale, { title: t("home.create.title") + " · Pairwise", body });
 }
 
@@ -291,7 +291,7 @@ export function createdPage(t: Translator, locale: string, survey: Survey, origi
       <a class="btn" href="${esc(admin)}">${esc(t("created.to_admin"))}</a>
     </div>
   </section>
-  <script src="/app.js"></script>`;
+  <script src="/app.js?v=20260614b"></script>`;
   return layout(t, locale, { title: t("created.badge"), body });
 }
 
@@ -365,7 +365,7 @@ export function votePage(t: Translator, locale: string, survey: Survey, canVote:
 
   <div class="toast" id="toast" role="status" aria-live="polite"></div>
   <script>window.__SURVEY__ = ${jsonScript(cfg)};</script>
-  <script src="/app.js"></script>`;
+  <script src="/app.js?v=20260614b"></script>`;
 
   return layout(t, locale, { title: survey.title, body });
 }
@@ -665,7 +665,7 @@ export function adminPage(
     </form>
   </section>
 
-  <script src="/app.js"></script>`;
+  <script src="/app.js?v=20260614b"></script>`;
 
   return layout(t, locale, { title: `${t("admin.title")} — ${survey.title}`, body });
 }

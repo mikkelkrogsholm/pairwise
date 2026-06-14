@@ -511,7 +511,7 @@ describe("upload and empty-state participant UI", () => {
   test("home page loads the shared script that enhances file uploads", async () => {
     const html = await (await httpApp.request("/")).text();
 
-    expect(html).toContain('<script src="/app.js"></script>');
+    expect(html).toContain('<script src="/app.js?v=');
     expect(html).toContain('data-upload-prompt="Slip billeder her"');
   });
 
