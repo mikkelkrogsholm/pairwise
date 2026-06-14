@@ -4,66 +4,6 @@
   "graph": {},
   "nodes": [
     {
-      "label": "launch.json",
-      "file_type": "code",
-      "source_file": ".claude/launch.json",
-      "source_location": "L1",
-      "_origin": "ast",
-      "id": "claude_launch",
-      "community": 14,
-      "norm_label": "launch.json"
-    },
-    {
-      "label": "version",
-      "file_type": "code",
-      "source_file": ".claude/launch.json",
-      "source_location": "L2",
-      "_origin": "ast",
-      "id": "claude_launch_version",
-      "community": 14,
-      "norm_label": "version"
-    },
-    {
-      "label": "configurations",
-      "file_type": "code",
-      "source_file": ".claude/launch.json",
-      "source_location": "L3",
-      "_origin": "ast",
-      "id": "claude_launch_configurations",
-      "community": 14,
-      "norm_label": "configurations"
-    },
-    {
-      "label": "hooks.json",
-      "file_type": "code",
-      "source_file": ".codex/hooks.json",
-      "source_location": "L1",
-      "_origin": "ast",
-      "id": "codex_hooks",
-      "community": 15,
-      "norm_label": "hooks.json"
-    },
-    {
-      "label": "hooks",
-      "file_type": "code",
-      "source_file": ".codex/hooks.json",
-      "source_location": "L2",
-      "_origin": "ast",
-      "id": "codex_hooks_hooks",
-      "community": 15,
-      "norm_label": "hooks"
-    },
-    {
-      "label": "PreToolUse",
-      "file_type": "code",
-      "source_file": ".codex/hooks.json",
-      "source_location": "L3",
-      "_origin": "ast",
-      "id": "codex_hooks_hooks_pretooluse",
-      "community": 15,
-      "norm_label": "pretooluse"
-    },
-    {
       "label": "eslint.config.js",
       "file_type": "code",
       "source_file": "eslint.config.js",
@@ -174,10 +114,20 @@
       "norm_label": "start"
     },
     {
-      "label": "test",
+      "label": "seed:dr-top100",
       "file_type": "code",
       "source_file": "package.json",
       "source_location": "L9",
+      "_origin": "ast",
+      "id": "package_scripts_seed_dr_top100",
+      "community": 3,
+      "norm_label": "seed:dr-top100"
+    },
+    {
+      "label": "test",
+      "file_type": "code",
+      "source_file": "package.json",
+      "source_location": "L10",
       "_origin": "ast",
       "id": "package_scripts_test",
       "community": 3,
@@ -187,7 +137,7 @@
       "label": "typecheck",
       "file_type": "code",
       "source_file": "package.json",
-      "source_location": "L10",
+      "source_location": "L11",
       "_origin": "ast",
       "id": "package_scripts_typecheck",
       "community": 3,
@@ -197,7 +147,7 @@
       "label": "lint",
       "file_type": "code",
       "source_file": "package.json",
-      "source_location": "L11",
+      "source_location": "L12",
       "_origin": "ast",
       "id": "package_scripts_lint",
       "community": 3,
@@ -207,7 +157,7 @@
       "label": "check",
       "file_type": "code",
       "source_file": "package.json",
-      "source_location": "L12",
+      "source_location": "L13",
       "_origin": "ast",
       "id": "package_scripts_check",
       "community": 3,
@@ -217,7 +167,7 @@
       "label": "dependencies",
       "file_type": "code",
       "source_file": "package.json",
-      "source_location": "L14",
+      "source_location": "L15",
       "_origin": "ast",
       "id": "package_dependencies",
       "community": 3,
@@ -227,7 +177,7 @@
       "label": "hono",
       "file_type": "code",
       "source_file": "package.json",
-      "source_location": "L15",
+      "source_location": "L16",
       "_origin": "ast",
       "id": "package_dependencies_hono",
       "community": 3,
@@ -237,7 +187,7 @@
       "label": "devDependencies",
       "file_type": "code",
       "source_file": "package.json",
-      "source_location": "L17",
+      "source_location": "L18",
       "_origin": "ast",
       "id": "package_devdependencies",
       "community": 3,
@@ -247,7 +197,7 @@
       "label": "@eslint/js",
       "file_type": "code",
       "source_file": "package.json",
-      "source_location": "L18",
+      "source_location": "L19",
       "_origin": "ast",
       "id": "package_devdependencies_eslint_js",
       "community": 3,
@@ -257,7 +207,7 @@
       "label": "bun-types",
       "file_type": "code",
       "source_file": "package.json",
-      "source_location": "L19",
+      "source_location": "L20",
       "_origin": "ast",
       "id": "package_devdependencies_bun_types",
       "community": 3,
@@ -267,7 +217,7 @@
       "label": "eslint",
       "file_type": "code",
       "source_file": "package.json",
-      "source_location": "L20",
+      "source_location": "L21",
       "_origin": "ast",
       "id": "package_devdependencies_eslint",
       "community": 3,
@@ -277,7 +227,7 @@
       "label": "typescript",
       "file_type": "code",
       "source_file": "package.json",
-      "source_location": "L21",
+      "source_location": "L22",
       "_origin": "ast",
       "id": "package_devdependencies_typescript",
       "community": 3,
@@ -287,7 +237,7 @@
       "label": "typescript-eslint",
       "file_type": "code",
       "source_file": "package.json",
-      "source_location": "L22",
+      "source_location": "L23",
       "_origin": "ast",
       "id": "package_devdependencies_typescript_eslint",
       "community": 3,
@@ -502,6 +452,86 @@
       "id": "public_app_isinteractivetarget",
       "community": 7,
       "norm_label": "isinteractivetarget()"
+    },
+    {
+      "label": "seed-dr-top100.ts",
+      "file_type": "code",
+      "source_file": "scripts/seed-dr-top100.ts",
+      "source_location": "L1",
+      "_origin": "ast",
+      "id": "scripts_seed_dr_top100",
+      "community": 14,
+      "norm_label": "seed-dr-top100.ts"
+    },
+    {
+      "label": "DrSong",
+      "file_type": "code",
+      "source_file": "scripts/seed-dr-top100.ts",
+      "source_location": "L10",
+      "_origin": "ast",
+      "id": "scripts_seed_dr_top100_drsong",
+      "community": 14,
+      "norm_label": "drsong"
+    },
+    {
+      "label": "DrRevealResponse",
+      "file_type": "code",
+      "source_file": "scripts/seed-dr-top100.ts",
+      "source_location": "L18",
+      "_origin": "ast",
+      "id": "scripts_seed_dr_top100_drrevealresponse",
+      "community": 14,
+      "norm_label": "drrevealresponse"
+    },
+    {
+      "label": "songLabel()",
+      "file_type": "code",
+      "source_file": "scripts/seed-dr-top100.ts",
+      "source_location": "L22",
+      "_origin": "ast",
+      "id": "scripts_seed_dr_top100_songlabel",
+      "community": 14,
+      "norm_label": "songlabel()"
+    },
+    {
+      "label": "trackUrl()",
+      "file_type": "code",
+      "source_file": "scripts/seed-dr-top100.ts",
+      "source_location": "L27",
+      "_origin": "ast",
+      "id": "scripts_seed_dr_top100_trackurl",
+      "community": 14,
+      "norm_label": "trackurl()"
+    },
+    {
+      "label": "fetchJson()",
+      "file_type": "code",
+      "source_file": "scripts/seed-dr-top100.ts",
+      "source_location": "L31",
+      "_origin": "ast",
+      "id": "scripts_seed_dr_top100_fetchjson",
+      "community": 14,
+      "norm_label": "fetchjson()"
+    },
+    {
+      "label": "downloadTrack()",
+      "file_type": "code",
+      "source_file": "scripts/seed-dr-top100.ts",
+      "source_location": "L37",
+      "_origin": "ast",
+      "id": "scripts_seed_dr_top100_downloadtrack",
+      "community": 14,
+      "norm_label": "downloadtrack()"
+    },
+    {
+      "label": "main()",
+      "file_type": "code",
+      "source_file": "scripts/seed-dr-top100.ts",
+      "source_location": "L43",
+      "_origin": "ast",
+      "id": "scripts_seed_dr_top100_main",
+      "community": 14,
+      "norm_label": "main()"
     },
     {
       "label": "algorithm.ts",
@@ -1250,7 +1280,7 @@
       "source_location": "L493",
       "_origin": "ast",
       "id": "src_i18n_rich",
-      "community": 4,
+      "community": 23,
       "norm_label": "rich()"
     },
     {
@@ -3808,46 +3838,6 @@
     {
       "relation": "contains",
       "confidence": "EXTRACTED",
-      "source_file": ".claude/launch.json",
-      "source_location": "L3",
-      "weight": 1.0,
-      "confidence_score": 1.0,
-      "source": "claude_launch",
-      "target": "claude_launch_configurations"
-    },
-    {
-      "relation": "contains",
-      "confidence": "EXTRACTED",
-      "source_file": ".claude/launch.json",
-      "source_location": "L2",
-      "weight": 1.0,
-      "confidence_score": 1.0,
-      "source": "claude_launch",
-      "target": "claude_launch_version"
-    },
-    {
-      "relation": "contains",
-      "confidence": "EXTRACTED",
-      "source_file": ".codex/hooks.json",
-      "source_location": "L2",
-      "weight": 1.0,
-      "confidence_score": 1.0,
-      "source": "codex_hooks",
-      "target": "codex_hooks_hooks"
-    },
-    {
-      "relation": "contains",
-      "confidence": "EXTRACTED",
-      "source_file": ".codex/hooks.json",
-      "source_location": "L3",
-      "weight": 1.0,
-      "confidence_score": 1.0,
-      "source": "codex_hooks_hooks",
-      "target": "codex_hooks_hooks_pretooluse"
-    },
-    {
-      "relation": "contains",
-      "confidence": "EXTRACTED",
       "source_file": "eslint.config.js",
       "source_location": "L13",
       "weight": 1.0,
@@ -3964,6 +3954,16 @@
       "confidence_score": 1.0,
       "source": "package_scripts",
       "target": "package_scripts_lint"
+    },
+    {
+      "relation": "contains",
+      "confidence": "EXTRACTED",
+      "source_file": "package.json",
+      "source_location": "L9",
+      "weight": 1.0,
+      "source": "package_scripts",
+      "target": "package_scripts_seed_dr_top100",
+      "confidence_score": 1.0
     },
     {
       "relation": "contains",
@@ -4496,6 +4496,197 @@
       "confidence_score": 1.0,
       "source": "public_app_choose",
       "target": "public_app_advance"
+    },
+    {
+      "relation": "contains",
+      "confidence": "EXTRACTED",
+      "source_file": "scripts/seed-dr-top100.ts",
+      "source_location": "L37",
+      "weight": 1.0,
+      "source": "scripts_seed_dr_top100",
+      "target": "scripts_seed_dr_top100_downloadtrack",
+      "confidence_score": 1.0
+    },
+    {
+      "relation": "contains",
+      "confidence": "EXTRACTED",
+      "source_file": "scripts/seed-dr-top100.ts",
+      "source_location": "L18",
+      "weight": 1.0,
+      "source": "scripts_seed_dr_top100",
+      "target": "scripts_seed_dr_top100_drrevealresponse",
+      "confidence_score": 1.0
+    },
+    {
+      "relation": "contains",
+      "confidence": "EXTRACTED",
+      "source_file": "scripts/seed-dr-top100.ts",
+      "source_location": "L10",
+      "weight": 1.0,
+      "source": "scripts_seed_dr_top100",
+      "target": "scripts_seed_dr_top100_drsong",
+      "confidence_score": 1.0
+    },
+    {
+      "relation": "contains",
+      "confidence": "EXTRACTED",
+      "source_file": "scripts/seed-dr-top100.ts",
+      "source_location": "L31",
+      "weight": 1.0,
+      "source": "scripts_seed_dr_top100",
+      "target": "scripts_seed_dr_top100_fetchjson",
+      "confidence_score": 1.0
+    },
+    {
+      "relation": "contains",
+      "confidence": "EXTRACTED",
+      "source_file": "scripts/seed-dr-top100.ts",
+      "source_location": "L43",
+      "weight": 1.0,
+      "source": "scripts_seed_dr_top100",
+      "target": "scripts_seed_dr_top100_main",
+      "confidence_score": 1.0
+    },
+    {
+      "relation": "contains",
+      "confidence": "EXTRACTED",
+      "source_file": "scripts/seed-dr-top100.ts",
+      "source_location": "L22",
+      "weight": 1.0,
+      "source": "scripts_seed_dr_top100",
+      "target": "scripts_seed_dr_top100_songlabel",
+      "confidence_score": 1.0
+    },
+    {
+      "relation": "contains",
+      "confidence": "EXTRACTED",
+      "source_file": "scripts/seed-dr-top100.ts",
+      "source_location": "L27",
+      "weight": 1.0,
+      "source": "scripts_seed_dr_top100",
+      "target": "scripts_seed_dr_top100_trackurl",
+      "confidence_score": 1.0
+    },
+    {
+      "relation": "imports_from",
+      "context": "import",
+      "confidence": "EXTRACTED",
+      "source_file": "scripts/seed-dr-top100.ts",
+      "source_location": "L4",
+      "weight": 1.0,
+      "source": "scripts_seed_dr_top100",
+      "target": "src_db",
+      "confidence_score": 1.0
+    },
+    {
+      "relation": "imports",
+      "context": "import",
+      "confidence": "EXTRACTED",
+      "source_file": "scripts/seed-dr-top100.ts",
+      "source_location": "L4",
+      "weight": 1.0,
+      "source": "scripts_seed_dr_top100",
+      "target": "src_db_addidea",
+      "confidence_score": 1.0
+    },
+    {
+      "relation": "imports",
+      "context": "import",
+      "confidence": "EXTRACTED",
+      "source_file": "scripts/seed-dr-top100.ts",
+      "source_location": "L4",
+      "weight": 1.0,
+      "source": "scripts_seed_dr_top100",
+      "target": "src_db_createsurvey",
+      "confidence_score": 1.0
+    },
+    {
+      "relation": "imports",
+      "context": "import",
+      "confidence": "EXTRACTED",
+      "source_file": "scripts/seed-dr-top100.ts",
+      "source_location": "L4",
+      "weight": 1.0,
+      "source": "scripts_seed_dr_top100",
+      "target": "src_db_updateideamedia",
+      "confidence_score": 1.0
+    },
+    {
+      "relation": "imports_from",
+      "context": "import",
+      "confidence": "EXTRACTED",
+      "source_file": "scripts/seed-dr-top100.ts",
+      "source_location": "L5",
+      "weight": 1.0,
+      "source": "scripts_seed_dr_top100",
+      "target": "src_media",
+      "confidence_score": 1.0
+    },
+    {
+      "relation": "calls",
+      "context": "call",
+      "confidence": "EXTRACTED",
+      "source_file": "scripts/seed-dr-top100.ts",
+      "source_location": "L65",
+      "weight": 1.0,
+      "source": "scripts_seed_dr_top100_main",
+      "target": "scripts_seed_dr_top100_songlabel",
+      "confidence_score": 1.0
+    },
+    {
+      "relation": "calls",
+      "context": "call",
+      "confidence": "EXTRACTED",
+      "source_file": "scripts/seed-dr-top100.ts",
+      "source_location": "L38",
+      "weight": 1.0,
+      "source": "scripts_seed_dr_top100_downloadtrack",
+      "target": "scripts_seed_dr_top100_trackurl",
+      "confidence_score": 1.0
+    },
+    {
+      "relation": "calls",
+      "context": "call",
+      "confidence": "EXTRACTED",
+      "source_file": "scripts/seed-dr-top100.ts",
+      "source_location": "L71",
+      "weight": 1.0,
+      "source": "scripts_seed_dr_top100_main",
+      "target": "scripts_seed_dr_top100_downloadtrack",
+      "confidence_score": 1.0
+    },
+    {
+      "relation": "calls",
+      "context": "call",
+      "confidence": "EXTRACTED",
+      "source_file": "scripts/seed-dr-top100.ts",
+      "source_location": "L64",
+      "weight": 1.0,
+      "source": "scripts_seed_dr_top100_main",
+      "target": "src_db_addidea",
+      "confidence_score": 1.0
+    },
+    {
+      "relation": "calls",
+      "context": "call",
+      "confidence": "EXTRACTED",
+      "source_file": "scripts/seed-dr-top100.ts",
+      "source_location": "L50",
+      "weight": 1.0,
+      "source": "scripts_seed_dr_top100_main",
+      "target": "src_db_createsurvey",
+      "confidence_score": 1.0
+    },
+    {
+      "relation": "calls",
+      "context": "call",
+      "confidence": "EXTRACTED",
+      "source_file": "scripts/seed-dr-top100.ts",
+      "source_location": "L73",
+      "weight": 1.0,
+      "source": "scripts_seed_dr_top100_main",
+      "target": "src_db_updateideamedia",
+      "confidence_score": 1.0
     },
     {
       "relation": "contains",
@@ -9618,9 +9809,9 @@
       "source_file": "README.md",
       "source_location": "L50",
       "weight": 1.0,
+      "confidence_score": 1.0,
       "source": "readme_pairwise",
-      "target": "readme_documentation",
-      "confidence_score": 1.0
+      "target": "readme_documentation"
     },
     {
       "relation": "contains",
@@ -9728,9 +9919,9 @@
       "source_file": "docs/admin.md",
       "source_location": "L1",
       "weight": 1.0,
+      "confidence_score": 1.0,
       "source": "docs_admin",
-      "target": "docs_admin_admin_guide",
-      "confidence_score": 1.0
+      "target": "docs_admin_admin_guide"
     },
     {
       "relation": "contains",
@@ -9738,9 +9929,9 @@
       "source_file": "docs/admin.md",
       "source_location": "L70",
       "weight": 1.0,
+      "confidence_score": 1.0,
       "source": "docs_admin_admin_guide",
-      "target": "docs_admin_deleting_a_survey",
-      "confidence_score": 1.0
+      "target": "docs_admin_deleting_a_survey"
     },
     {
       "relation": "contains",
@@ -9748,9 +9939,9 @@
       "source_file": "docs/admin.md",
       "source_location": "L12",
       "weight": 1.0,
+      "confidence_score": 1.0,
       "source": "docs_admin_admin_guide",
-      "target": "docs_admin_first_admin",
-      "confidence_score": 1.0
+      "target": "docs_admin_first_admin"
     },
     {
       "relation": "contains",
@@ -9758,9 +9949,9 @@
       "source_file": "docs/admin.md",
       "source_location": "L84",
       "weight": 1.0,
+      "confidence_score": 1.0,
       "source": "docs_admin_admin_guide",
-      "target": "docs_admin_moderation",
-      "confidence_score": 1.0
+      "target": "docs_admin_moderation"
     },
     {
       "relation": "contains",
@@ -9768,9 +9959,9 @@
       "source_file": "docs/admin.md",
       "source_location": "L22",
       "weight": 1.0,
+      "confidence_score": 1.0,
       "source": "docs_admin_admin_guide",
-      "target": "docs_admin_multiple_admins",
-      "confidence_score": 1.0
+      "target": "docs_admin_multiple_admins"
     },
     {
       "relation": "contains",
@@ -9778,9 +9969,9 @@
       "source_file": "docs/admin.md",
       "source_location": "L34",
       "weight": 1.0,
+      "confidence_score": 1.0,
       "source": "docs_admin_admin_guide",
-      "target": "docs_admin_revoking_admins",
-      "confidence_score": 1.0
+      "target": "docs_admin_revoking_admins"
     },
     {
       "relation": "contains",
@@ -9788,9 +9979,9 @@
       "source_file": "docs/admin.md",
       "source_location": "L43",
       "weight": 1.0,
+      "confidence_score": 1.0,
       "source": "docs_admin_admin_guide",
-      "target": "docs_admin_rotating_the_current_admin_link",
-      "confidence_score": 1.0
+      "target": "docs_admin_rotating_the_current_admin_link"
     },
     {
       "relation": "contains",
@@ -9798,9 +9989,9 @@
       "source_file": "docs/admin.md",
       "source_location": "L56",
       "weight": 1.0,
+      "confidence_score": 1.0,
       "source": "docs_admin_admin_guide",
-      "target": "docs_admin_survey_lifecycle",
-      "confidence_score": 1.0
+      "target": "docs_admin_survey_lifecycle"
     },
     {
       "relation": "contains",
@@ -9808,9 +9999,9 @@
       "source_file": "docs/deployment.md",
       "source_location": "L1",
       "weight": 1.0,
+      "confidence_score": 1.0,
       "source": "docs_deployment",
-      "target": "docs_deployment_deployment_guide",
-      "confidence_score": 1.0
+      "target": "docs_deployment_deployment_guide"
     },
     {
       "relation": "contains",
@@ -9818,9 +10009,9 @@
       "source_file": "docs/deployment.md",
       "source_location": "L66",
       "weight": 1.0,
+      "confidence_score": 1.0,
       "source": "docs_deployment_deployment_guide",
-      "target": "docs_deployment_backups",
-      "confidence_score": 1.0
+      "target": "docs_deployment_backups"
     },
     {
       "relation": "contains",
@@ -9828,9 +10019,9 @@
       "source_file": "docs/deployment.md",
       "source_location": "L6",
       "weight": 1.0,
+      "confidence_score": 1.0,
       "source": "docs_deployment_deployment_guide",
-      "target": "docs_deployment_docker_compose",
-      "confidence_score": 1.0
+      "target": "docs_deployment_docker_compose"
     },
     {
       "relation": "contains",
@@ -9838,9 +10029,9 @@
       "source_file": "docs/deployment.md",
       "source_location": "L25",
       "weight": 1.0,
+      "confidence_score": 1.0,
       "source": "docs_deployment_deployment_guide",
-      "target": "docs_deployment_environment_variables",
-      "confidence_score": 1.0
+      "target": "docs_deployment_environment_variables"
     },
     {
       "relation": "contains",
@@ -9848,9 +10039,9 @@
       "source_file": "docs/deployment.md",
       "source_location": "L94",
       "weight": 1.0,
+      "confidence_score": 1.0,
       "source": "docs_deployment_deployment_guide",
-      "target": "docs_deployment_health_check",
-      "confidence_score": 1.0
+      "target": "docs_deployment_health_check"
     },
     {
       "relation": "contains",
@@ -9858,9 +10049,9 @@
       "source_file": "docs/deployment.md",
       "source_location": "L50",
       "weight": 1.0,
+      "confidence_score": 1.0,
       "source": "docs_deployment_deployment_guide",
-      "target": "docs_deployment_https_and_cookies",
-      "confidence_score": 1.0
+      "target": "docs_deployment_https_and_cookies"
     },
     {
       "relation": "contains",
@@ -9868,9 +10059,9 @@
       "source_file": "docs/deployment.md",
       "source_location": "L14",
       "weight": 1.0,
+      "confidence_score": 1.0,
       "source": "docs_deployment_deployment_guide",
-      "target": "docs_deployment_plain_docker",
-      "confidence_score": 1.0
+      "target": "docs_deployment_plain_docker"
     },
     {
       "relation": "contains",
@@ -9878,9 +10069,9 @@
       "source_file": "docs/deployment.md",
       "source_location": "L36",
       "weight": 1.0,
+      "confidence_score": 1.0,
       "source": "docs_deployment_deployment_guide",
-      "target": "docs_deployment_reverse_proxy",
-      "confidence_score": 1.0
+      "target": "docs_deployment_reverse_proxy"
     },
     {
       "relation": "contains",
@@ -9888,9 +10079,9 @@
       "source_file": "docs/deployment.md",
       "source_location": "L99",
       "weight": 1.0,
+      "confidence_score": 1.0,
       "source": "docs_deployment_deployment_guide",
-      "target": "docs_deployment_scaling",
-      "confidence_score": 1.0
+      "target": "docs_deployment_scaling"
     },
     {
       "relation": "contains",
@@ -9898,9 +10089,9 @@
       "source_file": "docs/deployment.md",
       "source_location": "L55",
       "weight": 1.0,
+      "confidence_score": 1.0,
       "source": "docs_deployment_deployment_guide",
-      "target": "docs_deployment_storage",
-      "confidence_score": 1.0
+      "target": "docs_deployment_storage"
     },
     {
       "relation": "contains",
@@ -9908,9 +10099,9 @@
       "source_file": "docs/deployment.md",
       "source_location": "L79",
       "weight": 1.0,
+      "confidence_score": 1.0,
       "source": "docs_deployment_deployment_guide",
-      "target": "docs_deployment_upgrades",
-      "confidence_score": 1.0
+      "target": "docs_deployment_upgrades"
     },
     {
       "relation": "contains",
@@ -9918,9 +10109,9 @@
       "source_file": "docs/development.md",
       "source_location": "L1",
       "weight": 1.0,
+      "confidence_score": 1.0,
       "source": "docs_development",
-      "target": "docs_development_development_guide",
-      "confidence_score": 1.0
+      "target": "docs_development_development_guide"
     },
     {
       "relation": "contains",
@@ -9928,9 +10119,9 @@
       "source_file": "docs/development.md",
       "source_location": "L63",
       "weight": 1.0,
+      "confidence_score": 1.0,
       "source": "docs_development_development_guide",
-      "target": "docs_development_adding_a_language",
-      "confidence_score": 1.0
+      "target": "docs_development_adding_a_language"
     },
     {
       "relation": "contains",
@@ -9938,9 +10129,9 @@
       "source_file": "docs/development.md",
       "source_location": "L84",
       "weight": 1.0,
+      "confidence_score": 1.0,
       "source": "docs_development_development_guide",
-      "target": "docs_development_adding_a_media_mode",
-      "confidence_score": 1.0
+      "target": "docs_development_adding_a_media_mode"
     },
     {
       "relation": "contains",
@@ -9948,9 +10139,9 @@
       "source_file": "docs/development.md",
       "source_location": "L72",
       "weight": 1.0,
+      "confidence_score": 1.0,
       "source": "docs_development_development_guide",
-      "target": "docs_development_adding_a_scoring_method",
-      "confidence_score": 1.0
+      "target": "docs_development_adding_a_scoring_method"
     },
     {
       "relation": "contains",
@@ -9958,9 +10149,9 @@
       "source_file": "docs/development.md",
       "source_location": "L15",
       "weight": 1.0,
+      "confidence_score": 1.0,
       "source": "docs_development_development_guide",
-      "target": "docs_development_checks",
-      "confidence_score": 1.0
+      "target": "docs_development_checks"
     },
     {
       "relation": "contains",
@@ -9968,9 +10159,9 @@
       "source_file": "docs/development.md",
       "source_location": "L48",
       "weight": 1.0,
+      "confidence_score": 1.0,
       "source": "docs_development_development_guide",
-      "target": "docs_development_data_model",
-      "confidence_score": 1.0
+      "target": "docs_development_data_model"
     },
     {
       "relation": "contains",
@@ -9978,9 +10169,9 @@
       "source_file": "docs/development.md",
       "source_location": "L101",
       "weight": 1.0,
+      "confidence_score": 1.0,
       "source": "docs_development_development_guide",
-      "target": "docs_development_graphify",
-      "confidence_score": 1.0
+      "target": "docs_development_graphify"
     },
     {
       "relation": "contains",
@@ -9988,9 +10179,9 @@
       "source_file": "docs/development.md",
       "source_location": "L29",
       "weight": 1.0,
+      "confidence_score": 1.0,
       "source": "docs_development_development_guide",
-      "target": "docs_development_project_structure",
-      "confidence_score": 1.0
+      "target": "docs_development_project_structure"
     },
     {
       "relation": "contains",
@@ -9998,9 +10189,9 @@
       "source_file": "docs/development.md",
       "source_location": "L6",
       "weight": 1.0,
+      "confidence_score": 1.0,
       "source": "docs_development_development_guide",
-      "target": "docs_development_setup",
-      "confidence_score": 1.0
+      "target": "docs_development_setup"
     },
     {
       "relation": "contains",
@@ -10008,9 +10199,9 @@
       "source_file": "docs/development.md",
       "source_location": "L119",
       "weight": 1.0,
+      "confidence_score": 1.0,
       "source": "docs_development_development_guide",
-      "target": "docs_development_testing_guidance",
-      "confidence_score": 1.0
+      "target": "docs_development_testing_guidance"
     },
     {
       "relation": "contains",
@@ -10018,9 +10209,9 @@
       "source_file": "docs/methods.md",
       "source_location": "L1",
       "weight": 1.0,
+      "confidence_score": 1.0,
       "source": "docs_methods",
-      "target": "docs_methods_methods_and_scoring",
-      "confidence_score": 1.0
+      "target": "docs_methods_methods_and_scoring"
     },
     {
       "relation": "contains",
@@ -10028,9 +10219,9 @@
       "source_file": "docs/methods.md",
       "source_location": "L96",
       "weight": 1.0,
+      "confidence_score": 1.0,
       "source": "docs_methods_methods_and_scoring",
-      "target": "docs_methods_choosing_a_method",
-      "confidence_score": 1.0
+      "target": "docs_methods_choosing_a_method"
     },
     {
       "relation": "contains",
@@ -10038,9 +10229,9 @@
       "source_file": "docs/methods.md",
       "source_location": "L106",
       "weight": 1.0,
+      "confidence_score": 1.0,
       "source": "docs_methods_methods_and_scoring",
-      "target": "docs_methods_interpreting_scores",
-      "confidence_score": 1.0
+      "target": "docs_methods_interpreting_scores"
     },
     {
       "relation": "contains",
@@ -10048,9 +10239,9 @@
       "source_file": "docs/methods.md",
       "source_location": "L21",
       "weight": 1.0,
+      "confidence_score": 1.0,
       "source": "docs_methods_methods_and_scoring",
-      "target": "docs_methods_pair_selection_catchup",
-      "confidence_score": 1.0
+      "target": "docs_methods_pair_selection_catchup"
     },
     {
       "relation": "contains",
@@ -10058,9 +10249,9 @@
       "source_file": "docs/methods.md",
       "source_location": "L8",
       "weight": 1.0,
+      "confidence_score": 1.0,
       "source": "docs_methods_methods_and_scoring",
-      "target": "docs_methods_pairwise_voting_flow",
-      "confidence_score": 1.0
+      "target": "docs_methods_pairwise_voting_flow"
     },
     {
       "relation": "contains",
@@ -10068,9 +10259,9 @@
       "source_file": "docs/methods.md",
       "source_location": "L43",
       "weight": 1.0,
+      "confidence_score": 1.0,
       "source": "docs_methods_methods_and_scoring",
-      "target": "docs_methods_score_method_bayesian_win_rate",
-      "confidence_score": 1.0
+      "target": "docs_methods_score_method_bayesian_win_rate"
     },
     {
       "relation": "contains",
@@ -10078,9 +10269,9 @@
       "source_file": "docs/methods.md",
       "source_location": "L76",
       "weight": 1.0,
+      "confidence_score": 1.0,
       "source": "docs_methods_methods_and_scoring",
-      "target": "docs_methods_score_method_bradley_terry",
-      "confidence_score": 1.0
+      "target": "docs_methods_score_method_bradley_terry"
     },
     {
       "relation": "contains",
@@ -10088,9 +10279,9 @@
       "source_file": "docs/methods.md",
       "source_location": "L62",
       "weight": 1.0,
+      "confidence_score": 1.0,
       "source": "docs_methods_methods_and_scoring",
-      "target": "docs_methods_score_method_raw_win_rate",
-      "confidence_score": 1.0
+      "target": "docs_methods_score_method_raw_win_rate"
     },
     {
       "relation": "contains",
@@ -10098,9 +10289,9 @@
       "source_file": "docs/privacy-gdpr.md",
       "source_location": "L1",
       "weight": 1.0,
+      "confidence_score": 1.0,
       "source": "docs_privacy_gdpr",
-      "target": "docs_privacy_gdpr_privacy_and_gdpr_notes",
-      "confidence_score": 1.0
+      "target": "docs_privacy_gdpr_privacy_and_gdpr_notes"
     },
     {
       "relation": "contains",
@@ -10108,9 +10299,9 @@
       "source_file": "docs/privacy-gdpr.md",
       "source_location": "L43",
       "weight": 1.0,
+      "confidence_score": 1.0,
       "source": "docs_privacy_gdpr_privacy_and_gdpr_notes",
-      "target": "docs_privacy_gdpr_cookies_and_consent_posture",
-      "confidence_score": 1.0
+      "target": "docs_privacy_gdpr_cookies_and_consent_posture"
     },
     {
       "relation": "contains",
@@ -10118,9 +10309,9 @@
       "source_file": "docs/privacy-gdpr.md",
       "source_location": "L27",
       "weight": 1.0,
+      "confidence_score": 1.0,
       "source": "docs_privacy_gdpr_privacy_and_gdpr_notes",
-      "target": "docs_privacy_gdpr_data_inventory",
-      "confidence_score": 1.0
+      "target": "docs_privacy_gdpr_data_inventory"
     },
     {
       "relation": "contains",
@@ -10128,9 +10319,9 @@
       "source_file": "docs/privacy-gdpr.md",
       "source_location": "L115",
       "weight": 1.0,
+      "confidence_score": 1.0,
       "source": "docs_privacy_gdpr_privacy_and_gdpr_notes",
-      "target": "docs_privacy_gdpr_data_subject_requests",
-      "confidence_score": 1.0
+      "target": "docs_privacy_gdpr_data_subject_requests"
     },
     {
       "relation": "contains",
@@ -10138,9 +10329,9 @@
       "source_file": "docs/privacy-gdpr.md",
       "source_location": "L11",
       "weight": 1.0,
+      "confidence_score": 1.0,
       "source": "docs_privacy_gdpr_privacy_and_gdpr_notes",
-      "target": "docs_privacy_gdpr_design_goal",
-      "confidence_score": 1.0
+      "target": "docs_privacy_gdpr_design_goal"
     },
     {
       "relation": "contains",
@@ -10148,9 +10339,9 @@
       "source_file": "docs/privacy-gdpr.md",
       "source_location": "L67",
       "weight": 1.0,
+      "confidence_score": 1.0,
       "source": "docs_privacy_gdpr_privacy_and_gdpr_notes",
-      "target": "docs_privacy_gdpr_legal_basis",
-      "confidence_score": 1.0
+      "target": "docs_privacy_gdpr_legal_basis"
     },
     {
       "relation": "contains",
@@ -10158,9 +10349,9 @@
       "source_file": "docs/privacy-gdpr.md",
       "source_location": "L96",
       "weight": 1.0,
+      "confidence_score": 1.0,
       "source": "docs_privacy_gdpr_privacy_and_gdpr_notes",
-      "target": "docs_privacy_gdpr_retention_and_deletion",
-      "confidence_score": 1.0
+      "target": "docs_privacy_gdpr_retention_and_deletion"
     },
     {
       "relation": "contains",
@@ -10168,9 +10359,9 @@
       "source_file": "docs/privacy-gdpr.md",
       "source_location": "L83",
       "weight": 1.0,
+      "confidence_score": 1.0,
       "source": "docs_privacy_gdpr_privacy_and_gdpr_notes",
-      "target": "docs_privacy_gdpr_third_parties",
-      "confidence_score": 1.0
+      "target": "docs_privacy_gdpr_third_parties"
     },
     {
       "relation": "contains",
@@ -10178,9 +10369,9 @@
       "source_file": "docs/privacy-gdpr.md",
       "source_location": "L129",
       "weight": 1.0,
+      "confidence_score": 1.0,
       "source": "docs_privacy_gdpr_privacy_and_gdpr_notes",
-      "target": "docs_privacy_gdpr_when_to_do_more",
-      "confidence_score": 1.0
+      "target": "docs_privacy_gdpr_when_to_do_more"
     },
     {
       "relation": "contains",
@@ -10188,9 +10379,9 @@
       "source_file": "docs/security.md",
       "source_location": "L1",
       "weight": 1.0,
+      "confidence_score": 1.0,
       "source": "docs_security",
-      "target": "docs_security_security_notes",
-      "confidence_score": 1.0
+      "target": "docs_security_security_notes"
     },
     {
       "relation": "contains",
@@ -10198,9 +10389,9 @@
       "source_file": "docs/security.md",
       "source_location": "L17",
       "weight": 1.0,
+      "confidence_score": 1.0,
       "source": "docs_security_security_notes",
-      "target": "docs_security_implemented_protections",
-      "confidence_score": 1.0
+      "target": "docs_security_implemented_protections"
     },
     {
       "relation": "contains",
@@ -10208,9 +10399,9 @@
       "source_file": "docs/security.md",
       "source_location": "L93",
       "weight": 1.0,
+      "confidence_score": 1.0,
       "source": "docs_security_security_notes",
-      "target": "docs_security_known_limits",
-      "confidence_score": 1.0
+      "target": "docs_security_known_limits"
     },
     {
       "relation": "contains",
@@ -10218,9 +10409,9 @@
       "source_file": "docs/security.md",
       "source_location": "L81",
       "weight": 1.0,
+      "confidence_score": 1.0,
       "source": "docs_security_security_notes",
-      "target": "docs_security_operational_recommendations",
-      "confidence_score": 1.0
+      "target": "docs_security_operational_recommendations"
     },
     {
       "relation": "contains",
@@ -10228,9 +10419,9 @@
       "source_file": "docs/security.md",
       "source_location": "L111",
       "weight": 1.0,
+      "confidence_score": 1.0,
       "source": "docs_security_security_notes",
-      "target": "docs_security_security_review_checklist",
-      "confidence_score": 1.0
+      "target": "docs_security_security_review_checklist"
     },
     {
       "relation": "contains",
@@ -10238,9 +10429,9 @@
       "source_file": "docs/security.md",
       "source_location": "L6",
       "weight": 1.0,
+      "confidence_score": 1.0,
       "source": "docs_security_security_notes",
-      "target": "docs_security_trust_model",
-      "confidence_score": 1.0
+      "target": "docs_security_trust_model"
     },
     {
       "relation": "contains",
@@ -10248,9 +10439,9 @@
       "source_file": "docs/security.md",
       "source_location": "L19",
       "weight": 1.0,
+      "confidence_score": 1.0,
       "source": "docs_security_implemented_protections",
-      "target": "docs_security_admin_tokens",
-      "confidence_score": 1.0
+      "target": "docs_security_admin_tokens"
     },
     {
       "relation": "contains",
@@ -10258,9 +10449,9 @@
       "source_file": "docs/security.md",
       "source_location": "L28",
       "weight": 1.0,
+      "confidence_score": 1.0,
       "source": "docs_security_implemented_protections",
-      "target": "docs_security_csrf",
-      "confidence_score": 1.0
+      "target": "docs_security_csrf"
     },
     {
       "relation": "contains",
@@ -10268,9 +10459,9 @@
       "source_file": "docs/security.md",
       "source_location": "L70",
       "weight": 1.0,
+      "confidence_score": 1.0,
       "source": "docs_security_implemented_protections",
-      "target": "docs_security_host_header_handling",
-      "confidence_score": 1.0
+      "target": "docs_security_host_header_handling"
     },
     {
       "relation": "contains",
@@ -10278,9 +10469,9 @@
       "source_file": "docs/security.md",
       "source_location": "L48",
       "weight": 1.0,
+      "confidence_score": 1.0,
       "source": "docs_security_implemented_protections",
-      "target": "docs_security_media_access",
-      "confidence_score": 1.0
+      "target": "docs_security_media_access"
     },
     {
       "relation": "contains",
@@ -10288,9 +10479,9 @@
       "source_file": "docs/security.md",
       "source_location": "L64",
       "weight": 1.0,
+      "confidence_score": 1.0,
       "source": "docs_security_implemented_protections",
-      "target": "docs_security_upload_limits",
-      "confidence_score": 1.0
+      "target": "docs_security_upload_limits"
     },
     {
       "relation": "contains",
@@ -10298,9 +10489,9 @@
       "source_file": "docs/security.md",
       "source_location": "L35",
       "weight": 1.0,
+      "confidence_score": 1.0,
       "source": "docs_security_implemented_protections",
-      "target": "docs_security_voter_cookies",
-      "confidence_score": 1.0
+      "target": "docs_security_voter_cookies"
     },
     {
       "relation": "contains",
@@ -10308,11 +10499,11 @@
       "source_file": "docs/security.md",
       "source_location": "L76",
       "weight": 1.0,
+      "confidence_score": 1.0,
       "source": "docs_security_implemented_protections",
-      "target": "docs_security_youtube",
-      "confidence_score": 1.0
+      "target": "docs_security_youtube"
     }
   ],
   "hyperedges": [],
-  "built_at_commit": "bde65cbb2cc2f24e7c26e2545e717f8ed5d43d74"
+  "built_at_commit": "0f9b26823cd733ae31e2604df81200acec366780"
 }
