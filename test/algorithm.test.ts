@@ -10,12 +10,14 @@ process.env.DATABASE_PATH = join(tempDir, "pairwise.db");
 
 let algorithm: typeof import("../src/algorithm.ts");
 let data: typeof import("../src/db.ts");
+let index: typeof import("../src/index.ts");
 let httpApp: typeof import("../src/index.ts").app;
 
 beforeAll(async () => {
   algorithm = await import("../src/algorithm.ts");
   data = await import("../src/db.ts");
-  httpApp = (await import("../src/index.ts")).app;
+  index = await import("../src/index.ts");
+  httpApp = index.app;
 });
 
 describe("scoreOf", () => {
@@ -188,7 +190,7 @@ describe("vote API hardening", () => {
     const insert = data.db.query(
       "INSERT INTO votes (survey_id, voter_id, kind) VALUES (?, ?, 'skip')",
     );
-    for (let i = 0; i < 250; i++) insert.run(survey.id, voter);
+    for (let i = 0; i < index.MAX_ANSWERS_PER_VOTER_PER_SURVEY; i++) insert.run(survey.id, voter);
 
     const response = await httpApp.request(`/api/s/${survey.slug}/skip`, {
       method: "POST",
@@ -501,6 +503,7 @@ describe("image voting UI", () => {
     expect(response.status).toBe(200);
     expect(html).toContain("Forstør billede");
     expect(html).toContain("Vælg dette billede");
+    expect(html).toContain("Du har nået grænsen for svar");
   });
 });
 

@@ -78,13 +78,20 @@ const MAX_INITIAL_IDEAS = 500;
 const MAX_SURVEY_IDEAS = 500;
 const MAX_PARTICIPANT_MEDIA_SUBMISSIONS = 50;
 const MAX_PARTICIPANT_UPLOAD_BODY = 12 * 1024 * 1024;
-const MAX_ANSWERS_PER_VOTER_PER_SURVEY = 250;
+export const MAX_ANSWERS_PER_VOTER_PER_SURVEY = positiveIntEnv("MAX_ANSWERS_PER_VOTER_PER_SURVEY", 250);
 const API_RATE_WINDOW_MS = 60_000;
 const API_RATE_LIMIT = 180;
 const TRUST_PROXY_HEADERS = process.env.TRUST_PROXY_HEADERS === "1";
 const COOKIE_MAX_AGE = 60 * 60 * 24 * 365;
 const SECURE_COOKIES = process.env.NODE_ENV === "production";
 const PUBLIC_ORIGIN = (process.env.PUBLIC_ORIGIN ?? "").replace(/\/+$/, "");
+
+function positiveIntEnv(name: string, fallback: number): number {
+  const raw = process.env[name];
+  if (!raw) return fallback;
+  const parsed = Number(raw);
+  return Number.isInteger(parsed) && parsed > 0 ? parsed : fallback;
+}
 
 // ── i18n + voter helpers ─────────────────────────────────────────────────────
 

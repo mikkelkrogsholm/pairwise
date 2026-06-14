@@ -314,6 +314,7 @@ export function votePage(t: Translator, locale: string, survey: Survey, canVote:
       countTpl: t("vote.count"),
       pick: t("vote.pick"),
       done: t("vote.done"),
+      limit: t("vote.limit"),
       results: t("vote.results"),
       emptyMedia: t("vote.empty.media"),
       closed: t("vote.closed"),

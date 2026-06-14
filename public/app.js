@@ -298,8 +298,21 @@
     if (skipBtn) skipBtn.disabled = true;
   }
 
+  function renderLimit() {
+    current = null;
+    busy = false;
+    if (arena) {
+      arena.classList.remove("swapping");
+      arena.innerHTML =
+        '<div class="card empty-state" style="grid-column:1/-1"><p>' + (I.limit || I.done) +
+        '</p><a class="btn btn-primary" href="/s/' + cfg.slug + '/results">' + I.results + "</a></div>";
+    }
+    if (skipBtn) skipBtn.disabled = true;
+  }
+
   function handleApiError(err) {
     if (err && err.body && err.body.error === "survey_closed") { renderClosed(); return; }
+    if (err && err.body && err.body.error === "answer_limit") { renderLimit(); return; }
     busy = false;
     showToast(I.error);
   }

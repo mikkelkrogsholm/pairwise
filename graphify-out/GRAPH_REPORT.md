@@ -1,16 +1,16 @@
 # Graph Report - pairwise-ideas  (2026-06-14)
 
 ## Corpus Check
-- 35 files · ~74,642 words
+- 35 files · ~74,772 words
 - Verdict: corpus is large enough that graph structure adds value.
 
 ## Summary
-- 383 nodes · 638 edges · 29 communities (22 shown, 7 thin omitted)
+- 386 nodes · 642 edges · 28 communities (21 shown, 7 thin omitted)
 - Extraction: 100% EXTRACTED · 0% INFERRED · 0% AMBIGUOUS
 - Token cost: 0 input · 0 output
 
 ## Graph Freshness
-- Built from commit: `0f9b2682`
+- Built from commit: `402a5d0c`
 - Run `git rev-parse HEAD` and compare to check if the graph is stale.
 - Run `graphify update .` after code changes (no API cost).
 
@@ -37,7 +37,6 @@
 - [[_COMMUNITY_Community 20|Community 20]]
 - [[_COMMUNITY_Community 21|Community 21]]
 - [[_COMMUNITY_Community 22|Community 22]]
-- [[_COMMUNITY_Community 23|Community 23]]
 - [[_COMMUNITY_Community 24|Community 24]]
 - [[_COMMUNITY_Community 25|Community 25]]
 - [[_COMMUNITY_Community 26|Community 26]]
@@ -72,11 +71,11 @@
 ## Import Cycles
 - None detected.
 
-## Communities (29 total, 7 thin omitted)
+## Communities (28 total, 7 thin omitted)
 
 ### Community 0 - "Community 0"
-Cohesion: 0.07
-Nodes (54): addIdea(), adminIdeasFor(), createAppearance(), deleteIdea(), deleteSurvey(), getIdea(), listAllIdeas(), submittedMediaIdeaCount() (+46 more)
+Cohesion: 0.06
+Nodes (55): addIdea(), adminIdeasFor(), createAppearance(), deleteIdea(), deleteSurvey(), getIdea(), listAllIdeas(), submittedMediaIdeaCount() (+47 more)
 
 ### Community 1 - "Community 1"
 Cohesion: 0.08
@@ -91,8 +90,8 @@ Cohesion: 0.10
 Nodes (20): dependencies, hono, description, devDependencies, bun-types, eslint, @eslint/js, typescript (+12 more)
 
 ### Community 4 - "Community 4"
-Cohesion: 0.19
-Nodes (25): Survey, ScoreMethod, addIdeaInput(), adminAccessPanel(), adminAddForm(), adminPage(), createdPage(), csrfInput() (+17 more)
+Cohesion: 0.12
+Nodes (35): Survey, Catalog, catalogs, da, en, isLocale(), LOCALES, pickLocale() (+27 more)
 
 ### Community 5 - "Community 5"
 Cohesion: 0.13
@@ -103,8 +102,8 @@ Cohesion: 0.17
 Nodes (11): compilerOptions, allowImportingTsExtensions, lib, module, moduleResolution, noEmit, skipLibCheck, strict (+3 more)
 
 ### Community 7 - "Community 7"
-Cohesion: 0.20
-Nodes (16): advance(), api(), buildArena(), buildChoice(), choose(), closeImageLightbox(), el(), enhanceFileInput() (+8 more)
+Cohesion: 0.19
+Nodes (17): advance(), api(), buildArena(), buildChoice(), choose(), closeImageLightbox(), el(), enhanceFileInput() (+9 more)
 
 ### Community 8 - "Community 8"
 Cohesion: 0.15
@@ -134,10 +133,6 @@ Nodes (3): For --cluster-only, For --update (incremental re-extraction), graphif
 Cohesion: 0.36
 Nodes (6): downloadTrack(), DrRevealResponse, DrSong, main(), songLabel(), trackUrl()
 
-### Community 23 - "Community 23"
-Cohesion: 0.24
-Nodes (10): Catalog, catalogs, da, en, isLocale(), LOCALES, pickLocale(), rich() (+2 more)
-
 ### Community 24 - "Community 24"
 Cohesion: 0.14
 Nodes (13): Admin Tokens, CSRF, Host Header Handling, Implemented Protections, Known Limits, Media Access, Operational Recommendations, Security Notes (+5 more)
@@ -163,7 +158,7 @@ Cohesion: 0.22
 Nodes (8): Choosing a Method, Interpreting Scores, Methods and Scoring, Pair Selection: Catchup, Pairwise Voting Flow, Score Method: Bayesian Win Rate, Score Method: Bradley-Terry, Score Method: Raw Win Rate
 
 ## Knowledge Gaps
-- **149 isolated node(s):** `commonGlobals`, `browserGlobals`, `name`, `version`, `description` (+144 more)
+- **150 isolated node(s):** `commonGlobals`, `browserGlobals`, `name`, `version`, `description` (+145 more)
   These have ≤1 connection - possible missing edges or undocumented components.
 - **7 thin communities (<3 nodes) omitted from report** — run `graphify query` to explore isolated nodes.
 
@@ -175,9 +170,9 @@ _Questions this graph is uniquely positioned to answer:_
 - **Why does `adminPage()` connect `Community 4` to `Community 0`?**
   _High betweenness centrality (0.003) - this node is a cross-community bridge._
 - **What connects `commonGlobals`, `browserGlobals`, `name` to the rest of the system?**
-  _149 weakly-connected nodes found - possible documentation gaps or missing edges._
+  _150 weakly-connected nodes found - possible documentation gaps or missing edges._
 - **Should `Community 0` be split into smaller, more focused modules?**
-  _Cohesion score 0.06605222734254992 - nodes in this community are weakly interconnected._
+  _Cohesion score 0.06298076923076923 - nodes in this community are weakly interconnected._
 - **Should `Community 1` be split into smaller, more focused modules?**
   _Cohesion score 0.07575757575757576 - nodes in this community are weakly interconnected._
 - **Should `Community 2` be split into smaller, more focused modules?**
